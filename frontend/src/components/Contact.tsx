@@ -2,6 +2,7 @@ import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import { LocationMap } from "@/components/ui/expand-map";
 import { MapPin, Phone, Mail, Globe } from "lucide-react";
 
 const companySnapshot = [
@@ -91,6 +92,17 @@ const Contact = () => {
                   </div>
                 ))}
               </div>
+            </div>
+
+            <div>
+              <h3 className="font-bold text-foreground mb-4 text-lg">Location Map</h3>
+              <LocationMap
+                className="mx-auto sm:mx-0"
+                location="Go Digital Africa, PRV4+4M, Westlands, Nairobi"
+                coordinates="Westlands, Nairobi, Kenya"
+                openExternalOnClick
+                mapUrl="https://www.google.com/maps/search/?api=1&query=Go+Digital+Africa%2C+PRV4%2B4M%2C+Westlands%2C+Nairobi"
+              />
             </div>
           </div>
         </div>
