@@ -1,5 +1,6 @@
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { Lightbulb, Award, ShieldCheck, Users, Globe, Rocket } from "lucide-react";
+import aboutImage from "@/images/About.png";
 
 const values = [
   {
@@ -71,31 +72,16 @@ const About = () => {
             <p className="text-muted-foreground leading-relaxed">
               We deliver data-driven digital strategy, SEO and SEM, social media campaigns, content creation, and analytics-led optimization for organizations across Africa and global markets.
             </p>
-            <div className="mt-6 grid grid-cols-2 gap-3">
-              {[
-                { label: "Founded", value: "2019" },
-                { label: "Headquarters", value: "Nairobi, Kenya" },
-                { label: "Company Size", value: "51-200 employees" },
-                { label: "Industry", value: "IT Custom Software Development" },
-              ].map((item) => (
-                <div key={item.label} className="rounded-lg border border-border bg-secondary/50 px-3 py-2">
-                  <p className="text-[10px] font-bold uppercase tracking-wider text-primary">{item.label}</p>
-                  <p className="text-xs text-foreground/80">{item.value}</p>
-                </div>
-              ))}
-            </div>
           </div>
 
-          {/* Image placeholder */}
+          {/* About image */}
           <div className="relative">
             <div className="aspect-[4/3] rounded-2xl bg-gradient-to-br from-secondary to-muted flex items-center justify-center border border-border overflow-hidden">
-              <div className="text-center p-8">
-                <div className="w-20 h-20 mx-auto mb-4 rounded-2xl bg-primary/10 flex items-center justify-center">
-                  <Globe className="w-10 h-10 text-primary" />
-                </div>
-                <p className="text-muted-foreground font-medium">Digital Infrastructure</p>
-                <p className="text-sm text-muted-foreground/60">Powering Africa's Digital Future</p>
-              </div>
+              <img
+                src={aboutImage}
+                alt="Digital Infrastructure — Powering Africa's Digital Future"
+                className="h-full w-full object-cover"
+              />
             </div>
             <div className="absolute -bottom-4 -right-4 w-24 h-24 bg-primary/10 rounded-2xl -z-10" />
             <div className="absolute -top-4 -left-4 w-16 h-16 bg-primary/5 rounded-xl -z-10" />

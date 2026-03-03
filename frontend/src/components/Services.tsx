@@ -1,38 +1,54 @@
 import { useScrollReveal } from "@/hooks/useScrollReveal";
-import { Code, Search, Share2, Palette } from "lucide-react";
+import webImage from "@/images/web.png";
+import seoSemImage from "@/images/SEO & SEM.png";
+import socialMediaImage from "@/images/Social Media.png";
+import contentImage from "@/images/content.png";
+import growthMarketingImage from "@/images/Digital marketing.png";
+import mobileDevelopmentImage from "@/images/mobile.png";
+import digitalStrategyImage from "@/images/digital.png";
 
 const services = [
   {
-    icon: Code,
-    title: "Digital Strategy, Web & Software Development",
-    desc: "Data-driven strategy plus web and custom software delivery aligned to your business goals.",
+    title: "Digital Strategy",
+    desc: "Data-driven digital strategy aligned to your business goals and market opportunities.",
+    image: digitalStrategyImage,
     cardClass: "border-blue-200/90 bg-blue-50/35 hover:border-blue-300",
-    iconWrapClass: "bg-blue-100/80 group-hover:bg-blue-100",
-    iconClass: "text-blue-600",
   },
   {
-    icon: Search,
+    title: "Growth Marketing",
+    desc: "Performance-led growth campaigns built to increase qualified traffic, leads, and revenue.",
+    image: growthMarketingImage,
+    cardClass: "border-indigo-200/90 bg-indigo-50/35 hover:border-indigo-300",
+  },
+  {
     title: "SEO & SEM",
     desc: "Search engine optimization and search engine marketing programs that increase visibility and qualified traffic.",
+    image: seoSemImage,
     cardClass: "border-emerald-200/90 bg-emerald-50/35 hover:border-emerald-300",
-    iconWrapClass: "bg-emerald-100/80 group-hover:bg-emerald-100",
-    iconClass: "text-emerald-600",
   },
   {
-    icon: Share2,
     title: "Social Media Mastery",
     desc: "Strategic social media management and marketing campaigns to engage, connect, and convert your audience.",
+    image: socialMediaImage,
     cardClass: "border-violet-200/90 bg-violet-50/35 hover:border-violet-300",
-    iconWrapClass: "bg-violet-100/80 group-hover:bg-violet-100",
-    iconClass: "text-violet-600",
   },
   {
-    icon: Palette,
-    title: "Content, Analytics & Creative",
-    desc: "Compelling content creation, design support, and analytics insights that drive continual digital growth.",
+    title: "Web Design",
+    desc: "Modern, conversion-focused website design experiences optimized for brand trust and usability.",
+    image: webImage,
+    cardClass: "border-amber-200/90 bg-amber-50/35 hover:border-amber-300",
+  },
+  {
+    title: "Content Strategy",
+    desc: "Structured content planning and storytelling frameworks that support long-term digital growth.",
+    image: contentImage,
     cardClass: "border-rose-200/90 bg-rose-50/35 hover:border-rose-300",
-    iconWrapClass: "bg-rose-100/80 group-hover:bg-rose-100",
-    iconClass: "text-rose-600",
+  },
+  {
+    title: "Mobile Development",
+    desc: "Scalable mobile app development for Android and iOS with reliable performance and clean UX.",
+    image: mobileDevelopmentImage,
+    cardClass: "border-cyan-200/90 bg-cyan-50/35 hover:border-cyan-300",
   },
 ];
 
@@ -58,8 +74,13 @@ const Services = () => {
               key={s.title}
               className={`card-lift group rounded-xl p-6 text-center cursor-default border ${s.cardClass}`}
             >
-              <div className={`w-14 h-14 mx-auto rounded-xl flex items-center justify-center mb-5 transition-colors ${s.iconWrapClass}`}>
-                <s.icon className={`w-7 h-7 ${s.iconClass}`} />
+              <div className="mb-5 aspect-[16/10] overflow-hidden rounded-xl border border-border/50 bg-background/70 shadow-sm">
+                <img
+                  src={s.image}
+                  alt={s.title}
+                  className="h-full w-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
+                  loading="lazy"
+                />
               </div>
               <h3 className="font-bold text-foreground mb-2 text-sm leading-snug">{s.title}</h3>
               <p className="text-sm text-muted-foreground leading-relaxed">{s.desc}</p>

@@ -1,6 +1,7 @@
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const Careers = () => {
   const sectionRef = useScrollReveal();
@@ -15,8 +16,10 @@ const Careers = () => {
         <p className="text-muted-foreground max-w-xl mx-auto mb-8 leading-relaxed">
           We're building the continent's most ambitious digital transformation team. If you're passionate about technology and Africa's future, we want to hear from you.
         </p>
-        <Button size="lg" className="btn-glow bg-primary text-primary-foreground hover:bg-primary/90 rounded-full px-8 h-12 text-base font-semibold">
-          View Open Positions <ArrowRight className="w-4 h-4 ml-1" />
+        <Button asChild size="lg" className="btn-glow bg-primary text-primary-foreground hover:bg-primary/90 rounded-full px-8 h-12 text-base font-semibold">
+          <Link to="/careers">
+            View Open Positions <ArrowRight className="w-4 h-4 ml-1" />
+          </Link>
         </Button>
       </div>
     </section>

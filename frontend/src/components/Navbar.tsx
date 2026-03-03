@@ -6,6 +6,7 @@ import gdaLogo from "@/images/gdalogo.jpeg";
 const navLinks = [
   { label: "About", href: "#about" },
   { label: "Services", href: "#services" },
+  { label: "Team", href: "#team" },
   { label: "Products", href: "#products" },
   { label: "Process", href: "#process" },
   { label: "Case Studies", href: "#case-studies" },
@@ -61,8 +62,8 @@ const Navbar = () => {
               {link.label}
             </a>
           ))}
-          <Button className="btn-glow bg-primary text-primary-foreground hover:bg-primary/90 rounded-full px-6">
-            Get Started
+          <Button asChild className="btn-glow bg-primary text-primary-foreground hover:bg-primary/90 rounded-full px-6">
+            <a href="#contact">Get Started</a>
           </Button>
         </div>
 
@@ -94,8 +95,8 @@ const Navbar = () => {
                 {link.label}
               </a>
             ))}
-            <Button className="btn-glow bg-primary text-primary-foreground rounded-full w-full mt-2">
-              Get Started
+            <Button asChild className="btn-glow bg-primary text-primary-foreground rounded-full w-full mt-2">
+              <a href="#contact" onClick={() => setMobileOpen(false)}>Get Started</a>
             </Button>
           </div>
         </div>

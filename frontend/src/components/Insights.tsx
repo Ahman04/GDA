@@ -1,5 +1,8 @@
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { ArrowRight } from "lucide-react";
+import aiImage from "@/images/AI.png";
+import cloudImage from "@/images/Cloud.png";
+import digitalMarketingImage from "@/images/Digital marketing.png";
 
 const posts = [
   {
@@ -7,18 +10,21 @@ const posts = [
     title: "How AI is Reshaping Enterprise Operations Across Africa",
     excerpt: "Explore the transformative impact of AI automation on operational efficiency in African enterprises.",
     date: "Feb 2026",
+    image: aiImage,
   },
   {
     category: "Digital Infrastructure",
     title: "Building Cloud-Native Architectures for Emerging Markets",
     excerpt: "A technical deep-dive into designing resilient cloud infrastructure for high-growth African markets.",
     date: "Jan 2026",
+    image: cloudImage,
   },
   {
     category: "Performance Marketing",
     title: "The Data-Driven Playbook for Cross-Border Digital Growth",
     excerpt: "Strategic frameworks for scaling digital marketing campaigns across multiple African markets.",
     date: "Dec 2025",
+    image: digitalMarketingImage,
   },
 ];
 
@@ -43,9 +49,9 @@ const Insights = () => {
             >
               <div className="img-zoom-container h-48 bg-gradient-to-br from-secondary to-muted flex items-center justify-center">
                 <img
-                  src="/placeholder.svg"
+                  src={p.image}
                   alt={p.title}
-                  className="w-full h-full object-cover opacity-30"
+                  className="w-full h-full object-cover"
                 />
               </div>
               <div className="p-6">

@@ -1,5 +1,8 @@
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { TrendingUp, BarChart3, Zap } from "lucide-react";
+import financialServicesImage from "@/images/Financial Services.png";
+import telecommunicationImage from "@/images/telecommunication.png";
+import retailEcommerceImage from "@/images/Retail & E-Commerce.png";
 
 const cases = [
   {
@@ -8,6 +11,7 @@ const cases = [
     industry: "Financial Services",
     desc: "Architected cloud infrastructure supporting 2M+ transactions monthly for a leading African fintech.",
     result: "340% growth in transaction volume",
+    image: financialServicesImage,
     iconClass: "text-blue-400/80",
     overlayClass: "bg-blue-500/15",
     pillClass: "bg-blue-100 text-blue-700",
@@ -19,6 +23,7 @@ const cases = [
     industry: "Telecommunications",
     desc: "End-to-end digital marketing and customer acquisition platform for Pan-African telecom operator.",
     result: "150% increase in digital subscriptions",
+    image: telecommunicationImage,
     iconClass: "text-emerald-400/80",
     overlayClass: "bg-emerald-500/15",
     pillClass: "bg-emerald-100 text-emerald-700",
@@ -30,6 +35,7 @@ const cases = [
     industry: "Retail & E-Commerce",
     desc: "AI-powered SEO and performance marketing engine driving 10x organic growth for cross-border retailer.",
     result: "10x organic traffic in 8 months",
+    image: retailEcommerceImage,
     iconClass: "text-violet-400/80",
     overlayClass: "bg-violet-500/15",
     pillClass: "bg-violet-100 text-violet-700",
@@ -58,7 +64,13 @@ const CaseStudies = () => {
             >
               {/* Thumbnail */}
               <div className="h-44 bg-gradient-to-br from-deep-blue to-deep-blue/80 flex items-center justify-center relative overflow-hidden">
-                <c.icon className={`w-12 h-12 ${c.iconClass}`} />
+                <img
+                  src={c.image}
+                  alt={`${c.title} case study`}
+                  className="h-full w-full object-cover"
+                  loading="lazy"
+                />
+                <div className="absolute inset-0 bg-deep-blue/20" />
                 {/* Hover overlay */}
                 <div className={`absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center ${c.overlayClass}`}>
                   <span className="text-primary-foreground bg-primary rounded-full px-4 py-1.5 text-sm font-semibold shadow-lg">View Details</span>
