@@ -1,0 +1,158 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 216 60% 10%;
+    --card: 0 0% 100%;
+    --card-foreground: 216 60% 10%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 216 60% 10%;
+    --primary: 190 100% 50%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 210 20% 97%;
+    --secondary-foreground: 216 60% 10%;
+    --muted: 210 15% 95%;
+    --muted-foreground: 216 15% 45%;
+    --accent: 190 100% 50%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 210 20% 90%;
+    --input: 210 20% 90%;
+    --ring: 190 100% 50%;
+    --radius: 0.75rem;
+
+    --deep-blue: 216 60% 10%;
+    --deep-blue-foreground: 0 0% 100%;
+    --cyan: 190 100% 50%;
+    --cyan-glow: 190 100% 65%;
+    --light-gray: 210 20% 97%;
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground font-sans;
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+/* Hero animated grid */
+.hero-grid {
+  background-image:
+    linear-gradient(hsl(190 100% 50% / 0.07) 1px, transparent 1px),
+    linear-gradient(90deg, hsl(190 100% 50% / 0.07) 1px, transparent 1px);
+  background-size: 60px 60px;
+  animation: grid-drift 25s linear infinite;
+}
+
+@keyframes grid-drift {
+  0% { background-position: 0 0; }
+  100% { background-position: 60px 60px; }
+}
+
+/* Floating particles for hero */
+.hero-particle {
+  position: absolute;
+  border-radius: 50%;
+  background: hsl(190 100% 50% / 0.3);
+  animation: float-particle 8s ease-in-out infinite;
+}
+
+@keyframes float-particle {
+  0%, 100% { transform: translateY(0) translateX(0); opacity: 0.3; }
+  50% { transform: translateY(-30px) translateX(15px); opacity: 0.7; }
+}
+
+/* Scroll reveal */
+.scroll-reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+}
+.scroll-reveal.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Glow button */
+.btn-glow {
+  position: relative;
+  overflow: hidden;
+  transition: box-shadow 0.3s ease;
+}
+.btn-glow:hover {
+  box-shadow: 0 0 25px hsl(190 100% 50% / 0.4), 0 0 50px hsl(190 100% 50% / 0.15);
+}
+
+/* Card lift */
+.card-lift {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.card-lift:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 40px hsl(216 60% 10% / 0.08);
+}
+
+/* Card cyan glow */
+.card-cyan-glow {
+  transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+}
+.card-cyan-glow:hover {
+  border-color: hsl(190 100% 50% / 0.5);
+  box-shadow: 0 0 30px hsl(190 100% 50% / 0.15);
+  transform: translateY(-4px);
+}
+
+/* Grayscale to color */
+.grayscale-hover {
+  filter: grayscale(100%);
+  opacity: 0.5;
+  transition: filter 0.4s ease, opacity 0.4s ease;
+}
+.grayscale-hover:hover {
+  filter: grayscale(0%);
+  opacity: 1;
+}
+
+/* Gradient text */
+.gradient-text {
+  background: linear-gradient(135deg, hsl(190 100% 50%), hsl(190 100% 70%));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Blog card image zoom */
+.img-zoom-container {
+  overflow: hidden;
+}
+.img-zoom-container img {
+  transition: transform 0.5s ease;
+}
+.img-zoom-container:hover img {
+  transform: scale(1.08);
+}
