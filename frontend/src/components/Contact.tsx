@@ -9,7 +9,6 @@ const companySnapshot = [
   { label: "Primary", value: "Nairobi, Kenya" },
   { label: "Founded", value: "2019" },
   { label: "Company Size", value: "51-200 employees" },
-  { label: "LinkedIn Team", value: "28 associated members" },
 ];
 
 const Contact = () => {
@@ -43,6 +42,19 @@ const Contact = () => {
                 Send Message
               </Button>
             </form>
+
+            <div className="mt-6 -mx-8 -mb-8 overflow-hidden rounded-b-2xl border-t border-border">
+              <LocationMap
+                className="w-full"
+                location="Go Digital Africa, PRV4+4M, Westlands, Nairobi"
+                coordinates="Westlands, Nairobi, Kenya"
+                openExternalOnClick
+                fullWidth
+                compactHeight={230}
+                edgeToEdge
+                mapUrl="https://www.google.com/maps/search/?api=1&query=Go+Digital+Africa%2C+PRV4%2B4M%2C+Westlands%2C+Nairobi"
+              />
+            </div>
           </div>
 
           {/* Info */}
@@ -94,16 +106,6 @@ const Contact = () => {
               </div>
             </div>
 
-            <div>
-              <h3 className="font-bold text-foreground mb-4 text-lg">Location Map</h3>
-              <LocationMap
-                className="mx-auto sm:mx-0"
-                location="Go Digital Africa, PRV4+4M, Westlands, Nairobi"
-                coordinates="Westlands, Nairobi, Kenya"
-                openExternalOnClick
-                mapUrl="https://www.google.com/maps/search/?api=1&query=Go+Digital+Africa%2C+PRV4%2B4M%2C+Westlands%2C+Nairobi"
-              />
-            </div>
           </div>
         </div>
       </div>

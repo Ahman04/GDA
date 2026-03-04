@@ -11,6 +11,9 @@ interface LocationMapProps {
   className?: string;
   mapUrl?: string;
   openExternalOnClick?: boolean;
+  fullWidth?: boolean;
+  compactHeight?: number;
+  edgeToEdge?: boolean;
 }
 
 export function LocationMap({
@@ -19,6 +22,9 @@ export function LocationMap({
   className,
   mapUrl,
   openExternalOnClick = false,
+  fullWidth = false,
+  compactHeight = 140,
+  edgeToEdge = false,
 }: LocationMapProps) {
   const [isHovered, setIsHovered] = useState(false);
   const [isExpanded, setIsExpanded] = useState(false);
@@ -69,15 +75,15 @@ export function LocationMap({
       onClick={handleClick}
     >
       <motion.div
-        className="relative overflow-hidden rounded-2xl bg-background border border-border shadow-[0_12px_35px_hsl(190_100%_50%_/_0.22)]"
+        className={`relative overflow-hidden ${edgeToEdge ? "rounded-none" : "rounded-2xl"} bg-background border border-border shadow-[0_12px_35px_hsl(190_100%_50%_/_0.22)]`}
         style={{
           rotateX: springRotateX,
           rotateY: springRotateY,
           transformStyle: "preserve-3d",
         }}
         animate={{
-          width: isExpanded ? 360 : 240,
-          height: isExpanded ? 280 : 140,
+          width: fullWidth ? "100%" : isExpanded ? 360 : 240,
+          height: fullWidth ? (isExpanded ? 280 : compactHeight) : isExpanded ? 280 : 140,
         }}
         transition={{
           type: "spring",

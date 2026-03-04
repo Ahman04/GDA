@@ -7,7 +7,7 @@ const Careers = () => {
   const sectionRef = useScrollReveal();
 
   return (
-    <section className="py-20 lg:py-28 bg-primary/5">
+    <section id="careers" className="py-20 lg:py-28 bg-primary/5">
       <div ref={sectionRef} className="scroll-reveal container mx-auto px-4 lg:px-8 text-center">
         <p className="text-primary font-semibold text-sm uppercase tracking-widest mb-3">Careers</p>
         <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-foreground mb-6 leading-tight max-w-2xl mx-auto">

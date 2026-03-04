@@ -10,6 +10,9 @@ type GradientDotsProps = React.ComponentProps<typeof motion.div> & {
   duration?: number;
   colorCycleDuration?: number;
   backgroundColor?: string;
+  dotColor?: string;
+  dotColorAlt?: string;
+  animateHue?: boolean;
 };
 
 export function GradientDots({
@@ -18,6 +21,9 @@ export function GradientDots({
   duration = 30,
   colorCycleDuration = 6,
   backgroundColor = "var(--background)",
+  dotColor = "hsl(var(--primary) / 0.22)",
+  dotColorAlt = "hsl(var(--foreground) / 0.08)",
+  animateHue = false,
   className,
   ...props
 }: GradientDotsProps) {
@@ -29,12 +35,12 @@ export function GradientDots({
       style={{
         backgroundColor,
         backgroundImage: `
-          radial-gradient(circle at 50% 50%, transparent 1.5px, ${backgroundColor} 0 ${dotSize}px, transparent ${dotSize}px),
-          radial-gradient(circle at 50% 50%, transparent 1.5px, ${backgroundColor} 0 ${dotSize}px, transparent ${dotSize}px),
-          radial-gradient(circle at 50% 50%, #f00, transparent 60%),
-          radial-gradient(circle at 50% 50%, #ff0, transparent 60%),
-          radial-gradient(circle at 50% 50%, #0f0, transparent 60%),
-          radial-gradient(ellipse at 50% 50%, #00f, transparent 60%)
+          radial-gradient(circle at 50% 50%, ${dotColor} 1.8px, transparent 2.2px),
+          radial-gradient(circle at 50% 50%, ${dotColorAlt} 1.4px, transparent 2px),
+          radial-gradient(circle at 50% 50%, hsl(var(--primary) / 0.12), transparent 65%),
+          radial-gradient(circle at 50% 50%, hsl(var(--foreground) / 0.05), transparent 70%),
+          radial-gradient(circle at 50% 50%, hsl(var(--primary) / 0.08), transparent 75%),
+          radial-gradient(ellipse at 50% 50%, hsl(var(--foreground) / 0.04), transparent 78%)
         `,
         backgroundSize: `
           ${spacing}px ${hexSpacing}px,
@@ -58,7 +64,7 @@ export function GradientDots({
           `0px 0px, ${spacing / 2}px ${hexSpacing / 2}px, 800% 400%, 1000% -400%, -1200% -600%, 400% ${hexSpacing}px`,
           `0px 0px, ${spacing / 2}px ${hexSpacing / 2}px, 0% 0%, 0% 0%, 0% 0%, 0% 0%`,
         ],
-        filter: ["hue-rotate(0deg)", "hue-rotate(360deg)"],
+        filter: animateHue ? ["hue-rotate(0deg)", "hue-rotate(360deg)"] : "none",
       }}
       transition={{
         backgroundPosition: {
@@ -67,9 +73,9 @@ export function GradientDots({
           repeat: Number.POSITIVE_INFINITY,
         },
         filter: {
-          duration: colorCycleDuration,
+          duration: animateHue ? colorCycleDuration : 0,
           ease: "linear",
-          repeat: Number.POSITIVE_INFINITY,
+          repeat: animateHue ? Number.POSITIVE_INFINITY : 0,
         },
       }}
       {...props}
