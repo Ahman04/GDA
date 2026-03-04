@@ -3,46 +3,59 @@ import webImage from "@/images/web.png";
 import seoSemImage from "@/images/SEO & SEM.png";
 import socialMediaImage from "@/images/Social Media.png";
 import contentImage from "@/images/content.png";
-import growthMarketingImage from "@/images/Digital marketing.png";
 import mobileDevelopmentImage from "@/images/mobile.png";
-import digitalStrategyImage from "@/images/digital.png";
+import googleAdsImage from "@/images/Google.png";
+import trendsettingCampaignsImage from "@/images/Trendsetting Digital Campaigns.png";
+import onlineReputationImage from "@/images/Online Reputation Management.png";
 
 const services = [
   {
-    title: "Digital Strategy",
-    desc: "Data-driven digital strategy aligned to your business goals and market opportunities.",
-    image: digitalStrategyImage,
+    title: "Social Media Management",
+    desc: "We build and manage high performance social media ecosystems that increase brand visibility, audience engagement, and measurable business growth across major platforms.",
+    image: socialMediaImage,
     cardClass: "border-blue-200/90 bg-blue-50/35 hover:border-blue-300",
   },
   {
-    title: "Growth Marketing",
-    desc: "Performance-led growth campaigns built to increase qualified traffic, leads, and revenue.",
-    image: growthMarketingImage,
+    title: "Search Engine Optimization (SEO)",
+    desc: "Our advanced SEO strategies improve search rankings, increase organic traffic, and position your brand for long term digital dominance in competitive markets.",
+    image: seoSemImage,
     cardClass: "border-indigo-200/90 bg-indigo-50/35 hover:border-indigo-300",
   },
   {
-    title: "SEO & SEM",
-    desc: "Search engine optimization and search engine marketing programs that increase visibility and qualified traffic.",
-    image: seoSemImage,
+    title: "Web Design & Development",
+    desc: "We design and develop modern, responsive, and performance optimized websites engineered to convert visitors into customers and scale with your business.",
+    image: webImage,
     cardClass: "border-emerald-200/90 bg-emerald-50/35 hover:border-emerald-300",
   },
   {
-    title: "Social Media Mastery",
-    desc: "Strategic social media management and marketing campaigns to engage, connect, and convert your audience.",
-    image: socialMediaImage,
+    title: "Search Engine Marketing (SEM)",
+    desc: "We execute data driven paid search campaigns that deliver qualified traffic, increase conversions, and maximize return on advertising investment.",
+    image: seoSemImage,
     cardClass: "border-violet-200/90 bg-violet-50/35 hover:border-violet-300",
   },
   {
-    title: "Web Design",
-    desc: "Modern, conversion-focused website design experiences optimized for brand trust and usability.",
-    image: webImage,
+    title: "Google Ads Management",
+    desc: "Our certified specialists create and manage high impact Google Ads campaigns designed to drive targeted leads, boost revenue, and accelerate growth.",
+    image: googleAdsImage,
     cardClass: "border-amber-200/90 bg-amber-50/35 hover:border-amber-300",
   },
   {
-    title: "Content Strategy",
-    desc: "Structured content planning and storytelling frameworks that support long-term digital growth.",
-    image: contentImage,
+    title: "Trendsetting Digital Campaigns",
+    desc: "We craft innovative marketing campaigns that position your brand as an industry leader while capturing attention in competitive digital environments.",
+    image: trendsettingCampaignsImage,
     cardClass: "border-rose-200/90 bg-rose-50/35 hover:border-rose-300",
+  },
+  {
+    title: "Online Reputation Management",
+    desc: "We protect and strengthen your digital reputation by addressing negative visibility, enhancing brand credibility, and building trust across search platforms.",
+    image: onlineReputationImage,
+    cardClass: "border-lime-200/90 bg-lime-50/35 hover:border-lime-300",
+  },
+  {
+    title: "Graphic Design & Branding",
+    desc: "We develop strong visual identities, compelling brand assets, and professional marketing materials that communicate authority and differentiate your business.",
+    image: contentImage,
+    cardClass: "border-pink-200/90 bg-pink-50/35 hover:border-pink-300",
   },
   {
     title: "Mobile Development",
