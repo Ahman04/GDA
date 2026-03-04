@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useCountUp } from "@/hooks/useCountUp";
 import { Button } from "@/components/ui/button";
+import { RainbowBordersButton } from "@/components/ui/rainbow-borders-button";
 import { InteractiveGlobe } from "@/components/ui/interactive-globe";
 import { WorldMap } from "@/components/ui/world-map";
 import { AnimatePresence, motion } from "framer-motion";
@@ -207,13 +208,13 @@ const Hero = () => {
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Button size="lg" className="btn-glow bg-primary text-primary-foreground hover:bg-primary/90 rounded-full px-8 h-12 text-base font-semibold">
+            <RainbowBordersButton variant="alt" className="h-12 rounded-full px-8 text-base font-semibold min-w-[290px]">
               Start Your Digital Transformation
               <ArrowRight className="w-4 h-4 ml-1" />
-            </Button>
-            <Button size="lg" variant="outline" className="rounded-full px-8 h-12 text-base font-semibold border-foreground/30 text-foreground hover:bg-foreground/10 hover:text-foreground">
+            </RainbowBordersButton>
+            <RainbowBordersButton variant="whiteFlash" className="h-12 rounded-full px-8 text-base font-semibold min-w-[240px]">
               Request Technical Audit
-            </Button>
+            </RainbowBordersButton>
           </div>
         </div>
 

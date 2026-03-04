@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import { Menu, X } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Home, Menu, X } from "lucide-react";
+import { RainbowBordersButton } from "@/components/ui/rainbow-borders-button";
 import gdaLogo from "@/images/gdalogo.jpeg";
 
 const navLinks = [
@@ -51,6 +51,16 @@ const Navbar = () => {
 
         {/* Desktop */}
         <div className="hidden lg:flex items-center gap-8">
+          <a
+            href="#"
+            aria-label="Home"
+            title="Home"
+            className={`transition-colors hover:text-primary ${
+              scrolled ? "text-foreground/70" : "text-deep-blue-foreground/70"
+            }`}
+          >
+            <Home className="h-4 w-4" />
+          </a>
           {navLinks.map((link) => (
             <a
               key={link.href}
@@ -62,9 +72,9 @@ const Navbar = () => {
               {link.label}
             </a>
           ))}
-          <Button asChild className="btn-glow bg-primary text-primary-foreground hover:bg-primary/90 rounded-full px-6">
-            <a href="#contact">Get Started</a>
-          </Button>
+          <RainbowBordersButton href="#contact" className="h-10 min-w-[140px] rounded-full px-6">
+            Get Started
+          </RainbowBordersButton>
         </div>
 
         {/* Mobile toggle */}
@@ -85,6 +95,14 @@ const Navbar = () => {
       {mobileOpen && (
         <div className="lg:hidden bg-background/98 backdrop-blur-lg border-b border-border shadow-lg">
           <div className="container mx-auto px-4 py-4 flex flex-col gap-3">
+            <a
+              href="#"
+              className="flex items-center gap-2 text-sm font-medium text-foreground/70 hover:text-primary py-2"
+              onClick={() => setMobileOpen(false)}
+            >
+              <Home className="h-4 w-4" />
+              Home
+            </a>
             {navLinks.map((link) => (
               <a
                 key={link.href}
@@ -95,9 +113,13 @@ const Navbar = () => {
                 {link.label}
               </a>
             ))}
-            <Button asChild className="btn-glow bg-primary text-primary-foreground rounded-full w-full mt-2">
-              <a href="#contact" onClick={() => setMobileOpen(false)}>Get Started</a>
-            </Button>
+            <RainbowBordersButton
+              href="#contact"
+              onClick={() => setMobileOpen(false)}
+              className="mt-2 w-full rounded-full"
+            >
+              Get Started
+            </RainbowBordersButton>
           </div>
         </div>
       )}
