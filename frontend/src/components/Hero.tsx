@@ -208,11 +208,11 @@ const Hero = () => {
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <RainbowBordersButton variant="alt" className="h-12 rounded-full px-8 text-base font-semibold min-w-[290px]">
+            <RainbowBordersButton href="#contact" variant="alt" className="h-12 rounded-full px-8 text-base font-semibold min-w-[290px]">
               Start Your Digital Transformation
               <ArrowRight className="w-4 h-4 ml-1" />
             </RainbowBordersButton>
-            <RainbowBordersButton variant="whiteFlash" className="h-12 rounded-full px-8 text-base font-semibold min-w-[240px]">
+            <RainbowBordersButton to="/technical-audit" variant="whiteFlash" className="h-12 rounded-full px-8 text-base font-semibold min-w-[240px]">
               Request Technical Audit
             </RainbowBordersButton>
           </div>

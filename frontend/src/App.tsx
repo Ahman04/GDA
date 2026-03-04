@@ -1,6 +1,7 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Index from "@/pages/Index";
 import CareersPage from "@/pages/Careers";
+import TechnicalAuditPage from "@/pages/TechnicalAudit";
 import NotFound from "@/pages/NotFound";
 
 const App = () => (
@@ -8,6 +9,7 @@ const App = () => (
     <Routes>
       <Route path="/" element={<Index />} />
       <Route path="/careers" element={<CareersPage />} />
+      <Route path="/technical-audit" element={<TechnicalAuditPage />} />
       <Route path="*" element={<NotFound />} />
     </Routes>
   </BrowserRouter>

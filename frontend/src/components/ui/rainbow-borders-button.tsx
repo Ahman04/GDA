@@ -1,10 +1,12 @@
 import type React from "react";
 
 import { cn } from "@/lib/utils";
+import { Link } from "react-router-dom";
 
 interface RainbowBordersButtonProps {
   children?: React.ReactNode;
   href?: string;
+  to?: string;
   className?: string;
   onClick?: React.MouseEventHandler<HTMLElement>;
   variant?: "theme" | "alt" | "whiteFlash";
@@ -13,6 +15,7 @@ interface RainbowBordersButtonProps {
 export function RainbowBordersButton({
   children = "Get Started",
   href,
+  to,
   className,
   onClick,
   variant = "theme",
@@ -42,6 +45,14 @@ export function RainbowBordersButton({
       <a href={href} onClick={onClick} className={baseClassName}>
         {children}
       </a>
+    );
+  }
+
+  if (to) {
+    return (
+      <Link to={to} onClick={onClick} className={baseClassName}>
+        {children}
+      </Link>
     );
   }
 
