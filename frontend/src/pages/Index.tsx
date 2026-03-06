@@ -1,4 +1,6 @@
 import About from "@/components/About";
+import AIAssistant from "@/components/AIAssistant";
+import AnnouncementPopup from "@/components/AnnouncementPopup";
 import Careers from "@/components/Careers";
 import CaseStudies from "@/components/CaseStudies";
 import Contact from "@/components/Contact";
@@ -17,6 +19,8 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-background">
       <Navbar />
+      <AnnouncementPopup />
+      <AIAssistant />
       <Hero />
       <About />
       <Impact />

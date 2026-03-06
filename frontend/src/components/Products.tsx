@@ -8,6 +8,12 @@ import { Textarea } from "@/components/ui/textarea";
 import { ArrowRight, X } from "lucide-react";
 import { fadeUp, hoverLift, motionEase, staggerContainer } from "@/lib/motion";
 
+const SALES_EMAIL = "sales@godigitalafrica.com";
+
+function buildGmailComposeUrl(subject: string, body: string) {
+  return `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(SALES_EMAIL)}&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+}
+
 const products = [
   {
     name: "Linkly SaaS",
@@ -55,6 +61,32 @@ const products = [
 
 const Products = () => {
   const [selectedProduct, setSelectedProduct] = useState<string | null>(null);
+
+  const handleDemoSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    const formData = new FormData(event.currentTarget);
+    const fullName = String(formData.get("full_name") || "");
+    const email = String(formData.get("email") || "");
+    const company = String(formData.get("company") || "");
+    const phone = String(formData.get("phone") || "");
+    const product = String(formData.get("product") || selectedProduct || "");
+    const details = String(formData.get("details") || "");
+    const subject = `Demo Request - ${product || company || fullName || "Website Inquiry"}`;
+    const body =
+      [
+        `Full Name: ${fullName || "-"}`,
+        `Email: ${email || "-"}`,
+        `Company: ${company || "-"}`,
+        `Phone: ${phone || "-"}`,
+        `Product: ${product || "-"}`,
+        "",
+        "Demo Request Details:",
+        details || "-",
+      ].join("\n");
+
+    window.open(buildGmailComposeUrl(subject, body), "_blank", "noopener,noreferrer");
+  };
 
   return (
     <>
@@ -158,17 +190,18 @@ const Products = () => {
                 </Button>
               </div>
 
-              <form className="space-y-5" onSubmit={(event) => event.preventDefault()}>
+              <form className="space-y-5" onSubmit={handleDemoSubmit}>
                 <div className="grid gap-4 md:grid-cols-2">
-                  <Input placeholder="Full Name" className="h-11 rounded-xl border-slate-200 bg-slate-50/70" />
-                  <Input placeholder="Work Email" type="email" className="h-11 rounded-xl border-slate-200 bg-slate-50/70" />
+                  <Input name="full_name" placeholder="Full Name" className="h-11 rounded-xl border-slate-200 bg-slate-50/70" />
+                  <Input name="email" placeholder="Work Email" type="email" className="h-11 rounded-xl border-slate-200 bg-slate-50/70" />
                 </div>
                 <div className="grid gap-4 md:grid-cols-2">
-                  <Input placeholder="Company Name" className="h-11 rounded-xl border-slate-200 bg-slate-50/70" />
-                  <Input placeholder="Phone Number" className="h-11 rounded-xl border-slate-200 bg-slate-50/70" />
+                  <Input name="company" placeholder="Company Name" className="h-11 rounded-xl border-slate-200 bg-slate-50/70" />
+                  <Input name="phone" placeholder="Phone Number" className="h-11 rounded-xl border-slate-200 bg-slate-50/70" />
                 </div>
-                <Input value={selectedProduct} readOnly className="h-11 rounded-xl border-slate-200 bg-slate-100 font-medium text-slate-700" />
+                <Input name="product" value={selectedProduct} readOnly className="h-11 rounded-xl border-slate-200 bg-slate-100 font-medium text-slate-700" />
                 <Textarea
+                  name="details"
                   placeholder="Tell us what you want to see in the demo"
                   rows={5}
                   className="rounded-2xl border-slate-200 bg-slate-50/70"

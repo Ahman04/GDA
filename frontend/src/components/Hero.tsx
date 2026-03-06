@@ -12,6 +12,8 @@ import hero3Image from "@/images/hero3.png";
 import hero4Image from "@/images/hero4.png";
 import { fadeIn, fadeUp, hoverLift, motionEase, staggerContainer } from "@/lib/motion";
 
+const WHATSAPP_URL = "https://wa.me/254720222249";
+
 const stats = [
   { value: 12, suffix: "+", label: "Years of Innovation" },
   { value: 250, suffix: "+", label: "Projects Delivered" },
@@ -52,6 +54,16 @@ const marketPresence = [
   { country: "Dubai", flag: "🇦🇪" },
   { country: "Canada", flag: "🇨🇦" },
 ];
+
+const WhatsAppIcon = () => (
+  <svg viewBox="3 3 26 26" className="block h-14 w-14 md:h-16 md:w-16" aria-hidden="true">
+    <circle cx="16" cy="16" r="16" fill="#25D366" />
+    <path
+      fill="#fff"
+      d="M23.4 8.5A9.4 9.4 0 0 0 7.7 19.1L6.5 25.5l6.6-1.7a9.5 9.5 0 0 0 4.5 1.1h.1a9.4 9.4 0 0 0 5.7-16.4Zm-5.7 14.8h-.1a7.8 7.8 0 0 1-4-1.1l-.3-.1-3.9 1 1-3.8-.2-.3a7.8 7.8 0 1 1 7.5 4.3Zm4.3-5.9c-.2-.1-1.4-.7-1.6-.8-.2-.1-.4-.1-.5.1l-.8 1c-.1.1-.2.2-.4.1a6.5 6.5 0 0 1-3.2-2.8c-.1-.2 0-.3.1-.4l.4-.4.3-.5a.5.5 0 0 0 0-.5l-.7-1.8c-.2-.4-.4-.4-.5-.4h-.5a1 1 0 0 0-.7.3c-.2.2-.9.9-.9 2.1s.9 2.5 1.1 2.7a8.8 8.8 0 0 0 3.4 3c2.1.9 2.1.6 2.5.6a2.1 2.1 0 0 0 1.5-1c.2-.5.2-.9.2-1-.1-.2-.3-.3-.5-.4Z"
+    />
+  </svg>
+);
 
 const StatItem = ({ value, suffix, label }: { value: number; suffix: string; label: string }) => {
   const { count, ref } = useCountUp(value);
@@ -203,6 +215,35 @@ const Hero = () => {
         <ChevronRight className="h-5 w-5" />
       </Button>
       </motion.div>
+
+      <motion.a
+        href={WHATSAPP_URL}
+        target="_blank"
+        rel="noreferrer"
+        aria-label="Chat with us on WhatsApp"
+        className="absolute bottom-6 left-4 z-30 inline-flex items-center justify-center overflow-hidden rounded-full md:bottom-10 md:left-6"
+        initial={{ opacity: 0, x: -18 }}
+        animate={{
+          opacity: 1,
+          x: 0,
+          y: [0, -6, 0],
+          filter: [
+            "drop-shadow(0 18px 30px rgba(16,185,129,0.26))",
+            "drop-shadow(0 24px 38px rgba(16,185,129,0.42))",
+            "drop-shadow(0 18px 30px rgba(16,185,129,0.26))",
+          ],
+        }}
+        transition={{
+          opacity: { duration: 0.45, delay: 0.7 },
+          x: { duration: 0.45, delay: 0.7, ease: motionEase },
+          y: { duration: 2.6, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" },
+          filter: { duration: 2.6, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" },
+        }}
+        whileHover={{ scale: 1.03, x: 4 }}
+        whileTap={{ scale: 0.98 }}
+      >
+        <WhatsAppIcon />
+      </motion.a>
 
       <div className="relative container mx-auto px-4 lg:px-8 pt-24 pb-16">
         {/* Main content */}

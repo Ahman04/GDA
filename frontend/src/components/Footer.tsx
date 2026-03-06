@@ -3,12 +3,22 @@ import { Button } from "@/components/ui/button";
 import { Linkedin, Twitter, Facebook, Instagram, ArrowRight } from "lucide-react";
 import gdaLogo from "@/images/1695985224885-removebg-preview.png";
 
+const WhatsAppIcon = () => (
+  <svg viewBox="0 0 24 24" className="h-4 w-4" aria-hidden="true">
+    <path
+      fill="currentColor"
+      d="M20 11.9A8 8 0 0 0 6.4 6.2a7.9 7.9 0 0 0-1.2 8l-1.1 4 4.1-1.1A8 8 0 1 0 20 11.9Zm-8 6.6a6.6 6.6 0 0 1-3.4-.9l-.2-.1-2.4.6.6-2.3-.2-.2a6.6 6.6 0 1 1 5.6 2.9Zm3.6-4.9c-.2-.1-1.1-.6-1.3-.7-.2-.1-.3-.1-.5.1l-.4.5c-.1.1-.2.2-.4.1a5.4 5.4 0 0 1-2.7-2.4c-.1-.2 0-.3.1-.4l.3-.4.2-.3a.4.4 0 0 0 0-.4l-.6-1.4c-.1-.3-.3-.2-.4-.2h-.4a.8.8 0 0 0-.5.2 2.3 2.3 0 0 0-.7 1.7c0 1 .7 2 1 2.4a7.4 7.4 0 0 0 2.9 2.6c1.7.7 1.7.5 2 .5a1.7 1.7 0 0 0 1.1-.8 1.4 1.4 0 0 0 .1-.8c0-.1-.2-.2-.4-.3Z"
+    />
+  </svg>
+);
+
 const socialLinks = [
   { Icon: Linkedin, hoverClass: "hover:text-sky-400 hover:bg-sky-400/20" },
   { Icon: Twitter, hoverClass: "hover:text-cyan-400 hover:bg-cyan-400/20" },
   { Icon: Facebook, hoverClass: "hover:text-blue-400 hover:bg-blue-400/20" },
   { Icon: Instagram, hoverClass: "hover:text-rose-400 hover:bg-rose-400/20" },
-]; 
+  { Icon: WhatsAppIcon, hoverClass: "hover:text-emerald-500 hover:bg-emerald-500/15", href: "https://wa.me/254720222249" },
+];
 
 const marketPresence = [
   { country: "Kenya", flag: "🇰🇪" },
@@ -55,10 +65,12 @@ const Footer = () => {
               </div>
             </div>
             <div className="flex gap-3">
-              {socialLinks.map(({ Icon, hoverClass }, i) => (
+              {socialLinks.map(({ Icon, hoverClass, href }, i) => (
                 <a
                   key={i}
-                  href="#"
+                  href={href ?? "#"}
+                  target={href ? "_blank" : undefined}
+                  rel={href ? "noreferrer" : undefined}
                   className={`w-9 h-9 rounded-full bg-slate-900/10 text-slate-700 flex items-center justify-center transition-colors ${hoverClass}`}
                 >
                   <Icon className="w-4 h-4" />
