@@ -1,9 +1,11 @@
-import { useScrollReveal } from "@/hooks/useScrollReveal";
+import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { LocationMap } from "@/components/ui/expand-map";
 import { Facebook, Globe, Instagram, Linkedin, Mail, MapPin, Phone, Twitter } from "lucide-react";
+import { MotionSection } from "@/components/ui/motion-section";
+import { fadeUp, hoverLift, staggerContainer } from "@/lib/motion";
 
 const socialLinks = [
   {
@@ -46,26 +48,24 @@ const TikTokIcon = () => (
 );
 
 const Contact = () => {
-  const sectionRef = useScrollReveal();
-
   return (
     <section id="contact" className="py-20 lg:py-28 bg-background relative overflow-hidden">
       {/* Geometric bg pattern */}
       <div className="absolute top-0 right-0 w-96 h-96 bg-primary/3 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
       <div className="absolute bottom-0 left-0 w-72 h-72 bg-primary/3 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2" />
 
-      <div ref={sectionRef} className="scroll-reveal relative container mx-auto px-4 lg:px-8">
-        <div className="text-center mb-14">
+      <MotionSection className="relative container mx-auto px-4 lg:px-8">
+        <motion.div variants={fadeUp} className="text-center mb-14">
           <p className="text-primary font-semibold text-sm uppercase tracking-widest mb-3">Contact Us</p>
           <h2 className="text-3xl md:text-4xl font-extrabold text-foreground mb-4">
             Go Digital Africa Kenya
           </h2>
           <p className="text-muted-foreground">Leading Digital Transformation & Marketing Agency</p>
-        </div>
+        </motion.div>
 
-        <div className="grid lg:grid-cols-2 gap-12 max-w-5xl mx-auto">
+        <motion.div variants={staggerContainer} className="grid lg:grid-cols-2 gap-12 max-w-5xl mx-auto">
           {/* Form */}
-          <div className="bg-card border border-border rounded-2xl p-8 shadow-sm">
+          <motion.div variants={fadeUp} className="bg-card border border-border rounded-2xl p-8 shadow-sm">
             <form className="space-y-5" onSubmit={(e) => e.preventDefault()}>
               <div className="grid sm:grid-cols-2 gap-4">
                 <Input placeholder="Your Name" className="rounded-lg bg-secondary/50 border-border focus:border-primary" />
@@ -90,10 +90,10 @@ const Contact = () => {
                 mapUrl="https://www.google.com/maps/search/?api=1&query=Go+Digital+Africa%2C+PRV4%2B4M%2C+Westlands%2C+Nairobi"
               />
             </div>
-          </div>
+          </motion.div>
 
           {/* Info */}
-          <div className="space-y-8">
+          <motion.div variants={fadeUp} className="space-y-8">
             <div>
               <h3 className="font-bold text-foreground mb-4 text-lg">Contact Us</h3>
               <div className="space-y-4">
@@ -147,35 +147,39 @@ const Contact = () => {
               <h3 className="font-bold text-foreground mb-4 text-lg">
                 Follow Us
               </h3>
-              <div className="flex flex-wrap gap-3">
+              <motion.div variants={staggerContainer} className="flex flex-wrap gap-3">
                 {socialLinks.map((social) => {
                   const Icon = social.icon;
                   return (
-                    <a
+                    <motion.a
                       key={social.name}
                       href={social.href}
                       aria-label={social.name}
                       title={social.name}
+                      variants={fadeUp}
+                      whileHover={hoverLift}
                       className={`inline-flex h-10 w-10 items-center justify-center rounded-full transition-all duration-300 hover:-translate-y-0.5 hover:scale-105 ${social.className}`}
                     >
                       <Icon className="h-4 w-4" />
-                    </a>
+                    </motion.a>
                   );
                 })}
-                <a
+                <motion.a
                   href="#"
                   aria-label="TikTok"
                   title="TikTok"
+                  variants={fadeUp}
+                  whileHover={hoverLift}
                   className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-cyan-200 bg-gradient-to-br from-cyan-50 to-pink-50 text-cyan-700 transition-all duration-300 hover:-translate-y-0.5 hover:scale-105 hover:border-pink-300 hover:text-pink-600 hover:shadow-[0_0_22px_rgba(34,211,238,0.35)]"
                 >
                   <TikTokIcon />
-                </a>
-              </div>
+                </motion.a>
+              </motion.div>
             </div>
 
-          </div>
-        </div>
-      </div>
+          </motion.div>
+        </motion.div>
+      </MotionSection>
     </section>
   );
 };

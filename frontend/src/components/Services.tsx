@@ -1,4 +1,5 @@
-import { useScrollReveal } from "@/hooks/useScrollReveal";
+import { motion } from "framer-motion";
+import { MotionSection } from "@/components/ui/motion-section";
 import webImage from "@/images/web.png";
 import seoSemImage from "@/images/SEO & SEM.png";
 import socialMediaImage from "@/images/Social Media.png";
@@ -7,6 +8,7 @@ import mobileDevelopmentImage from "@/images/mobile.png";
 import googleAdsImage from "@/images/Google.png";
 import trendsettingCampaignsImage from "@/images/Trendsetting Digital Campaigns.png";
 import onlineReputationImage from "@/images/Online Reputation Management.png";
+import { fadeUp, hoverLift, staggerContainer } from "@/lib/motion";
 
 const services = [
   {
@@ -66,12 +68,10 @@ const services = [
 ];
 
 const Services = () => {
-  const sectionRef = useScrollReveal();
-
   return (
     <section id="services" className="py-20 lg:py-28 bg-light-gray">
-      <div ref={sectionRef} className="scroll-reveal container mx-auto px-4 lg:px-8">
-        <div className="text-center mb-14">
+      <MotionSection className="container mx-auto px-4 lg:px-8">
+        <motion.div variants={fadeUp} className="text-center mb-14">
           <p className="text-primary font-semibold text-sm uppercase tracking-widest mb-3">What We Do</p>
           <h2 className="text-3xl md:text-4xl font-extrabold text-foreground mb-4">
             Our Digital <span className="gradient-text">Capabilities</span>
@@ -79,12 +79,14 @@ const Services = () => {
           <p className="text-muted-foreground max-w-xl mx-auto">
             Comprehensive digital solutions designed to transform your business and accelerate growth.
           </p>
-        </div>
+        </motion.div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <motion.div variants={staggerContainer} className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {services.map((s) => (
-            <div
+            <motion.div
               key={s.title}
+              variants={fadeUp}
+              whileHover={hoverLift}
               className={`card-lift group rounded-xl p-6 text-center cursor-default border ${s.cardClass}`}
             >
               <div className="mb-5 aspect-[16/10] overflow-hidden rounded-xl border border-border/50 bg-background/70 shadow-sm">
@@ -97,10 +99,10 @@ const Services = () => {
               </div>
               <h3 className="font-bold text-foreground mb-2 text-sm leading-snug">{s.title}</h3>
               <p className="text-sm text-muted-foreground leading-relaxed">{s.desc}</p>
-            </div>
+            </motion.div>
           ))}
-        </div>
-      </div>
+        </motion.div>
+      </MotionSection>
     </section>
   );
 };

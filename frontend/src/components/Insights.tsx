@@ -1,8 +1,10 @@
-import { useScrollReveal } from "@/hooks/useScrollReveal";
+import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
+import { MotionSection } from "@/components/ui/motion-section";
 import aiImage from "@/images/AI.png";
 import cloudImage from "@/images/Cloud.png";
 import digitalMarketingImage from "@/images/Digital marketing.png";
+import { fadeUp, hoverLift, staggerContainer } from "@/lib/motion";
 
 const posts = [
   {
@@ -29,22 +31,22 @@ const posts = [
 ];
 
 const Insights = () => {
-  const sectionRef = useScrollReveal();
-
   return (
     <section className="py-20 lg:py-28 bg-background">
-      <div ref={sectionRef} className="scroll-reveal container mx-auto px-4 lg:px-8">
-        <div className="text-center mb-14">
+      <MotionSection className="container mx-auto px-4 lg:px-8">
+        <motion.div variants={fadeUp} className="text-center mb-14">
           <p className="text-primary font-semibold text-sm uppercase tracking-widest mb-3">Insights</p>
           <h2 className="text-3xl md:text-4xl font-extrabold text-foreground mb-4">
             Latest <span className="gradient-text">Thinking</span>
           </h2>
-        </div>
+        </motion.div>
 
-        <div className="grid md:grid-cols-3 gap-8">
+        <motion.div variants={staggerContainer} className="grid md:grid-cols-3 gap-8">
           {posts.map((p) => (
-            <article
+            <motion.article
               key={p.title}
+              variants={fadeUp}
+              whileHover={hoverLift}
               className="card-lift group bg-card border border-border rounded-2xl overflow-hidden cursor-pointer"
             >
               <div className="img-zoom-container h-48 bg-gradient-to-br from-secondary to-muted flex items-center justify-center">
@@ -65,10 +67,10 @@ const Insights = () => {
                   Read More <ArrowRight className="w-4 h-4" />
                 </span>
               </div>
-            </article>
+            </motion.article>
           ))}
-        </div>
-      </div>
+        </motion.div>
+      </MotionSection>
     </section>
   );
 };

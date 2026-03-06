@@ -10,6 +10,7 @@ import hero1Image from "@/images/hero1.png";
 import hero2Image from "@/images/HERO2.png";
 import hero3Image from "@/images/hero3.png";
 import hero4Image from "@/images/hero4.png";
+import { fadeIn, fadeUp, hoverLift, motionEase, staggerContainer } from "@/lib/motion";
 
 const stats = [
   { value: 12, suffix: "+", label: "Years of Innovation" },
@@ -44,17 +45,25 @@ const HERO_NETWORK_DOTS = [
   },
 ];
 
+const marketPresence = [
+  { country: "Kenya", flag: "🇰🇪" },
+  { country: "Ethiopia", flag: "🇪🇹" },
+  { country: "Somalia", flag: "🇸🇴" },
+  { country: "Dubai", flag: "🇦🇪" },
+  { country: "Canada", flag: "🇨🇦" },
+];
+
 const StatItem = ({ value, suffix, label }: { value: number; suffix: string; label: string }) => {
   const { count, ref } = useCountUp(value);
   return (
-    <div ref={ref} className="text-center">
+    <motion.div ref={ref} variants={fadeUp} whileHover={hoverLift} className="text-center">
       <div className="text-3xl md:text-4xl font-black text-primary [text-shadow:0_2px_10px_rgba(0,0,0,0.85)]">
         {count}{suffix}
       </div>
       <div className="mt-1 text-sm font-bold text-[#d6f5ff] [text-shadow:0_2px_8px_rgba(0,0,0,0.9)]">
         {label}
       </div>
-    </div>
+    </motion.div>
   );
 };
 
@@ -179,6 +188,11 @@ const Hero = () => {
 
       {/* Gradient overlay */}
       <div className="absolute inset-0 bg-gradient-to-b from-deep-blue/88 via-deep-blue/62 to-deep-blue/92" />
+      <motion.div
+        initial={{ opacity: 0, x: 24 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.6, delay: 0.45, ease: motionEase }}
+      >
       <Button
         type="button"
         size="icon"
@@ -188,42 +202,86 @@ const Hero = () => {
       >
         <ChevronRight className="h-5 w-5" />
       </Button>
+      </motion.div>
 
       <div className="relative container mx-auto px-4 lg:px-8 pt-24 pb-16">
         {/* Main content */}
-        <div className="max-w-4xl mx-auto text-center mb-16">
-          <div className="inline-flex items-center gap-2 bg-primary/10 border border-primary/20 rounded-full px-4 py-1.5 mb-8">
+        <motion.div
+          className="max-w-4xl mx-auto text-center mb-16"
+          variants={staggerContainer}
+          initial="hidden"
+          animate="show"
+        >
+          <motion.div variants={fadeIn} className="inline-flex items-center gap-2 bg-primary/10 border border-primary/20 rounded-full px-4 py-1.5 mb-8">
             <Shield className="w-4 h-4 text-primary" />
             <span className="text-primary text-sm font-medium">Enterprise-Grade Digital Solutions</span>
-          </div>
+          </motion.div>
 
-          <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black text-[#e8fbff] leading-tight mb-6 animate-fade-in-up [text-shadow:0_4px_16px_rgba(0,0,0,0.9)]">
+          <motion.h1 variants={fadeUp} className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black text-[#e8fbff] leading-tight mb-6 [text-shadow:0_4px_16px_rgba(0,0,0,0.9)]">
             Leading Digital{" "}
             <span className="gradient-text">Transformation</span>{" "}
             Across Africa
-          </h1>
+          </motion.h1>
 
-          <p className="text-lg md:text-xl text-[#d6f5ff] font-semibold max-w-2xl mx-auto mb-10 leading-relaxed [text-shadow:0_2px_10px_rgba(0,0,0,0.9)]" style={{ animationDelay: "0.2s" }}>
+          <motion.p variants={fadeUp} className="text-lg md:text-xl text-[#d6f5ff] font-semibold max-w-2xl mx-auto mb-10 leading-relaxed [text-shadow:0_2px_10px_rgba(0,0,0,0.9)]">
             We architect digital infrastructure, AI automation systems, and performance-driven ecosystems that power Africa's next generation of industry leaders.
-          </p>
+          </motion.p>
 
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+          <motion.div variants={fadeUp} className="mb-10">
+            <p className="mb-4 text-xs font-bold uppercase tracking-[0.35em] text-[#9aefff]">
+              Also Based In
+            </p>
+            <div className="flex flex-wrap items-center justify-center gap-3">
+              {marketPresence.map((location, index) => (
+                <motion.div
+                  key={location.country}
+                  className="flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-3 py-2 backdrop-blur-md shadow-[0_10px_30px_rgba(0,0,0,0.18)]"
+                  initial={{ opacity: 0, y: 18 }}
+                  animate={{ opacity: 1, y: [0, -4, 0] }}
+                  transition={{
+                    opacity: { duration: 0.45, delay: 0.15 + index * 0.08 },
+                    y: {
+                      duration: 2.8,
+                      repeat: Number.POSITIVE_INFINITY,
+                      repeatType: "mirror",
+                      delay: index * 0.18,
+                      ease: "easeInOut",
+                    },
+                  }}
+                >
+                  <span className="text-lg leading-none" aria-hidden="true">{location.flag}</span>
+                  <span className="text-sm font-semibold text-white">{location.country}</span>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
+
+          <motion.div variants={staggerContainer} className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} variants={fadeUp}>
             <RainbowBordersButton href="#contact" variant="alt" className="h-12 rounded-full px-8 text-base font-semibold min-w-[290px]">
               Start Your Digital Transformation
               <ArrowRight className="w-4 h-4 ml-1" />
             </RainbowBordersButton>
+            </motion.div>
+            <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} variants={fadeUp}>
             <RainbowBordersButton to="/technical-audit" variant="whiteFlash" className="h-12 rounded-full px-8 text-base font-semibold min-w-[240px]">
               Request Technical Audit
             </RainbowBordersButton>
-          </div>
-        </div>
+            </motion.div>
+          </motion.div>
+        </motion.div>
 
         {/* Stats */}
-        <div className="max-w-3xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8 mb-16">
+        <motion.div
+          className="max-w-3xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8 mb-16"
+          variants={staggerContainer}
+          initial="hidden"
+          animate="show"
+        >
           {stats.map((stat) => (
             <StatItem key={stat.label} {...stat} />
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );

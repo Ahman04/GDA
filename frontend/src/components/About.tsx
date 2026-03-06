@@ -1,6 +1,32 @@
-import { useScrollReveal } from "@/hooks/useScrollReveal";
+import { motion } from "framer-motion";
+import { MotionSection } from "@/components/ui/motion-section";
 import { Lightbulb, Award, ShieldCheck, Users, Globe, Rocket } from "lucide-react";
 import aboutImage from "@/images/About.png";
+import { fadeUp, hoverLift, staggerContainer } from "@/lib/motion";
+
+const aboutTextVariants = {
+  hidden: { opacity: 0, x: -120 },
+  show: {
+    opacity: 1,
+    x: 0,
+    transition: {
+      duration: 0.95,
+      ease: [0.22, 1, 0.36, 1] as const,
+    },
+  },
+};
+
+const aboutImageVariants = {
+  hidden: { opacity: 0, x: 120 },
+  show: {
+    opacity: 1,
+    x: 0,
+    transition: {
+      duration: 0.95,
+      ease: [0.22, 1, 0.36, 1] as const,
+    },
+  },
+};
 
 const values = [
   {
@@ -54,14 +80,12 @@ const values = [
 ];
 
 const About = () => {
-  const sectionRef = useScrollReveal();
-
   return (
     <section id="about" className="py-20 lg:py-28 bg-background">
-      <div ref={sectionRef} className="scroll-reveal container mx-auto px-4 lg:px-8">
+      <MotionSection className="container mx-auto px-4 lg:px-8">
         <div className="grid lg:grid-cols-2 gap-16 items-center mb-16">
           {/* Text */}
-          <div>
+          <motion.div variants={aboutTextVariants}>
             <p className="text-primary font-semibold text-sm uppercase tracking-widest mb-3">About Us</p>
             <h2 className="text-3xl md:text-4xl font-extrabold text-foreground mb-6 leading-tight">
               About <span className="gradient-text">Go Digital Africa</span>
@@ -72,10 +96,10 @@ const About = () => {
             <p className="text-muted-foreground leading-relaxed">
               We deliver data-driven digital strategy, SEO and SEM, social media campaigns, content creation, and analytics-led optimization for organizations across Africa and global markets.
             </p>
-          </div>
+          </motion.div>
 
           {/* About image */}
-          <div className="relative">
+          <motion.div variants={aboutImageVariants} className="relative">
             <div className="aspect-[4/3] rounded-2xl bg-gradient-to-br from-secondary to-muted flex items-center justify-center border border-border overflow-hidden">
               <img
                 src={aboutImage}
@@ -85,14 +109,16 @@ const About = () => {
             </div>
             <div className="absolute -bottom-4 -right-4 w-24 h-24 bg-primary/10 rounded-2xl -z-10" />
             <div className="absolute -top-4 -left-4 w-16 h-16 bg-primary/5 rounded-xl -z-10" />
-          </div>
+          </motion.div>
         </div>
 
         {/* Values grid */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <motion.div variants={staggerContainer} className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {values.map((v) => (
-            <div
+            <motion.div
               key={v.title}
+              variants={fadeUp}
+              whileHover={hoverLift}
               className={`card-lift group rounded-2xl p-8 cursor-default border min-h-[280px] shadow-[0_6px_20px_hsl(216_30%_20%_/_0.05)] ${v.cardClass}`}
             >
               <div
@@ -102,10 +128,10 @@ const About = () => {
               </div>
               <h3 className="text-3xl font-extrabold text-slate-800 mb-3 leading-tight">{v.title}</h3>
               <p className="text-[1.05rem] leading-relaxed text-slate-600">{v.desc}</p>
-            </div>
+            </motion.div>
           ))}
-        </div>
-      </div>
+        </motion.div>
+      </MotionSection>
     </section>
   );
 };

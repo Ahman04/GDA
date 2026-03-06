@@ -1,4 +1,6 @@
-import { useScrollReveal } from "@/hooks/useScrollReveal";
+import { motion } from "framer-motion";
+import { MotionSection } from "@/components/ui/motion-section";
+import { fadeUp, hoverLift, staggerContainer } from "@/lib/motion";
 
 const teamMembers = [
   {
@@ -44,15 +46,13 @@ const teamMembers = [
 ];
 
 const Team = () => {
-  const sectionRef = useScrollReveal();
-
   return (
     <section id="team" className="py-20 lg:py-28 bg-light-gray relative overflow-hidden">
       <div className="absolute inset-0 pointer-events-none opacity-30">
         <div className="h-full w-full bg-[radial-gradient(circle_at_2px_2px,hsl(190_80%_70%/.3)_1px,transparent_0)] [background-size:26px_26px]" />
       </div>
-      <div ref={sectionRef} className="scroll-reveal relative container mx-auto px-4 lg:px-8">
-        <div className="text-center mb-14">
+      <MotionSection className="relative container mx-auto px-4 lg:px-8">
+        <motion.div variants={fadeUp} className="text-center mb-14">
           <p className="text-primary font-semibold text-sm uppercase tracking-widest mb-3">Our Team</p>
           <h2 className="text-3xl md:text-4xl font-extrabold text-foreground mb-4">
             The People Behind the Results
@@ -60,12 +60,14 @@ const Team = () => {
           <p className="text-muted-foreground max-w-2xl mx-auto">
             Meet the specialists driving strategy, technology, and growth across every project.
           </p>
-        </div>
+        </motion.div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
+        <motion.div variants={staggerContainer} className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
           {teamMembers.map((member) => (
-            <article
+            <motion.article
               key={member.name}
+              variants={fadeUp}
+              whileHover={hoverLift}
               className={`card-lift rounded-2xl border p-5 shadow-sm ${member.cardClass}`}
             >
               <div className="h-52 rounded-xl overflow-hidden border border-border/50 bg-white/70 mb-4">
@@ -81,10 +83,10 @@ const Team = () => {
                 {member.role}
               </p>
               <p className="mt-3 text-sm text-muted-foreground leading-relaxed">{member.whatTheyDo}</p>
-            </article>
+            </motion.article>
           ))}
-        </div>
-      </div>
+        </motion.div>
+      </MotionSection>
     </section>
   );
 };

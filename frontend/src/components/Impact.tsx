@@ -1,5 +1,7 @@
-import { useScrollReveal } from "@/hooks/useScrollReveal";
+import { motion } from "framer-motion";
+import { MotionSection } from "@/components/ui/motion-section";
 import { BadgeCheck, CalendarDays, Globe2, BriefcaseBusiness } from "lucide-react";
+import { fadeUp, hoverLift, staggerContainer } from "@/lib/motion";
 
 const impactStats = [
   {
@@ -45,29 +47,26 @@ const impactStats = [
 ];
 
 const Impact = () => {
-  const sectionRef = useScrollReveal();
-
   return (
     <section className="py-20 lg:py-28 bg-background relative overflow-hidden">
       <div className="absolute inset-0 pointer-events-none opacity-30">
         <div className="h-full w-full bg-[radial-gradient(circle_at_2px_2px,hsl(250_70%_80%/.35)_1px,transparent_0)] [background-size:30px_30px]" />
       </div>
-      <div ref={sectionRef} className="scroll-reveal relative container mx-auto px-4 lg:px-8">
-        <div className="text-center mb-12">
+      <MotionSection className="relative container mx-auto px-4 lg:px-8">
+        <motion.div variants={fadeUp} className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold mb-4">
             <span className="bg-gradient-to-r from-blue-700 via-emerald-600 to-violet-600 bg-clip-text text-transparent">
               Impact Highlights
             </span>
           </h2>
-          <p className="max-w-2xl mx-auto text-slate-600 font-medium">
-            Colorful metrics that showcase growth, consistency, and client success.
-          </p>
-        </div>
+        </motion.div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <motion.div variants={staggerContainer} className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {impactStats.map((item) => (
-            <article
+            <motion.article
               key={item.title}
+              variants={fadeUp}
+              whileHover={hoverLift}
               className={`rounded-2xl border p-7 text-center shadow-sm card-lift ${item.cardClass}`}
             >
               <div className={`mx-auto mb-5 flex h-16 w-16 items-center justify-center rounded-full ${item.iconWrapClass}`}>
@@ -76,10 +75,10 @@ const Impact = () => {
               <p className={`text-5xl font-black leading-none mb-3 ${item.valueClass}`}>{item.value}</p>
               <h3 className="text-2xl font-extrabold text-foreground mb-2">{item.title}</h3>
               <p className="text-muted-foreground leading-relaxed">{item.description}</p>
-            </article>
+            </motion.article>
           ))}
-        </div>
-      </div>
+        </motion.div>
+      </MotionSection>
     </section>
   );
 };

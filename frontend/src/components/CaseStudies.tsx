@@ -1,94 +1,81 @@
-import { useScrollReveal } from "@/hooks/useScrollReveal";
-import { TrendingUp, BarChart3, Zap } from "lucide-react";
-import financialServicesImage from "@/images/Financial Services.png";
-import telecommunicationImage from "@/images/telecommunication.png";
-import retailEcommerceImage from "@/images/Retail & E-Commerce.png";
+import { motion } from "framer-motion";
+import { ArrowRight } from "lucide-react";
+import { MotionSection } from "@/components/ui/motion-section";
+import rubisEnergyImage from "@/images/Rubis Energy.jpg";
+import sidmsImage from "@/images/SIDMS.jpg";
+import ecommerceImage from "@/images/ECOMERCE.jpg";
+import { fadeUp, hoverLift, staggerContainer } from "@/lib/motion";
 
 const cases = [
   {
-    icon: TrendingUp,
-    title: "Fintech Platform Scale-Up",
-    industry: "Financial Services",
-    desc: "Architected cloud infrastructure supporting 2M+ transactions monthly for a leading African fintech.",
-    result: "340% growth in transaction volume",
-    image: financialServicesImage,
-    iconClass: "text-blue-400/80",
-    overlayClass: "bg-blue-500/15",
-    pillClass: "bg-blue-100 text-blue-700",
+    title: "Rubis Energy",
+    industry: "Local SEO & Visibility",
+    desc: "Nationwide Google Maps optimization strategy ensuring maximum digital visibility across their regional network.",
+    image: rubisEnergyImage,
+    accentClass: "from-blue-500/15 via-cyan-500/10 to-white",
     industryClass: "text-blue-600",
   },
   {
-    icon: BarChart3,
-    title: "Telecom Digital Ecosystem",
-    industry: "Telecommunications",
-    desc: "End-to-end digital marketing and customer acquisition platform for Pan-African telecom operator.",
-    result: "150% increase in digital subscriptions",
-    image: telecommunicationImage,
-    iconClass: "text-emerald-400/80",
-    overlayClass: "bg-emerald-500/15",
-    pillClass: "bg-emerald-100 text-emerald-700",
+    title: "SIDMS",
+    industry: "Government Systems",
+    desc: "Centralized national information hub for the Somali Integrated Disaster Management System.",
+    image: sidmsImage,
+    accentClass: "from-emerald-500/15 via-lime-500/10 to-white",
     industryClass: "text-emerald-600",
   },
   {
-    icon: Zap,
-    title: "E-Commerce AI Optimization",
-    industry: "Retail & E-Commerce",
-    desc: "AI-powered SEO and performance marketing engine driving 10x organic growth for cross-border retailer.",
-    result: "10x organic traffic in 8 months",
-    image: retailEcommerceImage,
-    iconClass: "text-violet-400/80",
-    overlayClass: "bg-violet-500/15",
-    pillClass: "bg-violet-100 text-violet-700",
+    title: "Legacy Kenya",
+    industry: "E-commerce & Heritage",
+    desc: "Premium e-commerce platform integrated with high-velocity marketing to scale cultural commerce.",
+    image: ecommerceImage,
+    accentClass: "from-violet-500/15 via-rose-500/10 to-white",
     industryClass: "text-violet-600",
   },
 ];
 
 const CaseStudies = () => {
-  const sectionRef = useScrollReveal();
-
   return (
     <section id="case-studies" className="py-20 lg:py-28 bg-background">
-      <div ref={sectionRef} className="scroll-reveal container mx-auto px-4 lg:px-8">
-        <div className="text-center mb-14">
+      <MotionSection className="container mx-auto px-4 lg:px-8">
+        <motion.div variants={fadeUp} className="text-center mb-14">
           <p className="text-primary font-semibold text-sm uppercase tracking-widest mb-3">Results</p>
           <h2 className="text-3xl md:text-4xl font-extrabold text-foreground mb-4">
             Engineering <span className="gradient-text">Real Impact</span>
           </h2>
-        </div>
+        </motion.div>
 
-        <div className="grid md:grid-cols-3 gap-8">
+        <motion.div variants={staggerContainer} className="grid md:grid-cols-3 gap-8">
           {cases.map((c) => (
-            <div
+            <motion.div
               key={c.title}
+              variants={fadeUp}
+              whileHover={hoverLift}
               className="card-lift group bg-card border border-border rounded-2xl overflow-hidden cursor-default"
             >
-              {/* Thumbnail */}
-              <div className="h-44 bg-gradient-to-br from-deep-blue to-deep-blue/80 flex items-center justify-center relative overflow-hidden">
+              <div className={`relative flex h-52 items-end overflow-hidden bg-gradient-to-br ${c.accentClass} p-6`}>
                 <img
                   src={c.image}
                   alt={`${c.title} case study`}
-                  className="h-full w-full object-cover"
+                  className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                   loading="lazy"
                 />
-                <div className="absolute inset-0 bg-deep-blue/20" />
-                {/* Hover overlay */}
-                <div className={`absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center ${c.overlayClass}`}>
-                  <span className="text-primary-foreground bg-primary rounded-full px-4 py-1.5 text-sm font-semibold shadow-lg">View Details</span>
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/65 via-slate-900/20 to-transparent" />
+                <div className="absolute right-5 top-5 rounded-full border border-border/70 bg-white/80 px-3 py-1 text-xs font-bold text-foreground shadow-sm">
+                  Case Study
                 </div>
               </div>
               <div className="p-6">
                 <span className={`text-xs font-semibold uppercase tracking-wider ${c.industryClass}`}>{c.industry}</span>
                 <h3 className="font-bold text-foreground mt-1 mb-2">{c.title}</h3>
                 <p className="text-sm text-muted-foreground mb-3">{c.desc}</p>
-                <div className={`inline-flex items-center gap-1.5 text-xs font-bold rounded-full px-3 py-1 ${c.pillClass}`}>
-                  <TrendingUp className="w-3 h-3" />
-                  {c.result}
-                </div>
+                <span className="inline-flex items-center gap-1 text-sm font-semibold text-primary transition-all group-hover:gap-2">
+                  Read more <ArrowRight className="h-4 w-4" />
+                </span>
               </div>
-            </div>
+            </motion.div>
           ))}
-        </div>
-      </div>
+        </motion.div>
+      </MotionSection>
     </section>
   );
 };

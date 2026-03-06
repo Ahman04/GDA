@@ -1,5 +1,7 @@
-import { useScrollReveal } from "@/hooks/useScrollReveal";
+import { motion } from "framer-motion";
 import { Testimonials as TestimonialsCarousel } from "@/components/ui/testimonials";
+import { MotionSection } from "@/components/ui/motion-section";
+import { fadeUp } from "@/lib/motion";
 
 const testimonials = [
   {
@@ -26,21 +28,21 @@ const testimonials = [
 ];
 
 const Testimonials = () => {
-  const sectionRef = useScrollReveal();
-
   return (
     <section className="py-12 lg:py-16 bg-deep-blue relative overflow-hidden">
       <div className="absolute inset-0 hero-grid opacity-30" />
 
-      <div ref={sectionRef} className="scroll-reveal relative container mx-auto px-4 lg:px-8">
-        <div className="text-center mb-2">
+      <MotionSection className="relative container mx-auto px-4 lg:px-8">
+        <motion.div variants={fadeUp} className="text-center mb-2">
           <p className="text-primary font-semibold text-sm uppercase tracking-widest mb-3">Testimonials</p>
           <h2 className="text-3xl md:text-4xl font-extrabold text-deep-blue-foreground">
             What Our <span className="gradient-text">Clients Say</span>
           </h2>
-        </div>
-        <TestimonialsCarousel items={testimonials} className="pt-2 pb-0" />
-      </div>
+        </motion.div>
+        <motion.div variants={fadeUp}>
+          <TestimonialsCarousel items={testimonials} className="pt-2 pb-0" />
+        </motion.div>
+      </MotionSection>
     </section>
   );
 };

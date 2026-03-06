@@ -87,17 +87,6 @@
   50% { transform: translateY(-30px) translateX(15px); opacity: 0.7; }
 }
 
-/* Scroll reveal */
-.scroll-reveal {
-  opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 0.7s ease-out, transform 0.7s ease-out;
-}
-.scroll-reveal.revealed {
-  opacity: 1;
-  transform: translateY(0);
-}
-
 /* Glow button */
 .btn-glow {
   position: relative;
