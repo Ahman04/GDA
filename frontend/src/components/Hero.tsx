@@ -91,7 +91,7 @@ const Hero = () => {
   }, []);
 
   return (
-    <section className="relative min-h-screen flex flex-col justify-center bg-deep-blue overflow-hidden">
+    <section className="relative h-screen min-h-[100svh] bg-deep-blue overflow-hidden">
       <div className="absolute inset-0 hero-grid opacity-35" />
       <div className="absolute inset-0 pointer-events-none">
         <AnimatePresence mode="wait">
@@ -245,10 +245,10 @@ const Hero = () => {
         <WhatsAppIcon />
       </motion.a>
 
-      <div className="relative container mx-auto px-4 lg:px-8 pt-24 pb-16">
+      <div className="relative container mx-auto flex h-full min-h-[100svh] flex-col justify-center px-4 pt-28 pb-8 lg:px-8">
         {/* Main content */}
         <motion.div
-          className="max-w-4xl mx-auto text-center mb-16"
+          className="max-w-4xl mx-auto text-center mb-10"
           variants={staggerContainer}
           initial="hidden"
           animate="show"
@@ -264,11 +264,11 @@ const Hero = () => {
             Across Africa
           </motion.h1>
 
-          <motion.p variants={fadeUp} className="text-lg md:text-xl text-[#d6f5ff] font-semibold max-w-2xl mx-auto mb-10 leading-relaxed [text-shadow:0_2px_10px_rgba(0,0,0,0.9)]">
+          <motion.p variants={fadeUp} className="text-lg md:text-xl text-[#d6f5ff] font-semibold max-w-2xl mx-auto mb-8 leading-relaxed [text-shadow:0_2px_10px_rgba(0,0,0,0.9)]">
             We architect digital infrastructure, AI automation systems, and performance-driven ecosystems that power Africa's next generation of industry leaders.
           </motion.p>
 
-          <motion.div variants={fadeUp} className="mb-10">
+          <motion.div variants={fadeUp} className="mb-8">
             <p className="mb-4 text-xs font-bold uppercase tracking-[0.35em] text-[#9aefff]">
               Also Based In
             </p>
@@ -314,7 +314,7 @@ const Hero = () => {
 
         {/* Stats */}
         <motion.div
-          className="max-w-3xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8 mb-16"
+          className="max-w-3xl mx-auto grid grid-cols-2 gap-6 md:grid-cols-4 md:gap-8"
           variants={staggerContainer}
           initial="hidden"
           animate="show"

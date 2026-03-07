@@ -185,7 +185,7 @@ const Contact = () => {
                   </div>
                   <div className="text-sm">
                     <p className="font-semibold text-foreground">Visit Us</p>
-                    <p className="text-muted-foreground">14 Ring Road, Parklands</p>
+                    <p className="text-muted-foreground">14 Ring Road, Westlands</p>
                     <p className="text-muted-foreground">Nairobi, Kenya</p>
                   </div>
                 </div>

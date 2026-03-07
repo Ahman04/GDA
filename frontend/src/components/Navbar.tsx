@@ -47,7 +47,11 @@ const Navbar = () => {
             <img
               src={gdaLogo}
               alt="Go Digital Africa logo"
-              className="h-full w-full scale-[1.7] object-contain"
+              className={`h-full w-full scale-[1.7] object-contain ${
+                scrolled
+                  ? ""
+                  : "brightness-[1.35] contrast-[1.2] drop-shadow-[0_0_16px_rgba(255,255,255,0.22)]"
+              }`}
             />
           </div>
         </motion.a>
