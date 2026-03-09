@@ -1,4 +1,6 @@
+import { useEffect } from "react";
 import { motion } from "framer-motion";
+import { useLocation } from "react-router-dom";
 
 import PageHero from "@/components/PageHero";
 import PageLayout from "@/components/PageLayout";
@@ -40,6 +42,19 @@ const hiringSteps = [
 ];
 
 const CareersPage = () => {
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.hash === "#openings") {
+      requestAnimationFrame(() => {
+        document.getElementById("openings")?.scrollIntoView({ behavior: "smooth", block: "start" });
+      });
+      return;
+    }
+
+    window.scrollTo({ top: 0, behavior: "auto" });
+  }, [location.hash]);
+
   return (
     <PageLayout>
       <PageHero

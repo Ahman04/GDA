@@ -6,6 +6,7 @@ import { LocationMap } from "@/components/ui/expand-map";
 import { Facebook, Globe, Instagram, Linkedin, Mail, MapPin, Phone, Twitter } from "lucide-react";
 import { MotionSection } from "@/components/ui/motion-section";
 import { fadeUp, hoverLift, staggerContainer } from "@/lib/motion";
+import contactBackground from "@/images/contact page.jpg";
 
 const SALES_EMAIL = "sales@godigitalafrica.com";
 
@@ -93,43 +94,54 @@ const Contact = () => {
   };
 
   return (
-    <section id="contact" className="py-20 lg:py-28 bg-background relative overflow-hidden">
+    <section id="contact" className="relative overflow-hidden bg-background py-14 lg:min-h-[calc(100svh-6rem)] lg:py-8 lg:flex lg:items-center">
+      <div
+        className="absolute inset-0 bg-cover bg-center opacity-[0.72] scale-[1.02]"
+        style={{ backgroundImage: `url(${contactBackground})` }}
+      />
+      <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(7,20,34,0.82)_0%,rgba(10,31,48,0.72)_22%,rgba(255,255,255,0.18)_48%,rgba(7,20,34,0.58)_100%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_center,rgba(34,211,238,0.16),transparent_36%),radial-gradient(circle_at_bottom_right,rgba(14,165,233,0.14),transparent_28%)]" />
+
       {/* Geometric bg pattern */}
       <div className="absolute top-0 right-0 w-96 h-96 bg-primary/3 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
       <div className="absolute bottom-0 left-0 w-72 h-72 bg-primary/3 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2" />
 
       <MotionSection className="relative container mx-auto px-4 lg:px-8">
-        <motion.div variants={fadeUp} className="text-center mb-14">
-          <p className="text-primary font-semibold text-sm uppercase tracking-widest mb-3">Contact Us</p>
-          <h2 className="text-3xl md:text-4xl font-extrabold text-foreground mb-4">
+        <motion.div variants={fadeUp} className="mb-8 text-center lg:mb-7">
+          <div className="mx-auto inline-block rounded-full border border-white/18 bg-slate-950/38 px-4 py-2 shadow-[0_12px_40px_rgba(15,23,42,0.2)] backdrop-blur-md">
+            <p className="text-primary font-semibold text-sm uppercase tracking-widest">Contact Us</p>
+          </div>
+          <h2 className="mb-3 mt-4 text-3xl font-extrabold text-cyan-50 drop-shadow-[0_4px_24px_rgba(15,23,42,0.8)] md:text-4xl">
             Go Digital Africa Kenya
           </h2>
-          <p className="text-muted-foreground">Leading Digital Transformation & Marketing Agency</p>
+          <p className="mx-auto max-w-2xl rounded-full border border-white/14 bg-slate-950/28 px-5 py-2.5 text-cyan-100/95 shadow-[0_12px_40px_rgba(15,23,42,0.18)] backdrop-blur-md">
+            Leading Digital Transformation & Marketing Agency
+          </p>
         </motion.div>
 
-        <motion.div variants={staggerContainer} className="grid lg:grid-cols-2 gap-12 max-w-5xl mx-auto">
+        <motion.div variants={staggerContainer} className="mx-auto grid max-w-5xl gap-8 lg:grid-cols-2 lg:gap-10">
           {/* Form */}
-          <motion.div variants={fadeUp} className="bg-card border border-border rounded-2xl p-8 shadow-sm">
-            <form className="space-y-5" onSubmit={handleContactSubmit}>
+          <motion.div variants={fadeUp} className="rounded-2xl border border-white/35 bg-white/88 p-6 shadow-[0_24px_80px_rgba(15,23,42,0.22)] backdrop-blur-md lg:p-7">
+            <form className="space-y-4" onSubmit={handleContactSubmit}>
               <div className="grid sm:grid-cols-2 gap-4">
-                <Input name="name" placeholder="Your Name" className="rounded-lg bg-secondary/50 border-border focus:border-primary" />
-                <Input name="email" placeholder="Email Address" type="email" className="rounded-lg bg-secondary/50 border-border focus:border-primary" />
+                <Input name="name" placeholder="Your Name" className="rounded-lg border-white/45 bg-white/78 text-slate-900 placeholder:text-slate-500 focus:border-primary" />
+                <Input name="email" placeholder="Email Address" type="email" className="rounded-lg border-white/45 bg-white/78 text-slate-900 placeholder:text-slate-500 focus:border-primary" />
               </div>
-              <Input name="company" placeholder="Company" className="rounded-lg bg-secondary/50 border-border focus:border-primary" />
-              <Textarea name="details" placeholder="Tell us about your project..." rows={5} className="rounded-lg bg-secondary/50 border-border focus:border-primary" />
+              <Input name="company" placeholder="Company" className="rounded-lg border-white/45 bg-white/78 text-slate-900 placeholder:text-slate-500 focus:border-primary" />
+              <Textarea name="details" placeholder="Tell us about your project..." rows={4} className="rounded-lg border-white/45 bg-white/78 text-slate-900 placeholder:text-slate-500 focus:border-primary" />
               <Button className="w-full btn-glow bg-primary text-primary-foreground hover:bg-primary/90 rounded-full h-12 font-semibold">
                 Send Message
               </Button>
             </form>
 
-            <div className="mt-6 -mx-8 -mb-8 overflow-hidden rounded-b-2xl border-t border-border">
+            <div className="mt-5 -mx-6 -mb-6 overflow-hidden rounded-b-2xl border-t border-white/30 lg:-mx-7 lg:-mb-7">
               <LocationMap
                 className="w-full"
                 location="Go Digital Africa, PRV4+4M, Westlands, Nairobi"
                 coordinates="Westlands, Nairobi, Kenya"
                 openExternalOnClick
                 fullWidth
-                compactHeight={230}
+                compactHeight={170}
                 edgeToEdge
                 mapUrl="https://www.google.com/maps/search/?api=1&query=Go+Digital+Africa%2C+PRV4%2B4M%2C+Westlands%2C+Nairobi"
               />
@@ -137,17 +149,17 @@ const Contact = () => {
           </motion.div>
 
           {/* Info */}
-          <motion.div variants={fadeUp} className="space-y-8">
+          <motion.div variants={fadeUp} className="space-y-6 rounded-2xl border border-white/18 bg-slate-950/40 p-6 shadow-[0_24px_80px_rgba(15,23,42,0.18)] backdrop-blur-md lg:p-7">
             <div>
-              <h3 className="font-bold text-foreground mb-4 text-lg">Contact Us</h3>
+              <h3 className="font-bold text-cyan-50 mb-4 text-lg">Contact Us</h3>
               <div className="space-y-4">
                 <div className="flex items-start gap-3">
                   <div className="mt-0.5 h-8 w-8 shrink-0 rounded-lg bg-cyan-100/80 flex items-center justify-center">
                     <Phone className="h-4 w-4 text-cyan-700" />
                   </div>
                   <div className="text-sm">
-                    <p className="font-semibold text-foreground">Call or WhatsApp Us</p>
-                    <a href="https://wa.me/254720222249" target="_blank" rel="noreferrer" className="text-muted-foreground hover:text-primary transition-colors">
+                    <p className="font-semibold text-cyan-50">Call or WhatsApp Us</p>
+                    <a href="https://wa.me/254720222249" target="_blank" rel="noreferrer" className="text-slate-200/85 hover:text-cyan-300 transition-colors">
                       +254 720 222 249
                     </a>
                   </div>
@@ -157,12 +169,12 @@ const Contact = () => {
                     <Mail className="h-4 w-4 text-rose-600" />
                   </div>
                   <div className="text-sm">
-                    <p className="font-semibold text-foreground">Email Us</p>
+                    <p className="font-semibold text-cyan-50">Email Us</p>
                     <a
                       href={buildGmailComposeUrl("Website Inquiry", "Hello Go Digital Africa,")}
                       target="_blank"
                       rel="noreferrer"
-                      className="text-muted-foreground hover:text-primary transition-colors"
+                      className="text-slate-200/85 hover:text-cyan-300 transition-colors"
                     >
                       {SALES_EMAIL}
                     </a>
@@ -173,8 +185,8 @@ const Contact = () => {
                     <Globe className="h-4 w-4 text-sky-600" />
                   </div>
                   <div className="text-sm">
-                    <p className="font-semibold text-foreground">Website</p>
-                    <a href="https://www.godigitalafrica.com" className="text-muted-foreground hover:text-primary transition-colors">
+                    <p className="font-semibold text-cyan-50">Website</p>
+                    <a href="https://www.godigitalafrica.com" className="text-slate-200/85 hover:text-cyan-300 transition-colors">
                       www.godigitalafrica.com
                     </a>
                   </div>
@@ -184,16 +196,16 @@ const Contact = () => {
                     <MapPin className="h-4 w-4 text-emerald-700" />
                   </div>
                   <div className="text-sm">
-                    <p className="font-semibold text-foreground">Visit Us</p>
-                    <p className="text-muted-foreground">14 Ring Road, Westlands</p>
-                    <p className="text-muted-foreground">Nairobi, Kenya</p>
+                    <p className="font-semibold text-cyan-50">Visit Us</p>
+                    <p className="text-slate-200/85">14 Ring Road, Westlands</p>
+                    <p className="text-slate-200/85">Nairobi, Kenya</p>
                   </div>
                 </div>
               </div>
             </div>
 
             <div>
-              <h3 className="font-bold text-foreground mb-4 text-lg">
+              <h3 className="font-bold text-cyan-50 mb-4 text-lg">
                 Follow Us
               </h3>
               <motion.div variants={staggerContainer} className="flex flex-wrap gap-3">
