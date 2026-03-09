@@ -4,27 +4,31 @@ import { Home, Menu, X } from "lucide-react";
 import { RainbowBordersButton } from "@/components/ui/rainbow-borders-button";
 import gdaLogo from "@/images/1695985224885-removebg-preview.png";
 import { fadeUp, motionEase, staggerContainer } from "@/lib/motion";
+import { Link, useLocation } from "react-router-dom";
 
 const navLinks = [
-  { label: "About", href: "#about" },
-  { label: "Services", href: "#services" },
-  { label: "Team", href: "#team" },
-  { label: "Products", href: "#products" },
-  { label: "Process", href: "#process" },
-  { label: "Case Studies", href: "#case-studies" },
-  { label: "Careers", href: "#careers" },
-  { label: "Contact", href: "#contact" },
+  { label: "About", to: "/about" },
+  { label: "Services", to: "/services" },
+  { label: "Products", to: "/products" },
+  { label: "Case Studies", to: "/case-studies" },
+  { label: "Careers", to: "/careers" },
+  { label: "Contact", to: "/contact" },
 ];
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const location = useLocation();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
     window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+  useEffect(() => {
+    setMobileOpen(false);
+  }, [location.pathname]);
 
   return (
     <motion.nav
@@ -38,7 +42,8 @@ const Navbar = () => {
       }`}
     >
       <div className="container mx-auto flex items-center justify-between h-24 px-4 lg:px-8">
-        <motion.a href="#" className="flex items-center" whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.99 }}>
+        <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.99 }}>
+        <Link to="/" className="flex items-center">
           <div
             className={`relative h-16 w-36 overflow-hidden ${
               scrolled ? "drop-shadow-sm" : ""
@@ -54,7 +59,8 @@ const Navbar = () => {
               }`}
             />
           </div>
-        </motion.a>
+        </Link>
+        </motion.div>
 
         {/* Desktop */}
         <motion.div
@@ -63,8 +69,7 @@ const Navbar = () => {
           initial="hidden"
           animate="show"
         >
-          <motion.a
-            href="#"
+          <motion.div
             aria-label="Home"
             title="Home"
             className={`transition-colors hover:text-primary ${
@@ -73,20 +78,21 @@ const Navbar = () => {
             variants={fadeUp}
             whileHover={{ y: -2 }}
           >
-            <Home className="h-4 w-4" />
-          </motion.a>
+            <Link to="/">
+              <Home className="h-4 w-4" />
+            </Link>
+          </motion.div>
           {navLinks.map((link) => (
-            <motion.a
-              key={link.href}
-              href={link.href}
+            <motion.div
+              key={link.to}
               className={`text-sm font-medium transition-colors hover:text-primary ${
                 scrolled ? "text-foreground/70" : "text-deep-blue-foreground/70"
               }`}
               variants={fadeUp}
               whileHover={{ y: -2 }}
             >
-              {link.label}
-            </motion.a>
+              <Link to={link.to}>{link.label}</Link>
+            </motion.div>
           ))}
           <motion.div variants={fadeUp} whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
             <RainbowBordersButton href="#contact" className="h-10 min-w-[140px] rounded-full px-6">
@@ -126,29 +132,27 @@ const Navbar = () => {
             animate="show"
             exit="hidden"
           >
-            <motion.a
-              href="#"
+            <motion.div
               className="flex items-center gap-2 text-sm font-medium text-foreground/70 hover:text-primary py-2"
-              onClick={() => setMobileOpen(false)}
               variants={fadeUp}
             >
-              <Home className="h-4 w-4" />
-              Home
-            </motion.a>
+              <Link to="/" className="flex items-center gap-2">
+                <Home className="h-4 w-4" />
+                Home
+              </Link>
+            </motion.div>
             {navLinks.map((link) => (
-              <motion.a
-                key={link.href}
-                href={link.href}
+              <motion.div
+                key={link.to}
                 className="text-sm font-medium text-foreground/70 hover:text-primary py-2"
-                onClick={() => setMobileOpen(false)}
                 variants={fadeUp}
               >
-                {link.label}
-              </motion.a>
+                <Link to={link.to}>{link.label}</Link>
+              </motion.div>
             ))}
             <motion.div variants={fadeUp}>
               <RainbowBordersButton
-                href="#contact"
+                to="/contact"
                 onClick={() => setMobileOpen(false)}
                 className="mt-2 w-full rounded-full"
               >
