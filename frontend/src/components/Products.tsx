@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
+import { Link } from "react-router-dom";
 import { MotionSection } from "@/components/ui/motion-section";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -59,7 +60,11 @@ const products = [
   },
 ];
 
-const Products = () => {
+type ProductsProps = {
+  showViewAll?: boolean;
+};
+
+const Products = ({ showViewAll = true }: ProductsProps) => {
   const [selectedProduct, setSelectedProduct] = useState<string | null>(null);
 
   const handleDemoSubmit = (event: React.FormEvent<HTMLFormElement>) => {
@@ -92,14 +97,24 @@ const Products = () => {
     <>
       <section id="products" className="py-20 lg:py-28 bg-background">
         <MotionSection className="container mx-auto px-4 lg:px-8">
-          <motion.div variants={fadeUp} className="text-center mb-14">
-            <p className="text-primary font-semibold text-sm uppercase tracking-widest mb-3">Products</p>
-            <h2 className="text-3xl md:text-4xl font-extrabold text-foreground mb-4">
-              Our AI Powered <span className="gradient-text">Digital Ecosystem</span>
-            </h2>
-            <p className="text-muted-foreground max-w-xl mx-auto">
-              Proprietary platforms engineered for African markets and global scale.
-            </p>
+          <motion.div
+            variants={fadeUp}
+            className="mb-14 flex flex-col gap-6 text-center md:flex-row md:items-end md:justify-between md:text-left"
+          >
+            <div>
+              <p className="text-primary font-semibold text-sm uppercase tracking-widest mb-3">Products</p>
+              <h2 className="text-3xl md:text-4xl font-extrabold text-foreground mb-4">
+                Our AI Powered <span className="gradient-text">Digital Ecosystem</span>
+              </h2>
+              <p className="text-muted-foreground max-w-xl mx-auto md:mx-0">
+                Proprietary platforms engineered for African markets and global scale.
+              </p>
+            </div>
+            {showViewAll ? (
+              <Button asChild variant="outline" className="mx-auto rounded-full border-primary/30 bg-white/80 px-6 text-primary hover:bg-primary/10 md:mx-0">
+                <Link to="/products">View All Products</Link>
+              </Button>
+            ) : null}
           </motion.div>
 
           <motion.div variants={staggerContainer} className="grid gap-8 md:grid-cols-3 md:items-start">

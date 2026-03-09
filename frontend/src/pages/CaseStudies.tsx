@@ -5,7 +5,7 @@ import Testimonials from "@/components/Testimonials";
 const CaseStudiesPage = () => {
   return (
     <PageLayout>
-      <CaseStudies />
+      <CaseStudies showViewAll={false} />
       <Testimonials />
     </PageLayout>
   );

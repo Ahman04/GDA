@@ -1,6 +1,8 @@
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 import { MotionSection } from "@/components/ui/motion-section";
+import { Button } from "@/components/ui/button";
 import rubisEnergyImage from "@/images/Rubis Energy.jpg";
 import sidmsImage from "@/images/SIDMS.jpg";
 import ecommerceImage from "@/images/ECOMERCE.jpg";
@@ -33,15 +35,29 @@ const cases = [
   },
 ];
 
-const CaseStudies = () => {
+type CaseStudiesProps = {
+  showViewAll?: boolean;
+};
+
+const CaseStudies = ({ showViewAll = true }: CaseStudiesProps) => {
   return (
     <section id="case-studies" className="py-20 lg:py-28 bg-background">
       <MotionSection className="container mx-auto px-4 lg:px-8">
-        <motion.div variants={fadeUp} className="text-center mb-14">
-          <p className="text-primary font-semibold text-sm uppercase tracking-widest mb-3">Results</p>
-          <h2 className="text-3xl md:text-4xl font-extrabold text-foreground mb-4">
-            Engineering <span className="gradient-text">Real Impact</span>
-          </h2>
+        <motion.div
+          variants={fadeUp}
+          className="mb-14 flex flex-col gap-6 text-center md:flex-row md:items-end md:justify-between md:text-left"
+        >
+          <div>
+            <p className="text-primary font-semibold text-sm uppercase tracking-widest mb-3">Results</p>
+            <h2 className="text-3xl md:text-4xl font-extrabold text-foreground mb-4">
+              Engineering <span className="gradient-text">Real Impact</span>
+            </h2>
+          </div>
+          {showViewAll ? (
+            <Button asChild variant="outline" className="mx-auto rounded-full border-primary/30 bg-white/80 px-6 text-primary hover:bg-primary/10 md:mx-0">
+              <Link to="/case-studies">View All Case Studies</Link>
+            </Button>
+          ) : null}
         </motion.div>
 
         <motion.div variants={staggerContainer} className="grid md:grid-cols-3 gap-8">

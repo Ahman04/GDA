@@ -19,6 +19,8 @@ const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const location = useLocation();
+  const isHomePage = location.pathname === "/";
+  const useSolidNavbar = scrolled || !isHomePage;
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
@@ -36,7 +38,7 @@ const Navbar = () => {
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.6, ease: motionEase }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled
+        useSolidNavbar
           ? "bg-background/95 backdrop-blur-md shadow-sm border-b border-border"
           : "bg-transparent"
       }`}
@@ -46,14 +48,14 @@ const Navbar = () => {
         <Link to="/" className="flex items-center">
           <div
             className={`relative h-16 w-36 overflow-hidden ${
-              scrolled ? "drop-shadow-sm" : ""
+              useSolidNavbar ? "drop-shadow-sm" : ""
             }`}
           >
             <img
               src={gdaLogo}
               alt="Go Digital Africa logo"
               className={`h-full w-full scale-[1.7] object-contain ${
-                scrolled
+                useSolidNavbar
                   ? ""
                   : "brightness-[1.35] contrast-[1.2] drop-shadow-[0_0_16px_rgba(255,255,255,0.22)]"
               }`}
@@ -73,7 +75,7 @@ const Navbar = () => {
             aria-label="Home"
             title="Home"
             className={`transition-colors hover:text-primary ${
-              scrolled ? "text-foreground/70" : "text-deep-blue-foreground/70"
+              useSolidNavbar ? "text-foreground/75" : "text-deep-blue-foreground/70"
             }`}
             variants={fadeUp}
             whileHover={{ y: -2 }}
@@ -86,7 +88,11 @@ const Navbar = () => {
             <motion.div
               key={link.to}
               className={`text-sm font-medium transition-colors hover:text-primary ${
-                scrolled ? "text-foreground/70" : "text-deep-blue-foreground/70"
+                location.pathname === link.to
+                  ? "text-primary"
+                  : useSolidNavbar
+                    ? "text-foreground/75"
+                    : "text-deep-blue-foreground/70"
               }`}
               variants={fadeUp}
               whileHover={{ y: -2 }}
@@ -108,9 +114,9 @@ const Navbar = () => {
           aria-label="Toggle menu"
         >
           {mobileOpen ? (
-            <X className={scrolled ? "text-foreground" : "text-deep-blue-foreground"} />
+            <X className={useSolidNavbar ? "text-foreground" : "text-deep-blue-foreground"} />
           ) : (
-            <Menu className={scrolled ? "text-foreground" : "text-deep-blue-foreground"} />
+            <Menu className={useSolidNavbar ? "text-foreground" : "text-deep-blue-foreground"} />
           )}
         </button>
       </div>

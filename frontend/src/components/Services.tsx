@@ -1,5 +1,7 @@
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 import { MotionSection } from "@/components/ui/motion-section";
+import { Button } from "@/components/ui/button";
 import webImage from "@/images/web.png";
 import seoSemImage from "@/images/SEO & SEM.png";
 import socialMediaImage from "@/images/Social Media.png";
@@ -67,22 +69,48 @@ const services = [
   },
 ];
 
-const Services = () => {
+type ServicesProps = {
+  showViewAll?: boolean;
+  limitToFeatured?: boolean;
+};
+
+const featuredServiceTitles = new Set([
+  "Web Design & Development",
+  "Search Engine Optimization (SEO)",
+  "Mobile Development",
+  "Graphic Design & Branding",
+]);
+
+const Services = ({ showViewAll = true, limitToFeatured = false }: ServicesProps) => {
+  const visibleServices = limitToFeatured
+    ? services.filter((service) => featuredServiceTitles.has(service.title))
+    : services;
+
   return (
     <section id="services" className="py-20 lg:py-28 bg-light-gray">
       <MotionSection className="container mx-auto px-4 lg:px-8">
-        <motion.div variants={fadeUp} className="text-center mb-14">
-          <p className="text-primary font-semibold text-sm uppercase tracking-widest mb-3">What We Do</p>
-          <h2 className="text-3xl md:text-4xl font-extrabold text-foreground mb-4">
-            Our Digital <span className="gradient-text">Capabilities</span>
-          </h2>
-          <p className="text-muted-foreground max-w-xl mx-auto">
-            Comprehensive digital solutions designed to transform your business and accelerate growth.
-          </p>
+        <motion.div
+          variants={fadeUp}
+          className="mb-14 flex flex-col gap-6 text-center md:flex-row md:items-end md:justify-between md:text-left"
+        >
+          <div>
+            <p className="text-primary font-semibold text-sm uppercase tracking-widest mb-3">What We Do</p>
+            <h2 className="text-3xl md:text-4xl font-extrabold text-foreground mb-4">
+              Our Digital <span className="gradient-text">Capabilities</span>
+            </h2>
+            <p className="text-muted-foreground max-w-xl mx-auto md:mx-0">
+              Comprehensive digital solutions designed to transform your business and accelerate growth.
+            </p>
+          </div>
+          {showViewAll ? (
+            <Button asChild variant="outline" className="mx-auto rounded-full border-primary/30 bg-white/80 px-6 text-primary hover:bg-primary/10 md:mx-0">
+              <Link to="/services">View All Services</Link>
+            </Button>
+          ) : null}
         </motion.div>
 
         <motion.div variants={staggerContainer} className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {services.map((s) => (
+          {visibleServices.map((s) => (
             <motion.div
               key={s.title}
               variants={fadeUp}
