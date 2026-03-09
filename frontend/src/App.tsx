@@ -1,4 +1,5 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { useEffect } from "react";
+import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
 import AboutPage from "@/pages/About";
 import CaseStudiesPage from "@/pages/CaseStudies";
 import Index from "@/pages/Index";
@@ -9,8 +10,19 @@ import ServicesPage from "@/pages/Services";
 import TechnicalAuditPage from "@/pages/TechnicalAudit";
 import NotFound from "@/pages/NotFound";
 
+const ScrollToTop = () => {
+  const location = useLocation();
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "auto" });
+  }, [location.pathname]);
+
+  return null;
+};
+
 const App = () => (
   <BrowserRouter>
+    <ScrollToTop />
     <Routes>
       <Route path="/" element={<Index />} />
       <Route path="/about" element={<AboutPage />} />

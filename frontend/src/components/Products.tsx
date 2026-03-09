@@ -58,6 +58,20 @@ const products = [
     logoWrapClass: "border-emerald-200 bg-emerald-50/95 text-emerald-700",
     dotClass: "bg-emerald-500",
   },
+  {
+    name: "SwiftSkil",
+    version: "v1.0",
+    tagline: "Fast Skill Verification & Workforce Readiness Platform",
+    logoLabel: "SwiftSkil Logo",
+    features: [
+      "Rapid skills assessment workflows",
+      "Readiness scoring for technical talent",
+      "Faster shortlisting and deployment decisions",
+    ],
+    cardClass: "border-cyan-200/70 bg-white/80 shadow-[0_22px_60px_rgba(6,182,212,0.12)]",
+    logoWrapClass: "border-cyan-200 bg-cyan-50/95 text-cyan-700",
+    dotClass: "bg-cyan-500",
+  },
 ];
 
 type ProductsProps = {
@@ -66,6 +80,8 @@ type ProductsProps = {
 
 const Products = ({ showViewAll = true }: ProductsProps) => {
   const [selectedProduct, setSelectedProduct] = useState<string | null>(null);
+  const isHomepagePreview = showViewAll;
+  const visibleProducts = isHomepagePreview ? products.slice(0, 3) : products;
 
   const handleDemoSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -99,32 +115,53 @@ const Products = ({ showViewAll = true }: ProductsProps) => {
         <MotionSection className="container mx-auto px-4 lg:px-8">
           <motion.div
             variants={fadeUp}
-            className="mb-14 flex flex-col gap-6 text-center md:flex-row md:items-end md:justify-between md:text-left"
+            className={`mb-12 ${isHomepagePreview ? "mx-auto max-w-6xl text-center md:text-left" : "text-center md:text-left"}`}
           >
-            <div>
+            <div className={`flex flex-col gap-6 ${isHomepagePreview ? "md:flex-row md:items-end md:justify-between md:gap-10" : "md:max-w-3xl"}`}>
+              <div>
               <p className="text-primary font-semibold text-sm uppercase tracking-widest mb-3">Products</p>
               <h2 className="text-3xl md:text-4xl font-extrabold text-foreground mb-4">
                 Our AI Powered <span className="gradient-text">Digital Ecosystem</span>
               </h2>
-              <p className="text-muted-foreground max-w-xl mx-auto md:mx-0">
+                <p className={`text-muted-foreground ${isHomepagePreview ? "max-w-2xl mx-auto md:mx-0" : "max-w-xl mx-auto md:mx-0"}`}>
                 Proprietary platforms engineered for African markets and global scale.
               </p>
+              </div>
+              {showViewAll ? (
+                <Button
+                  asChild
+                  variant="outline"
+                  className="mx-auto rounded-full border-primary/30 bg-white/80 px-6 text-primary hover:bg-primary/10 md:mx-0 md:mb-1 md:self-center"
+                >
+                  <Link to="/products">View All Products</Link>
+                </Button>
+              ) : null}
             </div>
-            {showViewAll ? (
-              <Button asChild variant="outline" className="mx-auto rounded-full border-primary/30 bg-white/80 px-6 text-primary hover:bg-primary/10 md:mx-0">
-                <Link to="/products">View All Products</Link>
-              </Button>
-            ) : null}
           </motion.div>
 
-          <motion.div variants={staggerContainer} className="grid gap-8 md:grid-cols-3 md:items-start">
-            {products.map((p, index) => (
+          <motion.div
+            variants={staggerContainer}
+            className={`grid gap-8 ${
+              isHomepagePreview
+                ? "mx-auto max-w-6xl md:grid-cols-3 md:items-stretch"
+                : "md:grid-cols-2 xl:grid-cols-4 md:items-start"
+            }`}
+          >
+            {visibleProducts.map((p, index) => (
               <motion.div
                 key={p.name}
                 variants={fadeUp}
                 whileHover={hoverLift}
                 className={`card-cyan-glow rounded-[2rem] border p-7 md:p-8 flex flex-col backdrop-blur-sm ${p.cardClass} ${
-                  index === 1 ? "md:-translate-y-4" : index === 2 ? "md:translate-y-3" : ""
+                  isHomepagePreview
+                    ? "min-h-[540px]"
+                    : index === 1
+                      ? "xl:-translate-y-4"
+                      : index === 2
+                        ? "xl:translate-y-3"
+                        : index === 3
+                          ? "xl:-translate-y-2"
+                          : ""
                 }`}
               >
                 <div className="mb-6">

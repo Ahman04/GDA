@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { Home, Menu, X } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { RainbowBordersButton } from "@/components/ui/rainbow-borders-button";
 import gdaLogo from "@/images/1695985224885-removebg-preview.png";
 import { fadeUp, motionEase, staggerContainer } from "@/lib/motion";
@@ -80,9 +80,7 @@ const Navbar = () => {
             variants={fadeUp}
             whileHover={{ y: -2 }}
           >
-            <Link to="/">
-              <Home className="h-4 w-4" />
-            </Link>
+            <Link to="/">Home</Link>
           </motion.div>
           {navLinks.map((link) => (
             <motion.div
@@ -143,7 +141,6 @@ const Navbar = () => {
               variants={fadeUp}
             >
               <Link to="/" className="flex items-center gap-2">
-                <Home className="h-4 w-4" />
                 Home
               </Link>
             </motion.div>

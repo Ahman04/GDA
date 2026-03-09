@@ -29,6 +29,12 @@ const productUseCases = [
     outcome: "Creates a more reliable pipeline for sourcing, matching, and managing technical talent.",
     className: "border-emerald-200/80 bg-emerald-50/55",
   },
+  {
+    title: "SwiftSkil",
+    audience: "For teams that need faster workforce screening and talent-readiness decisions",
+    outcome: "Helps operators validate skills quickly and reduce friction between sourcing, evaluation, and deployment.",
+    className: "border-cyan-200/80 bg-cyan-50/55",
+  },
 ];
 
 const productSignals = [
@@ -50,7 +56,7 @@ const ProductsPage = () => {
         secondaryCtaLabel="Talk to Sales"
         secondaryCtaTo="/contact"
         stats={[
-          { value: "3", label: "Active product lines" },
+          { value: "4", label: "Active product lines" },
           { value: "AI", label: "Workflow-enabled tooling" },
           { value: "B2B", label: "Built for teams and operators" },
         ]}
@@ -70,7 +76,7 @@ const ProductsPage = () => {
               The product line is intentionally focused. Each platform solves a specific operational gap and creates a stronger bridge between your growth plan and day-to-day execution.
             </p>
           </motion.div>
-          <motion.div variants={staggerContainer} className="grid gap-7 lg:grid-cols-3">
+          <motion.div variants={staggerContainer} className="grid gap-7 md:grid-cols-2 xl:grid-cols-4">
             {productUseCases.map((item) => (
               <motion.div
                 key={item.title}
