@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { LocationMap } from "@/components/ui/expand-map";
-import { Facebook, Globe, Instagram, Linkedin, Mail, MapPin, Phone, Twitter } from "lucide-react";
+import { Facebook, Globe, Instagram, Linkedin, Mail, MapPin, Phone, Twitter, Youtube } from "lucide-react";
 import { MotionSection } from "@/components/ui/motion-section";
 import { fadeUp, staggerContainer } from "@/lib/motion";
 import contactBackground from "@/images/contact page.jpg";
@@ -17,31 +17,38 @@ function buildGmailComposeUrl(subject: string, body: string) {
 const socialLinks = [
   {
     name: "Facebook",
-    href: "#",
+    href: "https://www.facebook.com/AfricaGoDigital/",
     icon: Facebook,
     className:
       "border-blue-200 bg-blue-50 text-blue-600 hover:border-blue-400 hover:text-blue-700 hover:shadow-[0_0_22px_rgba(59,130,246,0.35)]",
   },
   {
     name: "Instagram",
-    href: "#",
+    href: "https://www.instagram.com/godigitalafrica.ke/",
     icon: Instagram,
     className:
       "border-pink-200 bg-pink-50 text-pink-600 hover:border-pink-400 hover:text-pink-700 hover:shadow-[0_0_22px_rgba(236,72,153,0.35)]",
   },
   {
     name: "X (Twitter)",
-    href: "#",
+    href: "https://x.com/GoAfricadigital",
     icon: Twitter,
     className:
       "border-slate-300 bg-slate-100 text-slate-700 hover:border-slate-500 hover:text-black hover:shadow-[0_0_22px_rgba(15,23,42,0.3)]",
   },
   {
     name: "LinkedIn",
-    href: "#",
+    href: "https://www.linkedin.com/company/godigitalafric/posts/?feedView=all",
     icon: Linkedin,
     className:
       "border-sky-200 bg-sky-50 text-sky-700 hover:border-sky-400 hover:text-sky-800 hover:shadow-[0_0_22px_rgba(14,165,233,0.35)]",
+  },
+  {
+    name: "YouTube",
+    href: "https://www.youtube.com/@Godigitalafrica",
+    icon: Youtube,
+    className:
+      "border-red-200 bg-red-50 text-red-600 hover:border-red-400 hover:text-red-700 hover:shadow-[0_0_22px_rgba(239,68,68,0.35)]",
   },
   {
     name: "WhatsApp",
@@ -60,15 +67,6 @@ const socialLinks = [
       "border-emerald-200 bg-emerald-50 text-emerald-600 hover:border-emerald-400 hover:text-emerald-700 hover:shadow-[0_0_22px_rgba(34,197,94,0.35)]",
   },
 ];
-
-const TikTokIcon = () => (
-  <svg viewBox="0 0 24 24" className="h-4 w-4" aria-hidden="true">
-    <path
-      fill="currentColor"
-      d="M16.5 3a5.6 5.6 0 0 0 3.1 3.1v3.2a8.7 8.7 0 0 1-3.1-1v6.2a6.5 6.5 0 1 1-6.5-6.5c.3 0 .7 0 1 .1v3.3a3.5 3.5 0 1 0 2.5 3.3V3h3z"
-    />
-  </svg>
-);
 
 const contactItemVariants = {
   hidden: { opacity: 0, y: 18 },
@@ -242,17 +240,6 @@ const Contact = () => {
                     </motion.a>
                   );
                 })}
-                <motion.a
-                  href="#"
-                  aria-label="TikTok"
-                  title="TikTok"
-                  variants={fadeUp}
-                  whileHover={{ y: -6, scale: 1.08, rotate: 6 }}
-                  whileTap={{ scale: 0.96 }}
-                  className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-cyan-200 bg-gradient-to-br from-cyan-50 to-pink-50 text-cyan-700 transition-all duration-300 hover:-translate-y-0.5 hover:scale-105 hover:border-pink-300 hover:text-pink-600 hover:shadow-[0_0_22px_rgba(34,211,238,0.35)]"
-                >
-                  <TikTokIcon />
-                </motion.a>
               </motion.div>
             </div>
 

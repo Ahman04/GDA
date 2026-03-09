@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { Linkedin, Twitter, Facebook, Instagram, ArrowRight } from "lucide-react";
+import { Linkedin, Twitter, Facebook, Instagram, ArrowRight, Youtube } from "lucide-react";
 import gdaLogo from "@/images/1695985224885-removebg-preview.png";
 import { MotionSection } from "@/components/ui/motion-section";
 import { fadeIn, fadeUp, hoverLift, staggerContainer } from "@/lib/motion";
@@ -16,10 +16,11 @@ const WhatsAppIcon = () => (
 );
 
 const socialLinks = [
-  { Icon: Linkedin, hoverClass: "hover:text-sky-400 hover:bg-sky-400/20" },
-  { Icon: Twitter, hoverClass: "hover:text-cyan-400 hover:bg-cyan-400/20" },
-  { Icon: Facebook, hoverClass: "hover:text-blue-400 hover:bg-blue-400/20" },
-  { Icon: Instagram, hoverClass: "hover:text-rose-400 hover:bg-rose-400/20" },
+  { Icon: Linkedin, hoverClass: "hover:text-sky-400 hover:bg-sky-400/20", href: "https://www.linkedin.com/company/godigitalafric/posts/?feedView=all" },
+  { Icon: Twitter, hoverClass: "hover:text-cyan-400 hover:bg-cyan-400/20", href: "https://x.com/GoAfricadigital" },
+  { Icon: Facebook, hoverClass: "hover:text-blue-400 hover:bg-blue-400/20", href: "https://www.facebook.com/AfricaGoDigital/" },
+  { Icon: Instagram, hoverClass: "hover:text-rose-400 hover:bg-rose-400/20", href: "https://www.instagram.com/godigitalafrica.ke/" },
+  { Icon: Youtube, hoverClass: "hover:text-red-500 hover:bg-red-500/15", href: "https://www.youtube.com/@Godigitalafrica" },
   { Icon: WhatsAppIcon, hoverClass: "hover:text-emerald-500 hover:bg-emerald-500/15", href: "https://wa.me/254720222249" },
 ];
 

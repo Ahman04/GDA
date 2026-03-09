@@ -12,7 +12,8 @@ import { fadeUp, hoverLift, motionEase, staggerContainer } from "@/lib/motion";
 const SALES_EMAIL = "sales@godigitalafrica.com";
 const PRODUCT_TRACK_CARD_WIDTH = 340;
 const PRODUCT_TRACK_GAP = 32;
-const AUTO_SCROLL_SPEED = 0.45;
+const AUTO_SCROLL_SPEED = 1.2;
+const CARD_FLOAT_DURATION = 5.2;
 
 function buildGmailComposeUrl(subject: string, body: string) {
   return `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(SALES_EMAIL)}&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
@@ -174,6 +175,17 @@ const Products = ({ showViewAll = true }: ProductsProps) => {
       key={`${p.name}-${index}`}
       variants={fadeUp}
       whileHover={hoverLift}
+      animate={{
+        y: [0, -8, 0],
+      }}
+      transition={{
+        y: {
+          duration: CARD_FLOAT_DURATION + (index % products.length) * 0.35,
+          repeat: Number.POSITIVE_INFINITY,
+          ease: "easeInOut",
+          delay: (index % products.length) * 0.18,
+        },
+      }}
       className={`card-cyan-glow rounded-[2rem] border p-7 md:p-8 flex flex-col backdrop-blur-sm ${p.cardClass} ${cardClassName ?? ""}`}
     >
       <div className="mb-6">
@@ -275,9 +287,10 @@ const Products = ({ showViewAll = true }: ProductsProps) => {
             <motion.div variants={fadeUp} className="mx-auto max-w-[1440px]">
               <div
                 ref={trackRef}
-                className="relative overflow-x-auto pb-4 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
+                className="relative overflow-x-auto pb-4 cursor-grab active:cursor-grabbing [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
                 onMouseEnter={() => setTrackPaused(true)}
                 onMouseLeave={() => setTrackPaused(false)}
+                onPointerDown={() => setTrackPaused(true)}
               >
                 <div className="flex min-w-max items-stretch gap-8">
                   {loopedProducts.map((product, index) => (
