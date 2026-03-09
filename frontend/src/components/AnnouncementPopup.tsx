@@ -14,7 +14,19 @@ function buildGmailComposeUrl(subject: string, body: string) {
   return `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(SALES_EMAIL)}&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 }
 
-const highlights = ["Kenya", "Ethiopia", "Somalia", "Dubai", "Canada"];
+const highlights = [
+  "Kenya",
+  "Ethiopia",
+  "Somalia",
+  "Ghana",
+  "Rwanda",
+  "Senegal",
+  "Nigeria",
+  "Tanzania",
+  "Djibouti",
+  "Dubai",
+  "Canada",
+];
 
 const AnnouncementPopup = () => {
   const [visible, setVisible] = useState(false);

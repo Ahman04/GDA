@@ -9,6 +9,7 @@ import Testimonials from "@/components/Testimonials";
 import { MotionSection } from "@/components/ui/motion-section";
 import { Button } from "@/components/ui/button";
 import { fadeUp, hoverLift, staggerContainer } from "@/lib/motion";
+import productsHeroImage from "@/images/AI.png";
 
 const productUseCases = [
   {
@@ -35,6 +36,24 @@ const productUseCases = [
     outcome: "Helps operators validate skills quickly and reduce friction between sourcing, evaluation, and deployment.",
     className: "border-cyan-200/80 bg-cyan-50/55",
   },
+  {
+    title: "Nyumba Tek",
+    audience: "For property and real estate teams managing units, tenants, and operations",
+    outcome: "Creates better operational control across property workflows, communication, and visibility.",
+    className: "border-amber-200/80 bg-amber-50/55",
+  },
+  {
+    title: "WatanStay Boka",
+    audience: "For hospitality operators handling bookings, guest journeys, and service operations",
+    outcome: "Improves reservation flow, guest coordination, and hospitality execution in one platform.",
+    className: "border-rose-200/80 bg-rose-50/55",
+  },
+  {
+    title: "URBANOVA",
+    audience: "For urban projects, community-facing initiatives, and digital city operations",
+    outcome: "Supports planning, service coordination, and digital engagement around urban innovation work.",
+    className: "border-slate-200/80 bg-slate-50/55",
+  },
 ];
 
 const productSignals = [
@@ -56,13 +75,16 @@ const ProductsPage = () => {
         secondaryCtaLabel="Talk to Sales"
         secondaryCtaTo="/contact"
         stats={[
-          { value: "4", label: "Active product lines" },
+          { value: "7", label: "Active product lines" },
           { value: "AI", label: "Workflow-enabled tooling" },
           { value: "B2B", label: "Built for teams and operators" },
         ]}
-        panelTitle="A product layer that complements services and creates long-term leverage."
+        panelTitle="Operational products built to turn strategy into repeatable systems."
         panelCopy="These platforms are meant to help clients move faster after strategy is defined, whether that means managing content, improving search operations, or expanding technical delivery capacity."
         panelPoints={productSignals}
+        panelImageSrc={productsHeroImage}
+        panelImageAlt="AI-powered product ecosystem"
+        panelBadge="Product Ecosystem"
       />
       <Products showViewAll={false} />
       <section className="bg-light-gray py-20 lg:py-24">

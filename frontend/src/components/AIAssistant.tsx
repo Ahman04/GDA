@@ -146,7 +146,7 @@ const promptReplies: Record<
   },
   locations: {
     intro:
-      "Go Digital Africa supports organizations across Kenya, Ethiopia, Somalia, Dubai, and Canada. Our Nairobi office is at 14 Ring Road, Westlands, Nairobi, Kenya.",
+      "Go Digital Africa supports organizations across Kenya, Ethiopia, Somalia, Ghana, Rwanda, Senegal, Nigeria, Tanzania, Djibouti, Dubai, and Canada. Our Nairobi office is at 14 Ring Road, Westlands, Nairobi, Kenya.",
   },
   sales: {
     intro:

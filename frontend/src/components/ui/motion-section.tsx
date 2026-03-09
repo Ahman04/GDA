@@ -9,6 +9,7 @@ type MotionSectionProps = {
   className?: string;
   variants?: Variants;
   amount?: number;
+  triggerOnView?: boolean;
 };
 
 const reducedMotionVariants: Variants = {
@@ -26,16 +27,19 @@ export function MotionSection({
   className,
   variants = staggerContainer,
   amount = viewport.amount,
+  triggerOnView = true,
 }: MotionSectionProps) {
   const prefersReducedMotion = useReducedMotion();
+  const resolvedVariants = prefersReducedMotion ? reducedMotionVariants : variants;
 
   return (
     <motion.div
       className={cn(className)}
       initial="hidden"
-      whileInView="show"
-      viewport={{ once: viewport.once, amount }}
-      variants={prefersReducedMotion ? reducedMotionVariants : variants}
+      animate={triggerOnView ? undefined : "show"}
+      whileInView={triggerOnView ? "show" : undefined}
+      viewport={triggerOnView ? { once: viewport.once, amount } : undefined}
+      variants={resolvedVariants}
     >
       {children}
     </motion.div>

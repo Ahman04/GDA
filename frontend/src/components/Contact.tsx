@@ -95,18 +95,20 @@ const Contact = () => {
 
   return (
     <section id="contact" className="relative overflow-hidden bg-background py-14 lg:min-h-[calc(100svh-6rem)] lg:py-8 lg:flex lg:items-center">
-      <div
-        className="absolute inset-0 bg-cover bg-center opacity-[0.72] scale-[1.02]"
+      <motion.div
+        className="absolute inset-0 bg-cover bg-center opacity-[0.88] scale-[1.02]"
         style={{ backgroundImage: `url(${contactBackground})` }}
+        animate={{ scale: [1.02, 1.06, 1.02], x: [0, -10, 0], y: [0, -6, 0] }}
+        transition={{ duration: 18, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" }}
       />
-      <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(7,20,34,0.82)_0%,rgba(10,31,48,0.72)_22%,rgba(255,255,255,0.18)_48%,rgba(7,20,34,0.58)_100%)]" />
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_center,rgba(34,211,238,0.16),transparent_36%),radial-gradient(circle_at_bottom_right,rgba(14,165,233,0.14),transparent_28%)]" />
+      <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(7,20,34,0.7)_0%,rgba(10,31,48,0.54)_22%,rgba(255,255,255,0.08)_48%,rgba(7,20,34,0.42)_100%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_center,rgba(34,211,238,0.12),transparent_36%),radial-gradient(circle_at_bottom_right,rgba(14,165,233,0.1),transparent_28%)]" />
 
       {/* Geometric bg pattern */}
       <div className="absolute top-0 right-0 w-96 h-96 bg-primary/3 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
       <div className="absolute bottom-0 left-0 w-72 h-72 bg-primary/3 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2" />
 
-      <MotionSection className="relative container mx-auto px-4 lg:px-8">
+      <MotionSection className="relative container mx-auto px-4 lg:px-8" triggerOnView={false}>
         <motion.div variants={fadeUp} className="mb-8 text-center lg:mb-7">
           <div className="mx-auto inline-block rounded-full border border-white/18 bg-slate-950/38 px-4 py-2 shadow-[0_12px_40px_rgba(15,23,42,0.2)] backdrop-blur-md">
             <p className="text-primary font-semibold text-sm uppercase tracking-widest">Contact Us</p>
@@ -121,7 +123,7 @@ const Contact = () => {
 
         <motion.div variants={staggerContainer} className="mx-auto grid max-w-5xl gap-8 lg:grid-cols-2 lg:gap-10">
           {/* Form */}
-          <motion.div variants={fadeUp} className="rounded-2xl border border-white/35 bg-white/88 p-6 shadow-[0_24px_80px_rgba(15,23,42,0.22)] backdrop-blur-md lg:p-7">
+          <motion.div variants={fadeUp} transition={{ delay: 0.08 }} className="rounded-2xl border border-white/35 bg-white/88 p-6 shadow-[0_24px_80px_rgba(15,23,42,0.22)] backdrop-blur-md lg:p-7">
             <form className="space-y-4" onSubmit={handleContactSubmit}>
               <div className="grid sm:grid-cols-2 gap-4">
                 <Input name="name" placeholder="Your Name" className="rounded-lg border-white/45 bg-white/78 text-slate-900 placeholder:text-slate-500 focus:border-primary" />
@@ -149,7 +151,7 @@ const Contact = () => {
           </motion.div>
 
           {/* Info */}
-          <motion.div variants={fadeUp} className="space-y-6 rounded-2xl border border-white/18 bg-slate-950/40 p-6 shadow-[0_24px_80px_rgba(15,23,42,0.18)] backdrop-blur-md lg:p-7">
+          <motion.div variants={fadeUp} transition={{ delay: 0.18 }} className="space-y-6 rounded-2xl border border-white/18 bg-slate-950/40 p-6 shadow-[0_24px_80px_rgba(15,23,42,0.18)] backdrop-blur-md lg:p-7">
             <div>
               <h3 className="font-bold text-cyan-50 mb-4 text-lg">Contact Us</h3>
               <div className="space-y-4">
@@ -220,7 +222,8 @@ const Contact = () => {
                       aria-label={social.name}
                       title={social.name}
                       variants={fadeUp}
-                      whileHover={hoverLift}
+                      whileHover={{ y: -6, scale: 1.08, rotate: -6 }}
+                      whileTap={{ scale: 0.96 }}
                       className={`inline-flex h-10 w-10 items-center justify-center rounded-full transition-all duration-300 hover:-translate-y-0.5 hover:scale-105 ${social.className}`}
                     >
                       <Icon className="h-4 w-4" />
@@ -232,7 +235,8 @@ const Contact = () => {
                   aria-label="TikTok"
                   title="TikTok"
                   variants={fadeUp}
-                  whileHover={hoverLift}
+                  whileHover={{ y: -6, scale: 1.08, rotate: 6 }}
+                  whileTap={{ scale: 0.96 }}
                   className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-cyan-200 bg-gradient-to-br from-cyan-50 to-pink-50 text-cyan-700 transition-all duration-300 hover:-translate-y-0.5 hover:scale-105 hover:border-pink-300 hover:text-pink-600 hover:shadow-[0_0_22px_rgba(34,211,238,0.35)]"
                 >
                   <TikTokIcon />

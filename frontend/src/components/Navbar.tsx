@@ -80,7 +80,16 @@ const Navbar = () => {
             variants={fadeUp}
             whileHover={{ y: -2 }}
           >
-            <Link to="/">Home</Link>
+            <Link to="/" className="relative inline-flex pb-1">
+              Home
+              {location.pathname === "/" ? (
+                <motion.span
+                  layoutId="active-nav-indicator"
+                  className="absolute inset-x-0 -bottom-1.5 h-0.5 rounded-full bg-primary"
+                  transition={{ type: "spring", stiffness: 500, damping: 36 }}
+                />
+              ) : null}
+            </Link>
           </motion.div>
           {navLinks.map((link) => (
             <motion.div
@@ -95,7 +104,16 @@ const Navbar = () => {
               variants={fadeUp}
               whileHover={{ y: -2 }}
             >
-              <Link to={link.to}>{link.label}</Link>
+              <Link to={link.to} className="relative inline-flex pb-1">
+                {link.label}
+                {location.pathname === link.to ? (
+                  <motion.span
+                    layoutId="active-nav-indicator"
+                    className="absolute inset-x-0 -bottom-1.5 h-0.5 rounded-full bg-primary"
+                    transition={{ type: "spring", stiffness: 500, damping: 36 }}
+                  />
+                ) : null}
+              </Link>
             </motion.div>
           ))}
           <motion.div variants={fadeUp} whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>

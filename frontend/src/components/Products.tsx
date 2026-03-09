@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { MotionSection } from "@/components/ui/motion-section";
@@ -10,6 +10,9 @@ import { ArrowRight, X } from "lucide-react";
 import { fadeUp, hoverLift, motionEase, staggerContainer } from "@/lib/motion";
 
 const SALES_EMAIL = "sales@godigitalafrica.com";
+const PRODUCT_TRACK_CARD_WIDTH = 340;
+const PRODUCT_TRACK_GAP = 32;
+const AUTO_SCROLL_SPEED = 0.45;
 
 function buildGmailComposeUrl(subject: string, body: string) {
   return `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(SALES_EMAIL)}&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
@@ -72,6 +75,48 @@ const products = [
     logoWrapClass: "border-cyan-200 bg-cyan-50/95 text-cyan-700",
     dotClass: "bg-cyan-500",
   },
+  {
+    name: "Nyumba Tek",
+    version: "v1.0",
+    tagline: "Smart Property Operations & Real Estate Management Platform",
+    logoLabel: "Nyumba Tek Logo",
+    features: [
+      "Property listing and unit management",
+      "Tenant communication workflows",
+      "Operations visibility for real estate teams",
+    ],
+    cardClass: "border-amber-200/70 bg-white/80 shadow-[0_22px_60px_rgba(245,158,11,0.12)]",
+    logoWrapClass: "border-amber-200 bg-amber-50/95 text-amber-700",
+    dotClass: "bg-amber-500",
+  },
+  {
+    name: "WatanStay Boka",
+    version: "v1.0",
+    tagline: "Hospitality Booking & Guest Experience Platform",
+    logoLabel: "WatanStay Boka Logo",
+    features: [
+      "Booking flow and reservation management",
+      "Guest communication and itinerary support",
+      "Hospitality operations tracking",
+    ],
+    cardClass: "border-rose-200/70 bg-white/80 shadow-[0_22px_60px_rgba(244,63,94,0.12)]",
+    logoWrapClass: "border-rose-200 bg-rose-50/95 text-rose-700",
+    dotClass: "bg-rose-500",
+  },
+  {
+    name: "URBANOVA",
+    version: "v1.0",
+    tagline: "Urban Innovation, Planning & Digital Community Platform",
+    logoLabel: "URBANOVA Logo",
+    features: [
+      "Urban service and project coordination",
+      "Community-facing digital touchpoints",
+      "Planning insights and reporting workflows",
+    ],
+    cardClass: "border-slate-200/70 bg-white/80 shadow-[0_22px_60px_rgba(71,85,105,0.12)]",
+    logoWrapClass: "border-slate-200 bg-slate-50/95 text-slate-700",
+    dotClass: "bg-slate-500",
+  },
 ];
 
 type ProductsProps = {
@@ -81,7 +126,94 @@ type ProductsProps = {
 const Products = ({ showViewAll = true }: ProductsProps) => {
   const [selectedProduct, setSelectedProduct] = useState<string | null>(null);
   const isHomepagePreview = showViewAll;
-  const visibleProducts = isHomepagePreview ? products.slice(0, 3) : products;
+  const [trackPaused, setTrackPaused] = useState(false);
+  const trackRef = useRef<HTMLDivElement | null>(null);
+  const singleSetWidth =
+    PRODUCT_TRACK_CARD_WIDTH * products.length + PRODUCT_TRACK_GAP * (products.length - 1);
+  const loopedProducts = [...products, ...products, ...products];
+
+  useEffect(() => {
+    if (!isHomepagePreview || !trackRef.current) return;
+
+    const container = trackRef.current;
+    container.scrollLeft = singleSetWidth;
+
+    let animationFrame = 0;
+
+    const normalizeScroll = () => {
+      if (container.scrollLeft < singleSetWidth * 0.5) {
+        container.scrollLeft += singleSetWidth;
+      } else if (container.scrollLeft > singleSetWidth * 1.5) {
+        container.scrollLeft -= singleSetWidth;
+      }
+    };
+
+    const tick = () => {
+      if (!trackPaused) {
+        container.scrollLeft += AUTO_SCROLL_SPEED;
+        normalizeScroll();
+      }
+      animationFrame = window.requestAnimationFrame(tick);
+    };
+
+    const handleScroll = () => {
+      normalizeScroll();
+    };
+
+    container.addEventListener("scroll", handleScroll, { passive: true });
+    animationFrame = window.requestAnimationFrame(tick);
+
+    return () => {
+      container.removeEventListener("scroll", handleScroll);
+      window.cancelAnimationFrame(animationFrame);
+    };
+  }, [isHomepagePreview, singleSetWidth, trackPaused]);
+
+  const renderProductCard = (p: (typeof products)[number], index: number, cardClassName?: string) => (
+    <motion.div
+      key={`${p.name}-${index}`}
+      variants={fadeUp}
+      whileHover={hoverLift}
+      className={`card-cyan-glow rounded-[2rem] border p-7 md:p-8 flex flex-col backdrop-blur-sm ${p.cardClass} ${cardClassName ?? ""}`}
+    >
+      <div className="mb-6">
+        <div className={`flex h-20 w-24 items-center justify-center rounded-[1.4rem] border border-dashed text-sm font-extrabold uppercase tracking-[0.2em] ${p.logoWrapClass}`}>
+          {p.logoLabel}
+        </div>
+      </div>
+
+      <div className="mb-5">
+        <div className="flex items-center gap-3">
+          <h3 className="font-bold text-foreground">{p.name}</h3>
+          <Badge variant="secondary" className="text-[10px] font-bold mt-0.5">
+            {p.version}
+          </Badge>
+        </div>
+        <p className="mt-4 text-sm leading-7 text-muted-foreground">{p.tagline}</p>
+      </div>
+
+      <ul className="space-y-3 mb-8 flex-1">
+        {p.features.map((f) => (
+          <li key={f} className="flex items-start gap-3 text-sm text-foreground/80">
+            <span className={`mt-1.5 h-2 w-2 rounded-full shrink-0 ${p.dotClass}`} />
+            {f}
+          </li>
+        ))}
+      </ul>
+
+      <div className="mt-auto flex flex-col gap-3">
+        <Button
+          className="w-full rounded-full bg-primary text-primary-foreground hover:bg-primary/90"
+          onClick={() => setSelectedProduct(p.name)}
+        >
+          Request a Demo
+        </Button>
+        <Button variant="outline" className="w-full rounded-full border-primary/30 bg-white/70 text-primary hover:bg-primary/10">
+          Learn More <ArrowRight className="w-4 h-4 ml-1" />
+        </Button>
+      </div>
+    </motion.div>
+  );
 
   const handleDemoSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -139,70 +271,44 @@ const Products = ({ showViewAll = true }: ProductsProps) => {
             </div>
           </motion.div>
 
-          <motion.div
-            variants={staggerContainer}
-            className={`grid gap-8 ${
-              isHomepagePreview
-                ? "mx-auto max-w-6xl md:grid-cols-3 md:items-stretch"
-                : "md:grid-cols-2 xl:grid-cols-4 md:items-start"
-            }`}
-          >
-            {visibleProducts.map((p, index) => (
-              <motion.div
-                key={p.name}
-                variants={fadeUp}
-                whileHover={hoverLift}
-                className={`card-cyan-glow rounded-[2rem] border p-7 md:p-8 flex flex-col backdrop-blur-sm ${p.cardClass} ${
-                  isHomepagePreview
-                    ? "min-h-[540px]"
-                    : index === 1
-                      ? "xl:-translate-y-4"
-                      : index === 2
-                        ? "xl:translate-y-3"
-                        : index === 3
-                          ? "xl:-translate-y-2"
-                          : ""
-                }`}
+          {isHomepagePreview ? (
+            <motion.div variants={fadeUp} className="mx-auto max-w-[1440px]">
+              <div
+                ref={trackRef}
+                className="relative overflow-x-auto pb-4 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
+                onMouseEnter={() => setTrackPaused(true)}
+                onMouseLeave={() => setTrackPaused(false)}
               >
-                <div className="mb-6">
-                  <div className={`flex h-20 w-24 items-center justify-center rounded-[1.4rem] border border-dashed text-sm font-extrabold uppercase tracking-[0.2em] ${p.logoWrapClass}`}>
-                    {p.logoLabel}
-                  </div>
-                </div>
-
-                <div className="mb-5">
-                  <div className="flex items-center gap-3">
-                    <h3 className="font-bold text-foreground">{p.name}</h3>
-                    <Badge variant="secondary" className="text-[10px] font-bold mt-0.5">
-                      {p.version}
-                    </Badge>
-                  </div>
-                  <p className="mt-4 text-sm leading-7 text-muted-foreground">{p.tagline}</p>
-                </div>
-
-                <ul className="space-y-3 mb-8 flex-1">
-                  {p.features.map((f) => (
-                    <li key={f} className="flex items-start gap-3 text-sm text-foreground/80">
-                      <span className={`mt-1.5 h-2 w-2 rounded-full shrink-0 ${p.dotClass}`} />
-                      {f}
-                    </li>
+                <div className="flex min-w-max items-stretch gap-8">
+                  {loopedProducts.map((product, index) => (
+                    <div
+                      key={`${product.name}-track-${index}`}
+                      className="w-[340px] shrink-0"
+                      aria-hidden={index < products.length || index >= products.length * 2}
+                    >
+                      {renderProductCard(product, index, "min-h-[540px]")}
+                    </div>
                   ))}
-                </ul>
-
-                <div className="mt-auto flex flex-col gap-3">
-                  <Button
-                    className="w-full rounded-full bg-primary text-primary-foreground hover:bg-primary/90"
-                    onClick={() => setSelectedProduct(p.name)}
-                  >
-                    Request a Demo
-                  </Button>
-                  <Button variant="outline" className="w-full rounded-full border-primary/30 bg-white/70 text-primary hover:bg-primary/10">
-                    Learn More <ArrowRight className="w-4 h-4 ml-1" />
-                  </Button>
                 </div>
-              </motion.div>
-            ))}
-          </motion.div>
+              </div>
+            </motion.div>
+          ) : (
+            <motion.div variants={staggerContainer} className="md:grid-cols-2 xl:grid-cols-4 md:items-start grid gap-8">
+              {products.map((p, index) =>
+                renderProductCard(
+                  p,
+                  index,
+                  index === 1
+                    ? "xl:-translate-y-4"
+                    : index === 2
+                      ? "xl:translate-y-3"
+                      : index === 3
+                        ? "xl:-translate-y-2"
+                        : ""
+                ),
+              )}
+            </motion.div>
+          )}
         </MotionSection>
       </section>
 

@@ -10,6 +10,7 @@ import Testimonials from "@/components/Testimonials";
 import { MotionSection } from "@/components/ui/motion-section";
 import { Button } from "@/components/ui/button";
 import { fadeUp, hoverLift, staggerContainer } from "@/lib/motion";
+import servicesHeroImage from "@/images/service img.png";
 
 const serviceTracks = [
   {
@@ -55,9 +56,12 @@ const ServicesPage = () => {
           { value: "15+", label: "Markets supported" },
           { value: "250+", label: "Projects delivered" },
         ]}
-        panelTitle="A service stack designed for execution, not just strategy decks."
+        panelTitle="Execution-first digital systems for ambitious growth teams."
         panelCopy="Each engagement is structured to give you a clear roadmap, fast implementation, and ongoing optimization support once the core systems are live."
         panelPoints={engagementPoints}
+        panelImageSrc={servicesHeroImage}
+        panelImageAlt="Digital marketing and service delivery"
+        panelBadge="Service Delivery"
       />
       <Services showViewAll={false} />
       <section className="bg-background py-20 lg:py-24">

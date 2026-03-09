@@ -51,6 +51,12 @@ const marketPresence = [
   { country: "Kenya", flag: "🇰🇪" },
   { country: "Ethiopia", flag: "🇪🇹" },
   { country: "Somalia", flag: "🇸🇴" },
+  { country: "Ghana", flag: "🇬🇭" },
+  { country: "Rwanda", flag: "🇷🇼" },
+  { country: "Senegal", flag: "🇸🇳" },
+  { country: "Nigeria", flag: "🇳🇬" },
+  { country: "Tanzania", flag: "🇹🇿" },
+  { country: "Djibouti", flag: "🇩🇯" },
   { country: "Dubai", flag: "🇦🇪" },
   { country: "Canada", flag: "🇨🇦" },
 ];

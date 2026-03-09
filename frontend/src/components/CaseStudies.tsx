@@ -65,29 +65,37 @@ const CaseStudies = ({ showViewAll = true }: CaseStudiesProps) => {
             <motion.div
               key={c.title}
               variants={fadeUp}
-              whileHover={hoverLift}
+              whileHover={{ y: -10, transition: { duration: 0.2 } }}
               className="card-lift group bg-card border border-border rounded-2xl overflow-hidden cursor-default"
             >
               <div className={`relative flex h-52 items-end overflow-hidden bg-gradient-to-br ${c.accentClass} p-6`}>
-                <img
+                <motion.img
                   src={c.image}
                   alt={`${c.title} case study`}
-                  className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  className="absolute inset-0 h-full w-full object-cover"
                   loading="lazy"
+                  whileHover={{ scale: 1.08 }}
+                  transition={{ duration: 0.45, ease: "easeOut" }}
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/65 via-slate-900/20 to-transparent" />
-                <div className="absolute right-5 top-5 rounded-full border border-border/70 bg-white/80 px-3 py-1 text-xs font-bold text-foreground shadow-sm">
+                <motion.div
+                  className="absolute inset-0 bg-gradient-to-t from-slate-950/65 via-slate-900/20 to-transparent"
+                  whileHover={{ opacity: 0.88 }}
+                />
+                <motion.div
+                  className="absolute right-5 top-5 rounded-full border border-border/70 bg-white/80 px-3 py-1 text-xs font-bold text-foreground shadow-sm"
+                  whileHover={{ y: -2, scale: 1.03 }}
+                >
                   Case Study
-                </div>
+                </motion.div>
               </div>
-              <div className="p-6">
+              <motion.div className="p-6" whileHover={{ y: -3 }}>
                 <span className={`text-xs font-semibold uppercase tracking-wider ${c.industryClass}`}>{c.industry}</span>
                 <h3 className="font-bold text-foreground mt-1 mb-2">{c.title}</h3>
                 <p className="text-sm text-muted-foreground mb-3">{c.desc}</p>
                 <span className="inline-flex items-center gap-1 text-sm font-semibold text-primary transition-all group-hover:gap-2">
                   Read more <ArrowRight className="h-4 w-4" />
                 </span>
-              </div>
+              </motion.div>
             </motion.div>
           ))}
         </motion.div>

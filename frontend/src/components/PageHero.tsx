@@ -24,6 +24,9 @@ type PageHeroProps = {
   panelTitle: string;
   panelCopy: string;
   panelPoints: string[];
+  panelImageSrc?: string;
+  panelImageAlt?: string;
+  panelBadge?: string;
 };
 
 const PageHero = ({
@@ -39,12 +42,15 @@ const PageHero = ({
   panelTitle,
   panelCopy,
   panelPoints,
+  panelImageSrc,
+  panelImageAlt,
+  panelBadge = "Go Digital Africa",
 }: PageHeroProps) => {
   return (
     <section className="relative overflow-hidden bg-[radial-gradient(circle_at_top_left,_rgba(34,211,238,0.18),_transparent_32%),linear-gradient(180deg,#f8fcff_0%,#ffffff_55%,#f4f8fb_100%)] py-16 md:py-20 lg:py-24">
       <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(rgba(15,23,42,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(15,23,42,0.03)_1px,transparent_1px)] bg-[size:80px_80px]" />
       <MotionSection className="container relative mx-auto px-4 lg:px-8" variants={staggerContainer}>
-        <div className="grid items-center gap-10 lg:grid-cols-[minmax(0,1.15fr)_420px]">
+        <div className="grid items-center gap-10 lg:grid-cols-[minmax(0,1.08fr)_minmax(460px,0.92fr)] xl:grid-cols-[minmax(0,1.02fr)_minmax(520px,0.98fr)]">
           <div>
             <motion.p variants={fadeUp} className="mb-4 text-sm font-semibold uppercase tracking-[0.3em] text-primary">
               {eyebrow}
@@ -78,24 +84,56 @@ const PageHero = ({
 
           <motion.div variants={fadeUp} className="relative">
             <div className="absolute -inset-6 rounded-[2.5rem] bg-gradient-to-br from-cyan-400/20 via-transparent to-blue-500/10 blur-3xl" />
-            <div className="relative overflow-hidden rounded-[2rem] border border-white/70 bg-slate-950 p-8 text-white shadow-[0_26px_80px_rgba(15,23,42,0.18)]">
-              <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(34,211,238,0.18),_transparent_35%),linear-gradient(145deg,rgba(15,23,42,0.98),rgba(6,182,212,0.2))]" />
-              <div className="relative">
-                <div className="mb-6 inline-flex rounded-full border border-white/15 bg-white/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.24em] text-cyan-200">
-                  Go Digital Africa
-                </div>
-                <h2 className="text-2xl font-extrabold leading-tight">{panelTitle}</h2>
-                <p className="mt-4 text-sm leading-7 text-slate-200/85">{panelCopy}</p>
-                <div className="mt-8 space-y-3">
-                  {panelPoints.map((point) => (
-                    <div key={point} className="flex items-start gap-3 rounded-2xl border border-white/10 bg-white/6 px-4 py-3">
-                      <span className="mt-1 h-2.5 w-2.5 shrink-0 rounded-full bg-cyan-300" />
-                      <span className="text-sm leading-6 text-white/90">{point}</span>
-                    </div>
-                  ))}
+            {panelImageSrc ? (
+              <div className="relative overflow-hidden rounded-[2rem] border border-white/70 shadow-[0_26px_80px_rgba(15,23,42,0.18)]">
+                <motion.img
+                  src={panelImageSrc}
+                  alt={panelImageAlt || panelTitle}
+                  className="h-[560px] w-full object-cover object-center lg:h-[600px]"
+                  animate={{
+                    scale: [1.02, 1.06, 1.02],
+                    y: [0, -10, 0],
+                  }}
+                  transition={{
+                    duration: 12,
+                    repeat: Number.POSITIVE_INFINITY,
+                    ease: "easeInOut",
+                  }}
+                />
+                <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(15,23,42,0.08)_0%,rgba(15,23,42,0.18)_34%,rgba(15,23,42,0.68)_100%)]" />
+                <div className="absolute inset-x-0 bottom-0 p-8 text-white">
+                  <motion.div
+                    className="mb-5 inline-flex rounded-full border border-white/20 bg-slate-950/35 px-3 py-1 text-xs font-semibold uppercase tracking-[0.24em] text-cyan-100 backdrop-blur-md"
+                    animate={{ y: [0, -5, 0] }}
+                    transition={{ duration: 4.2, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" }}
+                  >
+                    {panelBadge}
+                  </motion.div>
+                  <h2 className="max-w-lg text-2xl font-extrabold leading-tight drop-shadow-[0_4px_16px_rgba(15,23,42,0.45)] md:text-[2rem]">
+                    {panelTitle}
+                  </h2>
                 </div>
               </div>
-            </div>
+            ) : (
+              <div className="relative overflow-hidden rounded-[2rem] border border-white/70 bg-slate-950 p-8 text-white shadow-[0_26px_80px_rgba(15,23,42,0.18)]">
+                <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(34,211,238,0.18),_transparent_35%),linear-gradient(145deg,rgba(15,23,42,0.98),rgba(6,182,212,0.2))]" />
+                <div className="relative">
+                  <div className="mb-6 inline-flex rounded-full border border-white/15 bg-white/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.24em] text-cyan-200">
+                    {panelBadge}
+                  </div>
+                  <h2 className="text-2xl font-extrabold leading-tight">{panelTitle}</h2>
+                  <p className="mt-4 text-sm leading-7 text-slate-200/85">{panelCopy}</p>
+                  <div className="mt-8 space-y-3">
+                    {panelPoints.map((point) => (
+                      <div key={point} className="flex items-start gap-3 rounded-2xl border border-white/10 bg-white/6 px-4 py-3">
+                        <span className="mt-1 h-2.5 w-2.5 shrink-0 rounded-full bg-cyan-300" />
+                        <span className="text-sm leading-6 text-white/90">{point}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            )}
           </motion.div>
         </div>
       </MotionSection>

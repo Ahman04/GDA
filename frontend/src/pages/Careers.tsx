@@ -6,28 +6,8 @@ import PageHero from "@/components/PageHero";
 import PageLayout from "@/components/PageLayout";
 import { MotionSection } from "@/components/ui/motion-section";
 import { Button } from "@/components/ui/button";
-import { fadeUp, hoverLift, staggerContainer } from "@/lib/motion";
-
-const openings = [
-  {
-    title: "Social Media Specialist",
-    summary:
-      "Plan and execute social campaigns, content calendars, and performance reporting across key platforms.",
-    type: "Full-time",
-    mode: "Hybrid",
-    location: "Nairobi",
-    apply: "https://mail.google.com/mail/?view=cm&fs=1&to=sales@godigitalafrica.com&su=Application%20-%20Social%20Media%20Specialist",
-  },
-  {
-    title: "AI Solutions Specialist",
-    summary:
-      "Design and deploy AI workflows, automation systems, and practical AI solutions for client operations.",
-    type: "Full-time",
-    mode: "Hybrid",
-    location: "Nairobi",
-    apply: "https://mail.google.com/mail/?view=cm&fs=1&to=sales@godigitalafrica.com&su=Application%20-%20AI%20Solutions%20Specialist",
-  },
-];
+import { fadeUp } from "@/lib/motion";
+import careersHeroImage from "@/images/careerimg.png";
 
 const culturePoints = [
   "Work on digital transformation projects that shape real operating outcomes.",
@@ -62,18 +42,21 @@ const CareersPage = () => {
         title="Join a Team Building"
         highlight="Digital Growth Infrastructure"
         description="We are building a team that combines strategy, execution, product thinking, and AI capability to help organizations across Africa grow with more clarity and speed."
-        primaryCtaLabel="Apply for Open Roles"
-        primaryCtaTo="/careers#openings"
+        primaryCtaLabel="No Jobs Available Right Now"
+        primaryCtaTo="/contact"
         secondaryCtaLabel="Contact Our Team"
         secondaryCtaTo="/contact"
         stats={[
-          { value: "2", label: "Open roles now" },
+          { value: "0", label: "Open roles now" },
           { value: "Hybrid", label: "Working model" },
           { value: "Nairobi", label: "Primary base" },
         ]}
-        panelTitle="We hire for people who can think clearly, execute reliably, and keep improving."
+        panelTitle="Build with a team focused on clarity, execution, and digital growth."
         panelCopy="The strongest candidates for us are not just specialists. They are operators who understand outcomes, communicate well, and can work across fast-moving client environments."
         panelPoints={culturePoints}
+        panelImageSrc={careersHeroImage}
+        panelImageAlt="Go Digital Africa careers"
+        panelBadge="Careers"
       />
 
       <section id="openings" className="bg-background py-20 lg:py-24">
@@ -82,32 +65,32 @@ const CareersPage = () => {
             <p className="mb-3 text-sm font-semibold uppercase tracking-[0.28em] text-primary">Open Roles</p>
             <h2 className="text-3xl font-extrabold text-foreground md:text-4xl">Current opportunities at Go Digital Africa</h2>
             <p className="mt-4 text-base leading-8 text-muted-foreground">
-              We are hiring selectively for roles that strengthen our delivery quality and expand what we can build for clients.
+              There are no active openings at the moment. You can still reach out if you want to share your profile for future consideration.
             </p>
           </motion.div>
 
-          <motion.div variants={staggerContainer} className="grid gap-6 md:grid-cols-2">
-            {openings.map((job) => (
-              <motion.article
-                key={job.title}
-                variants={fadeUp}
-                whileHover={hoverLift}
-                className="rounded-[2rem] border border-border bg-card/95 p-7 shadow-[0_18px_50px_rgba(15,23,42,0.06)]"
-              >
-                <div className="mb-5 flex flex-wrap gap-2">
-                  <span className="rounded-full bg-primary/10 px-3 py-1 text-xs font-semibold text-primary">{job.type}</span>
-                  <span className="rounded-full bg-secondary px-3 py-1 text-xs font-semibold text-foreground/80">{job.mode}</span>
-                  <span className="rounded-full bg-muted px-3 py-1 text-xs font-semibold text-muted-foreground">{job.location}</span>
-                </div>
-                <h3 className="text-2xl font-extrabold text-foreground">{job.title}</h3>
-                <p className="mt-4 text-sm leading-7 text-muted-foreground">{job.summary}</p>
-                <Button asChild className="mt-6 rounded-full px-6">
-                  <a href={job.apply} target="_blank" rel="noreferrer">
-                    Apply Now
-                  </a>
-                </Button>
-              </motion.article>
-            ))}
+          <motion.div
+            variants={fadeUp}
+            className="rounded-[2rem] border border-slate-200 bg-card/95 p-8 text-center shadow-[0_18px_50px_rgba(15,23,42,0.06)]"
+          >
+            <div className="mx-auto max-w-2xl">
+              <div className="inline-flex rounded-full bg-primary/10 px-4 py-2 text-sm font-semibold text-primary">
+                No Open Positions
+              </div>
+              <h3 className="mt-5 text-2xl font-extrabold text-foreground">We are not actively hiring right now</h3>
+              <p className="mt-4 text-base leading-8 text-muted-foreground">
+                If you would like to be considered for future opportunities, send your profile and a short introduction to our team and we can keep your details on file.
+              </p>
+              <Button asChild className="mt-6 rounded-full px-6">
+                <a
+                  href="https://mail.google.com/mail/?view=cm&fs=1&to=sales@godigitalafrica.com&su=Future%20Career%20Interest%20-%20Go%20Digital%20Africa"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  Share Your Profile
+                </a>
+              </Button>
+            </div>
           </motion.div>
         </MotionSection>
       </section>
