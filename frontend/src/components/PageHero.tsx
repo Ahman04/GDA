@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 
 import { MotionSection } from "@/components/ui/motion-section";
@@ -46,6 +46,10 @@ const PageHero = ({
   panelImageAlt,
   panelBadge = "Go Digital Africa",
 }: PageHeroProps) => {
+  const location = useLocation();
+  const primaryState = primaryCtaTo === "/technical-audit" ? { backgroundLocation: location } : undefined;
+  const secondaryState = secondaryCtaTo === "/technical-audit" ? { backgroundLocation: location } : undefined;
+
   return (
     <section className="relative overflow-hidden bg-[radial-gradient(circle_at_top_left,_rgba(34,211,238,0.18),_transparent_32%),linear-gradient(180deg,#f8fcff_0%,#ffffff_55%,#f4f8fb_100%)] py-16 md:py-20 lg:py-24">
       <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(rgba(15,23,42,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(15,23,42,0.03)_1px,transparent_1px)] bg-[size:80px_80px]" />
@@ -63,13 +67,13 @@ const PageHero = ({
             </motion.p>
             <motion.div variants={fadeUp} className="mt-8 flex flex-col gap-4 sm:flex-row">
               <Button asChild className="h-12 rounded-full px-7 text-base font-semibold">
-                <Link to={primaryCtaTo}>
+                <Link to={primaryCtaTo} state={primaryState}>
                   {primaryCtaLabel}
                   <ArrowRight className="h-4 w-4" />
                 </Link>
               </Button>
               <Button asChild variant="outline" className="h-12 rounded-full border-primary/30 bg-white/80 px-7 text-base text-primary hover:bg-primary/10">
-                <Link to={secondaryCtaTo}>{secondaryCtaLabel}</Link>
+                <Link to={secondaryCtaTo} state={secondaryState}>{secondaryCtaLabel}</Link>
               </Button>
             </motion.div>
             <motion.div variants={fadeUp} className="mt-10 grid gap-4 sm:grid-cols-3">

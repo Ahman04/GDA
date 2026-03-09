@@ -6,6 +6,7 @@ import { InteractiveGlobe } from "@/components/ui/interactive-globe";
 import { WorldMap } from "@/components/ui/world-map";
 import { AnimatePresence, motion } from "framer-motion";
 import { ArrowRight, ChevronRight, Shield } from "lucide-react";
+import { useLocation } from "react-router-dom";
 import hero1Image from "@/images/hero1.png";
 import hero2Image from "@/images/HERO2.png";
 import hero3Image from "@/images/hero3.png";
@@ -86,6 +87,7 @@ const StatItem = ({ value, suffix, label }: { value: number; suffix: string; lab
 };
 
 const Hero = () => {
+  const location = useLocation();
   const [activeBgSlide, setActiveBgSlide] = useState(0);
   const nextBackgroundSlide = () => setActiveBgSlide((prev) => (prev + 1) % TOTAL_BG_SLIDES);
 
@@ -311,7 +313,12 @@ const Hero = () => {
               </RainbowBordersButton>
             </motion.div>
             <motion.div variants={fadeUp}>
-              <RainbowBordersButton to="/technical-audit" variant="whiteFlash" className="h-12 rounded-full px-8 text-base font-semibold min-w-[240px]">
+              <RainbowBordersButton
+                to="/technical-audit"
+                state={{ backgroundLocation: location }}
+                variant="whiteFlash"
+                className="h-12 rounded-full px-8 text-base font-semibold min-w-[240px]"
+              >
                 Request Technical Audit
               </RainbowBordersButton>
             </motion.div>

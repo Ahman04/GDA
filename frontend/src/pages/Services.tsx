@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 
 import PageLayout from "@/components/PageLayout";
@@ -40,6 +40,8 @@ const engagementPoints = [
 ];
 
 const ServicesPage = () => {
+  const location = useLocation();
+
   return (
     <PageLayout>
       <PageHero
@@ -122,7 +124,7 @@ const ServicesPage = () => {
                     <Link to="/contact">Start a Conversation</Link>
                   </Button>
                   <Button asChild variant="outline" className="rounded-full border-primary/30 text-primary hover:bg-primary/10">
-                    <Link to="/technical-audit">
+                    <Link to="/technical-audit" state={{ backgroundLocation: location }}>
                       Get an Audit
                       <ArrowRight className="h-4 w-4" />
                     </Link>
