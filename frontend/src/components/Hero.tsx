@@ -304,16 +304,16 @@ const Hero = () => {
           </motion.div>
 
           <motion.div variants={staggerContainer} className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} variants={fadeUp}>
-            <RainbowBordersButton href="#contact" variant="alt" className="h-12 rounded-full px-8 text-base font-semibold min-w-[290px]">
-              Start Your Digital Transformation
-              <ArrowRight className="w-4 h-4 ml-1" />
-            </RainbowBordersButton>
+            <motion.div variants={fadeUp}>
+              <RainbowBordersButton href="#contact" variant="alt" className="h-12 rounded-full px-8 text-base font-semibold min-w-[290px]">
+                Start Your Digital Transformation
+                <ArrowRight className="w-4 h-4 ml-1" />
+              </RainbowBordersButton>
             </motion.div>
-            <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} variants={fadeUp}>
-            <RainbowBordersButton to="/technical-audit" variant="whiteFlash" className="h-12 rounded-full px-8 text-base font-semibold min-w-[240px]">
-              Request Technical Audit
-            </RainbowBordersButton>
+            <motion.div variants={fadeUp}>
+              <RainbowBordersButton to="/technical-audit" variant="whiteFlash" className="h-12 rounded-full px-8 text-base font-semibold min-w-[240px]">
+                Request Technical Audit
+              </RainbowBordersButton>
             </motion.div>
           </motion.div>
         </motion.div>

@@ -5,7 +5,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { LocationMap } from "@/components/ui/expand-map";
 import { Facebook, Globe, Instagram, Linkedin, Mail, MapPin, Phone, Twitter } from "lucide-react";
 import { MotionSection } from "@/components/ui/motion-section";
-import { fadeUp, hoverLift, staggerContainer } from "@/lib/motion";
+import { fadeUp, staggerContainer } from "@/lib/motion";
 import contactBackground from "@/images/contact page.jpg";
 
 const SALES_EMAIL = "sales@godigitalafrica.com";
@@ -69,6 +69,18 @@ const TikTokIcon = () => (
     />
   </svg>
 );
+
+const contactItemVariants = {
+  hidden: { opacity: 0, y: 18 },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.55,
+      ease: [0.22, 1, 0.36, 1] as const,
+    },
+  },
+};
 
 const Contact = () => {
   const handleContactSubmit = (event: React.FormEvent<HTMLFormElement>) => {
@@ -154,8 +166,8 @@ const Contact = () => {
           <motion.div variants={fadeUp} transition={{ delay: 0.18 }} className="space-y-6 rounded-2xl border border-white/18 bg-slate-950/40 p-6 shadow-[0_24px_80px_rgba(15,23,42,0.18)] backdrop-blur-md lg:p-7">
             <div>
               <h3 className="font-bold text-cyan-50 mb-4 text-lg">Contact Us</h3>
-              <div className="space-y-4">
-                <div className="flex items-start gap-3">
+              <motion.div variants={staggerContainer} className="space-y-4">
+                <motion.div variants={contactItemVariants} className="flex items-start gap-3">
                   <div className="mt-0.5 h-8 w-8 shrink-0 rounded-lg bg-cyan-100/80 flex items-center justify-center">
                     <Phone className="h-4 w-4 text-cyan-700" />
                   </div>
@@ -165,8 +177,8 @@ const Contact = () => {
                       +254 720 222 249
                     </a>
                   </div>
-                </div>
-                <div className="flex items-start gap-3">
+                </motion.div>
+                <motion.div variants={contactItemVariants} className="flex items-start gap-3">
                   <div className="mt-0.5 h-8 w-8 shrink-0 rounded-lg bg-rose-100/80 flex items-center justify-center">
                     <Mail className="h-4 w-4 text-rose-600" />
                   </div>
@@ -181,8 +193,8 @@ const Contact = () => {
                       {SALES_EMAIL}
                     </a>
                   </div>
-                </div>
-                <div className="flex items-start gap-3">
+                </motion.div>
+                <motion.div variants={contactItemVariants} className="flex items-start gap-3">
                   <div className="mt-0.5 h-8 w-8 shrink-0 rounded-lg bg-sky-100/80 flex items-center justify-center">
                     <Globe className="h-4 w-4 text-sky-600" />
                   </div>
@@ -192,8 +204,8 @@ const Contact = () => {
                       www.godigitalafrica.com
                     </a>
                   </div>
-                </div>
-                <div className="flex items-start gap-3">
+                </motion.div>
+                <motion.div variants={contactItemVariants} className="flex items-start gap-3">
                   <div className="mt-0.5 h-8 w-8 shrink-0 rounded-lg bg-emerald-100/80 flex items-center justify-center">
                     <MapPin className="h-4 w-4 text-emerald-700" />
                   </div>
@@ -202,8 +214,8 @@ const Contact = () => {
                     <p className="text-slate-200/85">14 Ring Road, Westlands</p>
                     <p className="text-slate-200/85">Nairobi, Kenya</p>
                   </div>
-                </div>
-              </div>
+                </motion.div>
+              </motion.div>
             </div>
 
             <div>

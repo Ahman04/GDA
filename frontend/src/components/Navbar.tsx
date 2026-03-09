@@ -116,7 +116,7 @@ const Navbar = () => {
               </Link>
             </motion.div>
           ))}
-          <motion.div variants={fadeUp} whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+          <motion.div variants={fadeUp}>
             <RainbowBordersButton href="#contact" className="h-10 min-w-[140px] rounded-full px-6">
               Get Started
             </RainbowBordersButton>

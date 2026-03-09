@@ -36,7 +36,7 @@ export function RainbowBordersButton({
   const baseClassName = cn(
     borderClass,
     toneClass,
-    "relative inline-flex h-10 min-w-[140px] items-center justify-center gap-2.5 rounded-xl px-4 text-sm font-black transition-all duration-200 hover:scale-[1.01]",
+    "relative inline-flex h-10 min-w-[140px] items-center justify-center gap-2.5 whitespace-nowrap rounded-xl px-4 text-sm font-black ring-offset-background transition-[transform,colors,box-shadow] duration-200 ease-out hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
     className,
   );
 

@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import rubisEnergyImage from "@/images/Rubis Energy.jpg";
 import sidmsImage from "@/images/SIDMS.jpg";
 import ecommerceImage from "@/images/ECOMERCE.jpg";
-import { fadeUp, hoverLift, staggerContainer } from "@/lib/motion";
+import { fadeUp, staggerContainer } from "@/lib/motion";
 
 const cases = [
   {

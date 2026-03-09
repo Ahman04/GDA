@@ -11,6 +11,19 @@ import { Button } from "@/components/ui/button";
 import { fadeUp, hoverLift, staggerContainer } from "@/lib/motion";
 import productsHeroImage from "@/images/AI.png";
 
+const productFitCardVariants = {
+  hidden: { opacity: 0, y: 34, scale: 0.97 },
+  show: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: {
+      duration: 0.72,
+      ease: [0.22, 1, 0.36, 1] as const,
+    },
+  },
+};
+
 const productUseCases = [
   {
     title: "Linkly SaaS",
@@ -99,10 +112,11 @@ const ProductsPage = () => {
             </p>
           </motion.div>
           <motion.div variants={staggerContainer} className="grid gap-7 md:grid-cols-2 xl:grid-cols-4">
-            {productUseCases.map((item) => (
+            {productUseCases.map((item, index) => (
               <motion.div
                 key={item.title}
-                variants={fadeUp}
+                variants={productFitCardVariants}
+                transition={{ delay: index * 0.05 }}
                 whileHover={hoverLift}
                 className={`rounded-[2rem] border p-7 shadow-[0_18px_50px_rgba(15,23,42,0.06)] ${item.className}`}
               >
@@ -134,9 +148,21 @@ const ProductsPage = () => {
                   </div>
                 ))}
                 <div className="flex flex-col gap-3 pt-2 sm:flex-row">
-                  <Button asChild className="rounded-full bg-primary px-6 text-primary-foreground hover:bg-primary/90">
-                    <Link to="/contact">Request a Demo</Link>
-                  </Button>
+                  <motion.div
+                    animate={{
+                      scale: [1, 1.018, 1],
+                      boxShadow: [
+                        "0 0 0 rgba(34,211,238,0)",
+                        "0 0 0.85rem rgba(34,211,238,0.18)",
+                        "0 0 0 rgba(34,211,238,0)",
+                      ],
+                    }}
+                    transition={{ duration: 3.2, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" }}
+                  >
+                    <Button asChild className="rounded-full bg-primary px-6 text-primary-foreground hover:bg-primary/90">
+                      <Link to="/contact">Request a Demo</Link>
+                    </Button>
+                  </motion.div>
                   <Button asChild variant="outline" className="rounded-full border-white/20 bg-white/5 text-white hover:bg-white/10 hover:text-white">
                     <Link to="/services">
                       Explore Services

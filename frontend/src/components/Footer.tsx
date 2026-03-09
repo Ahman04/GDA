@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Linkedin, Twitter, Facebook, Instagram, ArrowRight } from "lucide-react";
 import gdaLogo from "@/images/1695985224885-removebg-preview.png";
 import { MotionSection } from "@/components/ui/motion-section";
-import { fadeUp, hoverLift, staggerContainer } from "@/lib/motion";
+import { fadeIn, fadeUp, hoverLift, staggerContainer } from "@/lib/motion";
 
 const WhatsAppIcon = () => (
   <svg viewBox="0 0 24 24" className="h-4 w-4" aria-hidden="true">
@@ -40,10 +40,10 @@ const marketPresence = [
 const Footer = () => {
   return (
     <footer className="bg-slate-100 text-slate-900 pt-16 pb-8">
-      <MotionSection className="container mx-auto px-4 lg:px-8" amount={0.12}>
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
+      <MotionSection className="container mx-auto px-4 lg:px-8" amount={0.12} variants={fadeIn}>
+        <motion.div variants={staggerContainer} className="grid sm:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
           {/* Brand */}
-          <div>
+          <motion.div variants={fadeUp}>
             <div className="flex items-center gap-2 mb-4">
               <img
                 src={gdaLogo}
@@ -91,10 +91,10 @@ const Footer = () => {
                 </motion.a>
               ))}
             </motion.div>
-          </div>
+          </motion.div>
 
           {/* Company */}
-          <div>
+          <motion.div variants={fadeUp}>
             <h4 className="font-bold mb-4 text-sm uppercase tracking-wider">Company</h4>
             <ul className="space-y-2.5">
               {["About Us", "Careers", "Case Studies", "Insights", "Contact"].map((l) => (
@@ -103,10 +103,10 @@ const Footer = () => {
                 </li>
               ))}
             </ul>
-          </div>
+          </motion.div>
 
           {/* Services */}
-          <div>
+          <motion.div variants={fadeUp}>
             <h4 className="font-bold mb-4 text-sm uppercase tracking-wider">Services</h4>
             <ul className="space-y-2.5">
               {["Digital Strategy", "Web & Software Development", "SEO & PPC", "Social Media Marketing", "Content Creation"].map((l) => (
@@ -115,10 +115,10 @@ const Footer = () => {
                 </li>
               ))}
             </ul>
-          </div>
+          </motion.div>
 
           {/* Newsletter */}
-          <div>
+          <motion.div variants={fadeUp}>
             <h4 className="font-bold mb-4 text-sm uppercase tracking-wider">Stay Updated</h4>
             <p className="text-sm text-slate-600 mb-4">
               Subscribe for the latest in digital transformation and AI innovation.
@@ -132,10 +132,10 @@ const Footer = () => {
                 <ArrowRight className="w-4 h-4" />
               </Button>
             </div>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
 
-        <div className="border-t border-slate-300 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <motion.div variants={fadeUp} className="border-t border-slate-300 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="text-xs text-slate-500">
             © {new Date().getFullYear()} Go Digital Africa. All rights reserved.
           </p>
@@ -144,7 +144,7 @@ const Footer = () => {
               <a key={l} href="#" className="text-xs text-slate-500 hover:text-primary transition-colors">{l}</a>
             ))}
           </div>
-        </div>
+        </motion.div>
       </MotionSection>
     </footer>
   );
