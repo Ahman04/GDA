@@ -40,24 +40,26 @@ const Navbar = () => {
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         useSolidNavbar
           ? "bg-background/95 backdrop-blur-md shadow-sm border-b border-border"
-          : "bg-transparent"
+          : "border-b border-slate-200 bg-slate-100 shadow-sm"
       }`}
     >
-      <div className="container mx-auto flex items-center justify-between h-24 px-4 lg:px-8">
+      <div className="container mx-auto flex items-center justify-between h-20 px-4 lg:px-8">
         <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.99 }}>
         <Link to="/" className="flex items-center">
           <div
-            className={`relative h-16 w-36 overflow-hidden ${
-              useSolidNavbar ? "drop-shadow-sm" : ""
+            className={`relative flex h-14 w-24 items-center justify-center overflow-hidden rounded-2xl transition-all duration-300 ${
+              useSolidNavbar
+                ? "border-slate-200/80 bg-white/92 shadow-sm"
+                : "bg-transparent"
             }`}
           >
             <img
               src={gdaLogo}
               alt="Go Digital Africa logo"
-              className={`h-full w-full scale-[1.7] object-contain ${
+              className={`h-full w-full scale-[1.42] object-contain ${
                 useSolidNavbar
-                  ? ""
-                  : "brightness-[1.35] contrast-[1.2] drop-shadow-[0_0_16px_rgba(255,255,255,0.22)]"
+                  ? "brightness-[0.95] contrast-[1.05]"
+                  : "brightness-[0.95] contrast-[1.05]"
               }`}
             />
           </div>
@@ -75,7 +77,7 @@ const Navbar = () => {
             aria-label="Home"
             title="Home"
             className={`transition-colors hover:text-primary ${
-              useSolidNavbar ? "text-foreground/75" : "text-deep-blue-foreground/70"
+              useSolidNavbar ? "text-foreground/75" : "text-slate-800"
             }`}
             variants={fadeUp}
             whileHover={{ y: -2 }}
@@ -99,7 +101,7 @@ const Navbar = () => {
                   ? "text-primary"
                   : useSolidNavbar
                     ? "text-foreground/75"
-                    : "text-deep-blue-foreground/70"
+                    : "text-slate-800"
               }`}
               variants={fadeUp}
               whileHover={{ y: -2 }}
@@ -130,9 +132,9 @@ const Navbar = () => {
           aria-label="Toggle menu"
         >
           {mobileOpen ? (
-            <X className={useSolidNavbar ? "text-foreground" : "text-deep-blue-foreground"} />
+            <X className={useSolidNavbar ? "text-foreground" : "text-slate-900"} />
           ) : (
-            <Menu className={useSolidNavbar ? "text-foreground" : "text-deep-blue-foreground"} />
+            <Menu className={useSolidNavbar ? "text-foreground" : "text-slate-900"} />
           )}
         </button>
       </div>
