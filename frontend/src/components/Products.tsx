@@ -255,8 +255,10 @@ const Products = ({ showViewAll = true }: ProductsProps) => {
 
   return (
     <>
-      <section id="products" className="py-20 lg:py-28 bg-background">
-        <MotionSection className="container mx-auto px-4 lg:px-8">
+      <section id="products" className="overflow-hidden bg-background py-20 lg:py-28">
+        <MotionSection
+          className={isHomepagePreview ? "container mx-auto px-2 lg:px-3" : "container mx-auto px-4 lg:px-8"}
+        >
           <motion.div
             variants={fadeUp}
             className={`mb-12 ${isHomepagePreview ? "mx-auto max-w-6xl text-center md:text-left" : "text-center md:text-left"}`}
@@ -284,7 +286,10 @@ const Products = ({ showViewAll = true }: ProductsProps) => {
           </motion.div>
 
           {isHomepagePreview ? (
-            <motion.div variants={fadeUp} className="mx-auto max-w-[1440px]">
+            <motion.div
+              variants={fadeUp}
+              className="relative left-1/2 right-1/2 ml-[-50vw] mr-[-50vw] w-screen max-w-[100vw]"
+            >
               <div
                 ref={trackRef}
                 className="relative overflow-x-auto pb-4 cursor-grab active:cursor-grabbing [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
