@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
+import LanguageSelector from "@/components/LanguageSelector";
 import { RainbowBordersButton } from "@/components/ui/rainbow-borders-button";
 import gdaLogo from "@/images/1695985224885-removebg-preview.png";
 import { fadeUp, motionEase, staggerContainer } from "@/lib/motion";
@@ -43,7 +44,7 @@ const Navbar = () => {
           : "border-b border-slate-200 bg-slate-100 shadow-sm"
       }`}
     >
-      <div className="container mx-auto flex items-center justify-between h-20 px-4 lg:px-8">
+      <div className="container mx-auto flex items-center justify-between h-20 gap-3 px-4 lg:px-8">
         <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.99 }}>
         <Link to="/" className="flex items-center">
           <div
@@ -68,7 +69,7 @@ const Navbar = () => {
 
         {/* Desktop */}
         <motion.div
-          className="hidden lg:flex items-center gap-8"
+          className="hidden lg:flex items-center gap-5"
           variants={staggerContainer}
           initial="hidden"
           animate="show"
@@ -119,24 +120,32 @@ const Navbar = () => {
             </motion.div>
           ))}
           <motion.div variants={fadeUp}>
+            <LanguageSelector className={useSolidNavbar ? "bg-white/92" : "border-slate-200 bg-white/90 text-slate-900"} />
+          </motion.div>
+          <motion.div variants={fadeUp}>
             <RainbowBordersButton href="#contact" className="h-10 min-w-[140px] rounded-full px-6">
               Get Started
             </RainbowBordersButton>
           </motion.div>
         </motion.div>
 
-        {/* Mobile toggle */}
-        <button
-          className="lg:hidden p-2"
-          onClick={() => setMobileOpen(!mobileOpen)}
-          aria-label="Toggle menu"
-        >
-          {mobileOpen ? (
-            <X className={useSolidNavbar ? "text-foreground" : "text-slate-900"} />
-          ) : (
-            <Menu className={useSolidNavbar ? "text-foreground" : "text-slate-900"} />
-          )}
-        </button>
+        <div className="flex items-center gap-2 lg:hidden">
+          <LanguageSelector
+            className={useSolidNavbar ? "max-w-[152px] bg-white/92" : "max-w-[152px] border-slate-200 bg-white/90 text-slate-900"}
+            inverted={!useSolidNavbar}
+          />
+          <button
+            className="p-2"
+            onClick={() => setMobileOpen(!mobileOpen)}
+            aria-label="Toggle menu"
+          >
+            {mobileOpen ? (
+              <X className={useSolidNavbar ? "text-foreground" : "text-slate-900"} />
+            ) : (
+              <Menu className={useSolidNavbar ? "text-foreground" : "text-slate-900"} />
+            )}
+          </button>
+        </div>
       </div>
 
       {/* Mobile menu */}
@@ -173,6 +182,9 @@ const Navbar = () => {
                 <Link to={link.to}>{link.label}</Link>
               </motion.div>
             ))}
+            <motion.div variants={fadeUp} className="pt-1">
+              <LanguageSelector className="w-full justify-between rounded-2xl px-4 py-3" />
+            </motion.div>
             <motion.div variants={fadeUp}>
               <RainbowBordersButton
                 to="/contact"

@@ -257,3 +257,35 @@
     background-position: 0 0;
   }
 }
+
+/* Hide the Google Translate banner so it does not cover the fixed navbar. */
+body {
+  top: 0 !important;
+}
+
+.skiptranslate iframe,
+.goog-te-banner-frame,
+.goog-te-banner-frame.skiptranslate {
+  display: none !important;
+  visibility: hidden !important;
+}
+
+#goog-gt-tt,
+.goog-te-balloon-frame,
+div.goog-te-balloon-frame,
+.goog-text-highlight {
+  display: none !important;
+  visibility: hidden !important;
+}
+
+body .goog-text-highlight {
+  background: transparent !important;
+  box-shadow: none !important;
+  border: none !important;
+}
+
+#google_translate_element,
+.goog-te-gadget,
+.goog-te-gadget .goog-te-combo {
+  font-size: 0 !important;
+}
