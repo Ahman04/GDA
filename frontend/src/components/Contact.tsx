@@ -6,7 +6,7 @@ import { LocationMap } from "@/components/ui/expand-map";
 import { Facebook, Globe, Instagram, Linkedin, Mail, MapPin, Phone, Twitter, Youtube } from "lucide-react";
 import { MotionSection } from "@/components/ui/motion-section";
 import { fadeUp, staggerContainer } from "@/lib/motion";
-import contactBackground from "@/images/contact page.jpg";
+import contactBackground from "@/images/contact page.webp";
 
 const SALES_EMAIL = "sales@godigitalafrica.com";
 

@@ -6,6 +6,7 @@ import { cn } from "@/lib/utils";
 const GOOGLE_SCRIPT_ID = "google-translate-script";
 const GOOGLE_ELEMENT_ID = "google_translate_element";
 const GOOGLE_COOKIE_NAME = "googtrans";
+const LANGUAGE_STORAGE_KEY = "gda-selected-language";
 
 const supportedLanguages = [
   { code: "en", label: "English" },
@@ -133,12 +134,82 @@ function readGoogleTranslateCookie() {
   return targetLanguage || "en";
 }
 
+function readStoredLanguage() {
+  if (typeof window === "undefined") return "en";
+
+  const storedValue = window.localStorage.getItem(LANGUAGE_STORAGE_KEY);
+  return storedValue && supportedLanguages.some((language) => language.code === storedValue)
+    ? storedValue
+    : "en";
+}
+
+function persistSelectedLanguage(languageCode: string) {
+  window.localStorage.setItem(LANGUAGE_STORAGE_KEY, languageCode);
+}
+
 function writeGoogleTranslateCookie(languageCode: string) {
-  const value = languageCode === "en" ? "/en/en" : `/en/${languageCode}`;
+  const value = `/en/${languageCode}`;
   const expires = "Fri, 31 Dec 9999 23:59:59 GMT";
 
   document.cookie = `${GOOGLE_COOKIE_NAME}=${encodeURIComponent(value)}; expires=${expires}; path=/`;
   document.cookie = `${GOOGLE_COOKIE_NAME}=${encodeURIComponent(value)}; expires=${expires}; path=/; domain=${window.location.hostname}`;
+}
+
+function clearGoogleTranslateCookie() {
+  const expired = "Thu, 01 Jan 1970 00:00:00 GMT";
+  const hostnameParts = window.location.hostname.split(".").filter(Boolean);
+  const domains = new Set<string>([window.location.hostname]);
+  const paths = new Set<string>(["/"]);
+
+  const pathnameParts = window.location.pathname.split("/").filter(Boolean);
+  let currentPath = "";
+  pathnameParts.forEach((part) => {
+    currentPath += `/${part}`;
+    paths.add(currentPath);
+  });
+
+  for (let index = 0; index < hostnameParts.length - 1; index += 1) {
+    domains.add(`.${hostnameParts.slice(index).join(".")}`);
+  }
+
+  paths.forEach((path) => {
+    document.cookie = `${GOOGLE_COOKIE_NAME}=; expires=${expired}; path=${path}`;
+  });
+
+  domains.forEach((domain) => {
+    paths.forEach((path) => {
+      document.cookie = `${GOOGLE_COOKIE_NAME}=; expires=${expired}; path=${path}; domain=${domain}`;
+    });
+  });
+}
+
+function writeEnglishResetCookie() {
+  const expires = "Fri, 31 Dec 9999 23:59:59 GMT";
+  const resetValues = ["/en/en", "/auto/en"];
+
+  resetValues.forEach((value) => {
+    document.cookie = `${GOOGLE_COOKIE_NAME}=${encodeURIComponent(value)}; expires=${expires}; path=/`;
+    document.cookie = `${GOOGLE_COOKIE_NAME}=${encodeURIComponent(value)}; expires=${expires}; path=/; domain=${window.location.hostname}`;
+  });
+}
+
+function resetTranslatedDocument() {
+  document.body.classList.remove("translated-ltr", "translated-rtl");
+  document.documentElement.setAttribute("lang", "en");
+
+  const googleCombo = document.querySelector<HTMLSelectElement>(".goog-te-combo");
+  if (googleCombo) {
+    googleCombo.value = "en";
+    googleCombo.dispatchEvent(new Event("change"));
+  }
+}
+
+function currentActiveLanguage() {
+  const storedLanguage = readStoredLanguage();
+  const cookieLanguage = readGoogleTranslateCookie();
+
+  if (cookieLanguage !== "en") return cookieLanguage;
+  return storedLanguage;
 }
 
 type LanguageSelectorProps = {
@@ -155,7 +226,7 @@ const LanguageSelector = ({ className, inverted = false }: LanguageSelectorProps
   );
 
   useEffect(() => {
-    setSelectedLanguage(readGoogleTranslateCookie());
+    setSelectedLanguage(currentActiveLanguage());
   }, []);
 
   useEffect(() => {
@@ -209,7 +280,21 @@ const LanguageSelector = ({ className, inverted = false }: LanguageSelectorProps
   const handleLanguageChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const nextLanguage = event.target.value;
     setSelectedLanguage(nextLanguage);
-    writeGoogleTranslateCookie(nextLanguage);
+    persistSelectedLanguage(nextLanguage);
+
+    if (nextLanguage === "en") {
+      clearGoogleTranslateCookie();
+      resetTranslatedDocument();
+      window.localStorage.removeItem(LANGUAGE_STORAGE_KEY);
+      window.setTimeout(() => {
+        writeEnglishResetCookie();
+        window.location.replace(`${window.location.pathname}${window.location.search}${window.location.hash}`);
+      }, 120);
+      return;
+    } else {
+      writeGoogleTranslateCookie(nextLanguage);
+    }
+
     window.location.reload();
   };
 

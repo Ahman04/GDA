@@ -94,6 +94,10 @@ const PageHero = ({
                   src={panelImageSrc}
                   alt={panelImageAlt || panelTitle}
                   className="h-[560px] w-full object-cover object-center lg:h-[600px]"
+                  loading="eager"
+                  fetchPriority="high"
+                  decoding="async"
+                  sizes="(min-width: 1280px) 42vw, (min-width: 1024px) 46vw, 100vw"
                   animate={{
                     scale: [1.02, 1.06, 1.02],
                     y: [0, -10, 0],

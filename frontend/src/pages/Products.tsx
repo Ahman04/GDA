@@ -9,7 +9,7 @@ import Testimonials from "@/components/Testimonials";
 import { MotionSection } from "@/components/ui/motion-section";
 import { Button } from "@/components/ui/button";
 import { fadeUp, hoverLift, staggerContainer } from "@/lib/motion";
-import productsHeroImage from "@/images/AI.png";
+import productsHeroImage from "@/images/AI.webp";
 
 const productFitCardVariants = {
   hidden: { opacity: 0, y: 34, scale: 0.97 },

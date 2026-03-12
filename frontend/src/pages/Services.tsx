@@ -10,7 +10,7 @@ import Testimonials from "@/components/Testimonials";
 import { MotionSection } from "@/components/ui/motion-section";
 import { Button } from "@/components/ui/button";
 import { fadeUp, hoverLift, staggerContainer } from "@/lib/motion";
-import servicesHeroImage from "@/images/service img.png";
+import servicesHeroImage from "@/images/service img.webp";
 
 const serviceTracks = [
   {

@@ -3,9 +3,9 @@ import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 import { MotionSection } from "@/components/ui/motion-section";
 import { Button } from "@/components/ui/button";
-import rubisEnergyImage from "@/images/Rubis Energy.jpg";
-import sidmsImage from "@/images/SIDMS.jpg";
-import ecommerceImage from "@/images/ECOMERCE.jpg";
+import rubisEnergyImage from "@/images/Rubis Energy.webp";
+import sidmsImage from "@/images/SIDMS.webp";
+import ecommerceImage from "@/images/ECOMERCE.webp";
 import { fadeUp, staggerContainer } from "@/lib/motion";
 
 const cases = [
@@ -74,6 +74,8 @@ const CaseStudies = ({ showViewAll = true }: CaseStudiesProps) => {
                   alt={`${c.title} case study`}
                   className="absolute inset-0 h-full w-full object-cover"
                   loading="lazy"
+                  decoding="async"
+                  sizes="(min-width: 768px) 33vw, 100vw"
                   whileHover={{ scale: 1.08 }}
                   transition={{ duration: 0.45, ease: "easeOut" }}
                 />

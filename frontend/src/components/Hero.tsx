@@ -6,10 +6,10 @@ import { WorldMap } from "@/components/ui/world-map";
 import { AnimatePresence, motion } from "framer-motion";
 import { ArrowRight, ChevronRight, Shield } from "lucide-react";
 import { useLocation } from "react-router-dom";
-import hero1Image from "@/images/hero1.png";
-import hero2Image from "@/images/HERO2.png";
-import hero3Image from "@/images/hero3.png";
-import hero4Image from "@/images/hero4.png";
+import hero1Image from "@/images/hero1.webp";
+import hero2Image from "@/images/HERO2.webp";
+import hero3Image from "@/images/hero3.webp";
+import hero4Image from "@/images/hero4.webp";
 import { fadeIn, fadeUp, motionEase, staggerContainer } from "@/lib/motion";
 
 const WHATSAPP_URL = "https://wa.me/254720222249";

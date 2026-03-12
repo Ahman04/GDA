@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { MotionSection } from "@/components/ui/motion-section";
-import aiImage from "@/images/AI.png";
+import aiImage from "@/images/AI.webp";
 import cloudImage from "@/images/Cloud.png";
 import digitalMarketingImage from "@/images/Digital marketing.png";
 import { fadeUp, hoverLift, staggerContainer } from "@/lib/motion";

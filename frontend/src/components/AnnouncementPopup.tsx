@@ -4,7 +4,7 @@ import { BellRing, Sparkles, X } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { motionEase } from "@/lib/motion";
-import announcementImage from "@/images/hero3.png";
+import announcementImage from "@/images/hero3.webp";
 
 const DISMISS_KEY = "gda-announcement-dismissed";
 const SALES_EMAIL = "sales@godigitalafrica.com";
@@ -100,6 +100,9 @@ const AnnouncementPopup = () => {
                     src={announcementImage}
                     alt="Go Digital Africa expansion announcement"
                     className="h-full w-full object-cover"
+                    loading="lazy"
+                    decoding="async"
+                    sizes="(min-width: 1024px) 60vw, 100vw"
                   />
                   <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(2,6,23,0.18)_0%,rgba(2,6,23,0.28)_32%,rgba(2,6,23,0.82)_100%)]" />
                   <div className="absolute inset-x-0 bottom-0 p-6 text-white md:p-8 lg:p-10">

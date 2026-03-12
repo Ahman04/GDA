@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { MotionSection } from "@/components/ui/motion-section";
 import { Lightbulb, Award, ShieldCheck, Users, Globe, Rocket } from "lucide-react";
-import aboutImage from "@/images/About.png";
+import aboutImage from "@/images/About.webp";
 import { fadeUp, hoverLift, staggerContainer } from "@/lib/motion";
 
 const aboutTextVariants = {
@@ -105,6 +105,9 @@ const About = () => {
                 src={aboutImage}
                 alt="Digital Infrastructure — Powering Africa's Digital Future"
                 className="h-full w-full object-cover"
+                loading="lazy"
+                decoding="async"
+                sizes="(min-width: 1024px) 50vw, 100vw"
               />
             </div>
             <div className="absolute -bottom-4 -right-4 w-24 h-24 bg-primary/10 rounded-2xl -z-10" />

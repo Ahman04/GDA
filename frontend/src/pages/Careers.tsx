@@ -7,7 +7,7 @@ import PageLayout from "@/components/PageLayout";
 import { MotionSection } from "@/components/ui/motion-section";
 import { Button } from "@/components/ui/button";
 import { fadeUp } from "@/lib/motion";
-import careersHeroImage from "@/images/careerimg.png";
+import careersHeroImage from "@/images/careerimg.webp";
 
 const culturePoints = [
   "Work on digital transformation projects that shape real operating outcomes.",

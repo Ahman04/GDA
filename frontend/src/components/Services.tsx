@@ -2,14 +2,14 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { MotionSection } from "@/components/ui/motion-section";
 import { Button } from "@/components/ui/button";
-import webImage from "@/images/web.png";
-import seoSemImage from "@/images/SEO & SEM.png";
-import socialMediaImage from "@/images/Social Media.png";
-import contentImage from "@/images/content.png";
+import webImage from "@/images/web.webp";
+import seoSemImage from "@/images/SEO & SEM.webp";
+import socialMediaImage from "@/images/Social Media.webp";
+import contentImage from "@/images/content.webp";
 import mobileDevelopmentImage from "@/images/mobile.png";
-import googleAdsImage from "@/images/Google.png";
-import trendsettingCampaignsImage from "@/images/Trendsetting Digital Campaigns.png";
-import onlineReputationImage from "@/images/Online Reputation Management.png";
+import googleAdsImage from "@/images/Google.webp";
+import trendsettingCampaignsImage from "@/images/Trendsetting Digital Campaigns.webp";
+import onlineReputationImage from "@/images/Online Reputation Management.webp";
 import { fadeUp, hoverLift, staggerContainer } from "@/lib/motion";
 
 const services = [
@@ -123,6 +123,8 @@ const Services = ({ showViewAll = true, limitToFeatured = false }: ServicesProps
                   alt={s.title}
                   className="h-full w-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
                   loading="lazy"
+                  decoding="async"
+                  sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
                 />
               </div>
               <h3 className="font-bold text-foreground mb-2 text-sm leading-snug">{s.title}</h3>
