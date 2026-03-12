@@ -5,6 +5,7 @@ import Testimonials from "@/components/Testimonials";
 const CaseStudiesPage = () => {
   return (
     <PageLayout>
+      {/* Reuse the homepage case study section without the redundant "view all" CTA. */}
       <CaseStudies showViewAll={false} />
       <Testimonials />
     </PageLayout>

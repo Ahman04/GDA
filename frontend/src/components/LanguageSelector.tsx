@@ -205,6 +205,7 @@ function resetTranslatedDocument() {
 }
 
 function currentActiveLanguage() {
+  // Prefer the active Google cookie, then fall back to the last user selection for initial UI sync.
   const storedLanguage = readStoredLanguage();
   const cookieLanguage = readGoogleTranslateCookie();
 
@@ -247,6 +248,7 @@ const LanguageSelector = ({ className, inverted = false }: LanguageSelectorProps
       const translateElement = document.getElementById(GOOGLE_ELEMENT_ID);
       if (!translateElement || translateElement.childElementCount > 0) return;
 
+      // Mount the hidden Google widget once and keep the custom selector as the only visible control.
       new window.google.translate.TranslateElement(
         {
           pageLanguage: "en",

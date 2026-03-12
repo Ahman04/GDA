@@ -137,6 +137,7 @@ const Products = ({ showViewAll = true }: ProductsProps) => {
     if (!isHomepagePreview || !trackRef.current) return;
 
     const container = trackRef.current;
+    // Start from the middle copy so the infinite rail can wrap in either direction without a visible jump.
     container.scrollLeft = singleSetWidth;
 
     let animationFrame = 0;
@@ -230,6 +231,7 @@ const Products = ({ showViewAll = true }: ProductsProps) => {
   const handleDemoSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
+    // The product demo modal routes leads into a prefilled email flow instead of an API submission.
     const formData = new FormData(event.currentTarget);
     const fullName = String(formData.get("full_name") || "");
     const email = String(formData.get("email") || "");

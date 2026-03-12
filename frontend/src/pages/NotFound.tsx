@@ -5,6 +5,7 @@ const NotFound = () => {
   const location = useLocation();
 
   useEffect(() => {
+    // Surface bad routes during development without affecting the user-facing fallback.
     console.error("404 route:", location.pathname);
   }, [location.pathname]);
 

@@ -13,6 +13,7 @@ const PageLayout = ({ children }: PageLayoutProps) => {
     <div className="min-h-screen bg-background">
       <Navbar />
       <AIAssistant />
+      {/* Shared page chrome keeps inner pages aligned with the homepage nav/footer shell. */}
       <main className="pt-24">{children}</main>
       <Footer />
     </div>

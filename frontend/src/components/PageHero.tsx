@@ -89,6 +89,7 @@ const PageHero = ({
           <motion.div variants={fadeUp} className="relative">
             <div className="absolute -inset-6 rounded-[2.5rem] bg-gradient-to-br from-cyan-400/20 via-transparent to-blue-500/10 blur-3xl" />
             {panelImageSrc ? (
+              // Use the visual panel variant on pages that need a stronger hero image anchor.
               <div className="relative overflow-hidden rounded-[2rem] border border-white/70 shadow-[0_26px_80px_rgba(15,23,42,0.18)]">
                 <motion.img
                   src={panelImageSrc}
@@ -123,6 +124,7 @@ const PageHero = ({
                 </div>
               </div>
             ) : (
+              // Fall back to a text-only panel when a page does not need supporting artwork.
               <div className="relative overflow-hidden rounded-[2rem] border border-white/70 bg-slate-950 p-8 text-white shadow-[0_26px_80px_rgba(15,23,42,0.18)]">
                 <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(34,211,238,0.18),_transparent_35%),linear-gradient(145deg,rgba(15,23,42,0.98),rgba(6,182,212,0.2))]" />
                 <div className="relative">

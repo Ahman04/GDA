@@ -69,6 +69,7 @@ const Hero = () => {
   const nextBackgroundSlide = () => setActiveBgSlide((prev) => (prev + 1) % TOTAL_BG_SLIDES);
 
   useEffect(() => {
+    // Rotate between map/globe/image backgrounds without introducing a heavier carousel dependency.
     const interval = setInterval(() => {
       nextBackgroundSlide();
     }, 7000);
@@ -293,14 +294,15 @@ const Hero = () => {
                   <ArrowRight className="w-4 h-4 ml-1" />
                 </RainbowBordersButton>
               </motion.div>
-              <motion.div variants={fadeUp}>
-                <RainbowBordersButton
-                  to="/technical-audit"
-                  state={{ backgroundLocation: location }}
-                  variant="whiteFlash"
-                  className="h-12 rounded-full px-8 text-base font-semibold min-w-[240px]"
-                >
-                  Request Technical Audit
+            <motion.div variants={fadeUp}>
+              <RainbowBordersButton
+                to="/technical-audit"
+                state={{ backgroundLocation: location }}
+                variant="whiteFlash"
+                // Keep the homepage mounted behind the audit so the route behaves like a modal overlay.
+                className="h-12 rounded-full px-8 text-base font-semibold min-w-[240px]"
+              >
+                Request Technical Audit
                 </RainbowBordersButton>
               </motion.div>
             </motion.div>

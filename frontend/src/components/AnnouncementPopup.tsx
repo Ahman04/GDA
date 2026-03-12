@@ -37,6 +37,7 @@ const AnnouncementPopup = () => {
   const [detailOpen, setDetailOpen] = useState(false);
 
   const closePopup = () => {
+    // Persist dismissal locally so reopening the modal stays an explicit user action.
     if (typeof window !== "undefined") {
       window.localStorage.setItem(DISMISS_KEY, "true");
     }

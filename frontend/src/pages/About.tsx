@@ -6,6 +6,7 @@ import Team from "@/components/Team";
 const AboutPage = () => {
   return (
     <PageLayout>
+      {/* Stack the company story, people, and delivery process into one long-form page. */}
       <About />
       <Team />
       <Process />

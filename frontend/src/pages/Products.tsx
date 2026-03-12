@@ -99,6 +99,7 @@ const ProductsPage = () => {
         panelImageAlt="AI-powered product ecosystem"
         panelBadge="Product Ecosystem"
       />
+      {/* Reuse the interactive product rail as a full catalog by disabling the homepage CTA wrapper. */}
       <Products showViewAll={false} />
       <section className="bg-light-gray py-20 lg:py-24">
         <MotionSection className="container mx-auto px-4 lg:px-8">

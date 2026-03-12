@@ -234,6 +234,7 @@ const AIAssistant = () => {
   }, [open]);
 
   useEffect(() => {
+    // Match assistant greetings to the visible section so prompts stay relevant without route-specific bots.
     const updateSection = () => setSectionKey(currentSectionKey());
     updateSection();
     window.addEventListener("hashchange", updateSection);
@@ -249,6 +250,7 @@ const AIAssistant = () => {
   }, []);
 
   const pushAssistantMessage = (text: string) => {
+    // Simulate short typing latency so follow-up messages feel paced rather than instant dumps.
     setTyping(true);
     timeoutRef.current = window.setTimeout(() => {
       setMessages((current) => [...current, createMessage("assistant", text)]);

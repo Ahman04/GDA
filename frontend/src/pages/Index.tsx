@@ -17,6 +17,7 @@ const Index = () => {
       <Navbar />
       <AnnouncementPopup />
       <AIAssistant />
+      {/* Homepage sections are ordered as a narrative funnel from brand promise to conversion points. */}
       <Hero />
       <About />
       <Impact />

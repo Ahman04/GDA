@@ -25,6 +25,7 @@ const CareersPage = () => {
   const location = useLocation();
 
   useEffect(() => {
+    // Support direct links to the openings section while preserving normal route scroll reset.
     if (location.hash === "#openings") {
       requestAnimationFrame(() => {
         document.getElementById("openings")?.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -59,6 +60,7 @@ const CareersPage = () => {
         panelBadge="Careers"
       />
 
+      {/* Keep the "no openings" state explicit so the page still works as a future hiring landing page. */}
       <section id="openings" className="bg-background py-20 lg:py-24">
         <MotionSection className="container mx-auto px-4 lg:px-8">
           <motion.div variants={fadeUp} className="mb-12 max-w-3xl">
@@ -95,6 +97,7 @@ const CareersPage = () => {
         </MotionSection>
       </section>
 
+      {/* Separate the standing hiring process from the current role availability. */}
       <section className="bg-light-gray py-20 lg:py-24">
         <MotionSection className="container mx-auto px-4 lg:px-8">
           <motion.div variants={fadeUp} className="grid gap-8 rounded-[2.25rem] border border-slate-200 bg-white p-8 shadow-[0_24px_70px_rgba(15,23,42,0.08)] lg:grid-cols-[1.05fr_0.95fr] lg:items-start">

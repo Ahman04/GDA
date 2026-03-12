@@ -65,6 +65,7 @@ const ServicesPage = () => {
         panelImageAlt="Digital marketing and service delivery"
         panelBadge="Service Delivery"
       />
+      {/* The shared services grid powers both the homepage preview and the full services page. */}
       <Services showViewAll={false} />
       <section className="bg-background py-20 lg:py-24">
         <MotionSection className="container mx-auto px-4 lg:px-8">
@@ -123,6 +124,7 @@ const ServicesPage = () => {
                   <Button asChild className="rounded-full px-6">
                     <Link to="/contact">Start a Conversation</Link>
                   </Button>
+                  {/* Preserve the background route so the audit opens as a modal on top of the current page. */}
                   <Button asChild variant="outline" className="rounded-full border-primary/30 text-primary hover:bg-primary/10">
                     <Link to="/technical-audit" state={{ backgroundLocation: location }}>
                       Get an Audit
