@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Linkedin, Twitter, Facebook, Instagram, ArrowRight, Youtube } from "lucide-react";
@@ -36,6 +37,22 @@ const marketPresence = [
   { country: "Djibouti", flag: "🇩🇯" },
   { country: "Dubai", flag: "🇦🇪" },
   { country: "Canada", flag: "🇨🇦" },
+];
+
+const companyLinks = [
+  { label: "About Us", to: "/about" },
+  { label: "Careers", to: "/careers" },
+  { label: "Case Studies", to: "/case-studies" },
+  { label: "Products", to: "/products" },
+  { label: "Contact", to: "/contact" },
+];
+
+const serviceLinks = [
+  { label: "Digital Strategy", to: "/services" },
+  { label: "Web & Software Development", to: "/services" },
+  { label: "SEO & PPC", to: "/services" },
+  { label: "Social Media Marketing", to: "/services" },
+  { label: "Content Creation", to: "/services" },
 ];
 
 const Footer = () => {
@@ -98,9 +115,11 @@ const Footer = () => {
           <motion.div variants={fadeUp}>
             <h4 className="font-bold mb-4 text-sm uppercase tracking-wider">Company</h4>
             <ul className="space-y-2.5">
-              {["About Us", "Careers", "Case Studies", "Insights", "Contact"].map((l) => (
-                <li key={l}>
-                  <a href="#" className="text-sm text-slate-600 hover:text-primary transition-colors">{l}</a>
+              {companyLinks.map((link) => (
+                <li key={link.label}>
+                  <Link to={link.to} className="text-sm text-slate-600 hover:text-primary transition-colors">
+                    {link.label}
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -110,9 +129,11 @@ const Footer = () => {
           <motion.div variants={fadeUp}>
             <h4 className="font-bold mb-4 text-sm uppercase tracking-wider">Services</h4>
             <ul className="space-y-2.5">
-              {["Digital Strategy", "Web & Software Development", "SEO & PPC", "Social Media Marketing", "Content Creation"].map((l) => (
-                <li key={l}>
-                  <a href="#" className="text-sm text-slate-600 hover:text-primary transition-colors">{l}</a>
+              {serviceLinks.map((link) => (
+                <li key={link.label}>
+                  <Link to={link.to} className="text-sm text-slate-600 hover:text-primary transition-colors">
+                    {link.label}
+                  </Link>
                 </li>
               ))}
             </ul>
